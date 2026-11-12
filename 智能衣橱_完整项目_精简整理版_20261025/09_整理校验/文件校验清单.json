@@ -1,0 +1,2177 @@
+[
+  {
+    "path": "00_项目说明/README_本部分说明.md",
+    "bytes": 416,
+    "sha256": "fe7dbc0ca0b32b082fd3fa193296732e84e3a98f415b9ce16370ba2808d85f6f"
+  },
+  {
+    "path": "00_项目说明/原始改动记录.md",
+    "bytes": 240645,
+    "sha256": "f14d23661ea384d19b80fb8b0df191d32480688781da73c75ed4a6851a24aec8"
+  },
+  {
+    "path": "00_项目说明/原导航_仅作历史参考/README_项目总览.md",
+    "bytes": 3142,
+    "sha256": "a085eb7c5b1c5e23bb4077f8d7cdafb1b43dfed6a668a476ae96dc916a237651"
+  },
+  {
+    "path": "00_项目说明/原导航_仅作历史参考/家居文件位置索引.md",
+    "bytes": 10801,
+    "sha256": "c31bd77e831267d77cd4d38eb19308e0ae56034d51b3d4d1511c39c18900913b"
+  },
+  {
+    "path": "00_项目说明/原导航_仅作历史参考/调试快速定位.md",
+    "bytes": 2424,
+    "sha256": "dfc6bd51a5418cc44f2d7b04dc59f9721f40d37820bc1329ab834708a7761f88"
+  },
+  {
+    "path": "00_项目说明/原项目协作规则.md",
+    "bytes": 1243,
+    "sha256": "1280f9cbe3aec708acf984a85e1f730bc821fc580eb8bf8be757042d15f6d0a8"
+  },
+  {
+    "path": "00_项目说明/后续改动记录.md",
+    "bytes": 161,
+    "sha256": "595b43a2b66e4485d7c0f7193843468afda123c2f2abb11f3ea7d70b32380e8f"
+  },
+  {
+    "path": "00_项目说明/项目组成与入口.md",
+    "bytes": 946,
+    "sha256": "7bc7fb09ef188c49361f63b4c662deba3d3136ff86201a81f9e96611f638bc9a"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/images/wardrobe-architecture.svg",
+    "bytes": 5401,
+    "sha256": "d2c4e9399062ac98c54bb87c337c1bac36e7b974c1d373d06c0e3ffff4d4bbea"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/images/wardrobe-collaboration.svg",
+    "bytes": 6685,
+    "sha256": "045028c9e2c8464aaa7fe8ef056b14cff833991c02cc95dab694299e1e54f737"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/images/wardrobe-flow.svg",
+    "bytes": 7369,
+    "sha256": "ba305e6ce2c5657e3a4daf9bf6c8dfb57766c80793aeeabdc73447941e6999bc"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/作品申报书可用内容.docx",
+    "bytes": 38165,
+    "sha256": "158af0e500b167362760b2c5edf6716cb799e5ea42c373e4d1445c6899e18b8e"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/方案 最终.docx",
+    "bytes": 37681,
+    "sha256": "3bd1305f447b25c45273e4d4f4e7d2c16afcb404e07dead292aaafb4c2b45a47"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/智能衣橱方案介绍.md",
+    "bytes": 3790,
+    "sha256": "c9251c0fa31082a6d7acad8e0dd0c93d0135a0e49b7c1ac25710dbaba678ed7b"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/智能衣橱方案摘要.docx",
+    "bytes": 37759,
+    "sha256": "d55482ed948933786ffb41590b7a14f9c7a7e69326dd1f007e26477c4d42a4bd"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/智能衣橱方案详细说明.docx",
+    "bytes": 82679,
+    "sha256": "e82e651c764580325ef9f7808ba65a9aafec86dcee7ec7d3bd306e3f23d081b5"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/智能衣橱申报书_电控部分内容.docx",
+    "bytes": 44326,
+    "sha256": "211538ea1f4b446659944a61b75e6b46cd49f46debe2ce234b1c274d5ac89be8"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/智能衣橱申报书_电控部分内容.md",
+    "bytes": 12111,
+    "sha256": "190f27f6d1385905e70a8d80678e4c8e72c208833d014154bf35651fd8f21400"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/智能衣橱系统总览与执行流程.md",
+    "bytes": 45922,
+    "sha256": "9da5beefb4b7124411dcd0a061566bcdf9b60f97c1c9166e35d43b1761b58467"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/智能衣橱项目申报书_8页版.docx",
+    "bytes": 140551,
+    "sha256": "ca6a8a28e8b214e819380e97ee1234496a69b91cb4fe47f0a2241e9b54fdc921"
+  },
+  {
+    "path": "01_系统方案/01_智能衣橱方案/智裳序功能达成度与完善方案.md",
+    "bytes": 13851,
+    "sha256": "e85a0d3923422567cf470a4ac82e2d3947c83e68ed0017a420455e1691462eac"
+  },
+  {
+    "path": "01_系统方案/README_本部分说明.md",
+    "bytes": 467,
+    "sha256": "46e4124a9a01ff0745ebd860ef14e58b4747080d99042e7d728cf297f489aea0"
+  },
+  {
+    "path": "01_系统方案/智能衣橱技术文档.md",
+    "bytes": 9705,
+    "sha256": "5a370814d8f424ec38ab6395ce4e1c9755c0681509bdf909d72c6437b8681abc"
+  },
+  {
+    "path": "02_树莓派网关与网页/02_界面原型/cloud_display.html",
+    "bytes": 185307,
+    "sha256": "8f491d18b20dec83520fae5056a1e595a0ef26a368ad0d35ff881f5ec39b6b7b"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/README.md",
+    "bytes": 4010,
+    "sha256": "a262e0964f90180d6ef6a5a9cc4c6ec766f0f7fc16cb37e7ec5ce5da5f1a9e33"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/requirements.txt",
+    "bytes": 92,
+    "sha256": "959accc28e02f129b91be268dfdcbde00d841e1b6d4858324713f5bff27d805d"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/run.py",
+    "bytes": 411,
+    "sha256": "d9d5dfad2bfa62dfd8871f2440c585972ed9cbe08ef2cdaaf3cb4c19c92da0ff"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/scripts/boot_install_from_firmware.sh",
+    "bytes": 1035,
+    "sha256": "cbd35006485965ffa59996cd86a31a5672d44fb6b37b392fccd1651c3f0de475"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/scripts/check_protocol.py",
+    "bytes": 2277,
+    "sha256": "e1671d5b1e706b237e03b9d05df7cd7582a91c274f2d5cdd89dad74b0c6e21a6"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/scripts/install_pi.sh",
+    "bytes": 1151,
+    "sha256": "6b18fcf76a85f8c0ed039ab6ff5be0887c32a90017383be5afec75524c701685"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/scripts/start_gateway.ps1",
+    "bytes": 97,
+    "sha256": "5c0aa686478b628eed82310c5938f9de42eabf3d78c52d5005e9670e374e888c"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/src/wardrobe_gateway/__init__.py",
+    "bytes": 85,
+    "sha256": "69c8fd34d8984972b03fd3c52c1577eaf53fb59aa040c7bee4c99a1e4e801b45"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/src/wardrobe_gateway/app.py",
+    "bytes": 64827,
+    "sha256": "93686a2f26b4047cd9938d333ec13cf52a48ad181733d65b97be2ac08762638a"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/src/wardrobe_gateway/camera.py",
+    "bytes": 21030,
+    "sha256": "45652f6c6df9ae2ac16e06b0d54f2b43769a9a0358a0c047d5dc3d5d156392a1"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/src/wardrobe_gateway/care_gravity.py",
+    "bytes": 2888,
+    "sha256": "e4aef60ab513081320332134ca3ab7b35a74d2b7bc4e387af19103c5c159f545"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/src/wardrobe_gateway/care_schedule.py",
+    "bytes": 18463,
+    "sha256": "4e162cb18b798dd412bc00759324fa4df580da6617c124265cf08debe7525b84"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/src/wardrobe_gateway/config.py",
+    "bytes": 4782,
+    "sha256": "8e20e31343be26c93d86440f088cf170785d5ff70d43827edfea852d53cd77b3"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/src/wardrobe_gateway/inventory.py",
+    "bytes": 50317,
+    "sha256": "f0e83c948deec078b0a29d11400e1edf0b7e417ba2bce4dd5d594c89dc149c07"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/src/wardrobe_gateway/mqtt_bridge.py",
+    "bytes": 5830,
+    "sha256": "d249ac268c31b6d3cd5726f18dca764653550f030cfbb39b98ac966774eb3362"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/src/wardrobe_gateway/protocol.py",
+    "bytes": 10691,
+    "sha256": "1547fa7e4cf7ce93a4a55803ee0e1f10699de6b624398a02880dd0364772d458"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/src/wardrobe_gateway/serial_link.py",
+    "bytes": 8129,
+    "sha256": "fa1140053b61b2213d59b20849105573c9f63696a68054546288f7b1fbe094af"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/src/wardrobe_gateway/state.py",
+    "bytes": 5212,
+    "sha256": "34d1eab724f75ec4321b3a0da63202420e0b8c16347a8f2396cb954304db95ac"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/src/wardrobe_gateway/weather_care.py",
+    "bytes": 9568,
+    "sha256": "fc7d8ef67fb1ee84747afc44a4fa84056524e6c07414c76b2a0680305518d549"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/static/cloud_display.html",
+    "bytes": 185307,
+    "sha256": "8f491d18b20dec83520fae5056a1e595a0ef26a368ad0d35ff881f5ec39b6b7b"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/static/debug.html",
+    "bytes": 13221,
+    "sha256": "b31268054a8265ae8ebf1098fc503f55d5cdc12c4c0e49c729e0f76c043bcfe0"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/static/display.html",
+    "bytes": 8438,
+    "sha256": "87561bea2f6d86c872c844dfae2a4df7f4fee41e4529564bd05281c62c394877"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/systemd/wardrobe-gateway.service",
+    "bytes": 613,
+    "sha256": "fcf88c80dd695c5ba16469b02cc710efeef2f89d4999ea0e2e2d356d392c9a2a"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/tests/test_camera_upload.py",
+    "bytes": 4778,
+    "sha256": "fd051aea1e9c01b85e301b56ae760db35259c26484529002ef373fa583374f8f"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/tests/test_care_gravity.py",
+    "bytes": 850,
+    "sha256": "36dd978eae777a1947dda7f1b71d810f1c051b9564c125f22abd97536139fb36"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/tests/test_care_schedule.py",
+    "bytes": 6132,
+    "sha256": "483b9ca0163b1096ffc95f068e8d06ec0bc1e0e3aa44032ba3c5a1a3429b8d70"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/tests/test_cloud_display_ui.py",
+    "bytes": 3568,
+    "sha256": "982336990426048866f830a4a0fd3697827ca5c2c488b85287396c9839868b60"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/tests/test_hardware_task_dispatch.py",
+    "bytes": 4383,
+    "sha256": "ac2ac097124639bc3d1dff69f6983187bd1b2d6be72206df3c7e9da305d8c0c4"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/tests/test_inventory.py",
+    "bytes": 18324,
+    "sha256": "76c1e02be13f9f512b434cb7a5867a0efcadb67d9d72e345895a4865631a6f01"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/tests/test_protocol.py",
+    "bytes": 3923,
+    "sha256": "62fab9a793b90e3a258a57c789edef702ee7f6a16468e7853efd43f0913da6aa"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/tests/test_store_capture_session.py",
+    "bytes": 7469,
+    "sha256": "b3e010234ba216a72054e0eb266ef0ac14251e88c35b89b1ab8262c1386d9e0f"
+  },
+  {
+    "path": "02_树莓派网关与网页/raspberry_pi_gateway/tests/test_weather_care.py",
+    "bytes": 2064,
+    "sha256": "3cbe306235cbbd1b58268619a5c53943168e7a4e681e1ed1d5e2c4bbaaf40c65"
+  },
+  {
+    "path": "02_树莓派网关与网页/README_本部分说明.md",
+    "bytes": 1337,
+    "sha256": "62d6dc204a64160f9f67343c09292ee44feac3a8c96ff7c52be619dbb686b81c"
+  },
+  {
+    "path": "02_树莓派网关与网页/现有桌面启动模板/labwc_autostart",
+    "bytes": 37,
+    "sha256": "d2f71823c7dda5b3d187f57bc76dc39b6b5da79d550cba6ebe32a066431507d5"
+  },
+  {
+    "path": "02_树莓派网关与网页/现有桌面启动模板/start_wardrobe_gateway.sh",
+    "bytes": 1309,
+    "sha256": "b7803c334bc2b9b8dd7a264b5b9bed30294721917a6b3bb9fb91d30d2a42078e"
+  },
+  {
+    "path": "02_树莓派网关与网页/现有桌面启动模板/wardrobe-one-click-start.desktop",
+    "bytes": 227,
+    "sha256": "96ef74c3a81355b962379638679d890f45c4c282e81dbfe3d5df3d66ba8c4aa4"
+  },
+  {
+    "path": "03_STM32双主板/README_本部分说明.md",
+    "bytes": 1174,
+    "sha256": "023b0d7d4496f9891e522e55f708b4a6638eb8415d9f4f2cc318382c4fd34898"
+  },
+  {
+    "path": "03_STM32双主板/主板1/CORE/core_cm4.h",
+    "bytes": 109145,
+    "sha256": "631f0aefcec72a990183217c189419a4a096f04ce691dd075180b3cb1aafa20f"
+  },
+  {
+    "path": "03_STM32双主板/主板1/CORE/core_cm4_simd.h",
+    "bytes": 22738,
+    "sha256": "74f5541481d1b2027c8180c91bbf45b2a4226f712722c5aa13cc586e8d34449b"
+  },
+  {
+    "path": "03_STM32双主板/主板1/CORE/core_cmFunc.h",
+    "bytes": 17149,
+    "sha256": "8ca610db32270c3190f1a5c3557efed38f88e8e5060f2e3bfd4120b337125102"
+  },
+  {
+    "path": "03_STM32双主板/主板1/CORE/core_cmInstr.h",
+    "bytes": 20516,
+    "sha256": "b9441cb9a9619b2ee83d8584ae80b1e48e8d0f3a6744894c18e8732792644aa8"
+  },
+  {
+    "path": "03_STM32双主板/主板1/CORE/startup_stm32f40_41xxx.s",
+    "bytes": 29605,
+    "sha256": "fee2962668dbef36f1b03863ce488490738cafcc6f17a89f56dabdd551f73a9d"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/misc.h",
+    "bytes": 6927,
+    "sha256": "9aaf460eb5eb9e12b0b1f06942eb777f19b43f8065f85932403bc850b48a87ac"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_adc.h",
+    "bytes": 32883,
+    "sha256": "e5efc726d99583d0b88bee24337425d7ecd29f204c1b3892273a6aea8262640f"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_can.h",
+    "bytes": 27321,
+    "sha256": "3803d7795a2edc1a00c6ebb7b85eae2df1b455ee168abfd94434ebce7fc3fe42"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_crc.h",
+    "bytes": 2419,
+    "sha256": "818a84ef6ac0947045cee66931fccd621c2448a9a56eddd759ea341f60e8dc9f"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_cryp.h",
+    "bytes": 14484,
+    "sha256": "fdf592f6e8048fadf9dbc7d3e4e74091a7e723df2ba4cbf86d69a0b4d78166d6"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_dac.h",
+    "bytes": 14949,
+    "sha256": "d47dec1876f1074a639931fde116b7489bac7785706f87b05e20d760de55c075"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_dbgmcu.h",
+    "bytes": 4299,
+    "sha256": "b78152d796063b25fe7e64d29944d8319b9d5df6540e6b16b32bb12d2bd259a0"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_dcmi.h",
+    "bytes": 12980,
+    "sha256": "98fe161da314aaae0345bf33c9be60f62465a0d9f7f11ef66ca14cc5ed3f9086"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_dma.h",
+    "bytes": 28885,
+    "sha256": "08823d256edc60ec61d3384396dd288afe9a8a401d9d8451487c994f766073a9"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_dma2d.h",
+    "bytes": 19695,
+    "sha256": "cc42c4aa7d61c3af332253e46b5a652af3a5afa99cc06b6736a801be910c25fe"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_exti.h",
+    "bytes": 8015,
+    "sha256": "aa0b7d143a8cfef555de697b67f4d7c9d465a1c5097591628c411f62afeba276"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_flash.h",
+    "bytes": 24470,
+    "sha256": "9cd9a4ee0b18531c67ebf90e885b9a11f86c9d0d4ce9f65e968212ff2631e839"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_flash_ramfunc.h",
+    "bytes": 3278,
+    "sha256": "a960ddd55d7dce63a08c46bee846fe60e5bdc5be790db60e41abfbcf09e730d8"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_fmc.h",
+    "bytes": 44927,
+    "sha256": "2db96e337d2b0f30fff918bce9b497ba05938c180459262f16b9c4a647215d57"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_fsmc.h",
+    "bytes": 27184,
+    "sha256": "3352dc02a33886ad231eeb711b456c0cf278e139315769ef30713f5c879d5926"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_gpio.h",
+    "bytes": 23551,
+    "sha256": "41175cc54e78b6da2e2760ab479b7205ace22111f2510b916e42300bcf264ea6"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_hash.h",
+    "bytes": 10087,
+    "sha256": "61af0a495b4769153c911330c1c808c88f2887289979e09d3b4b7a77a7d6847a"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_i2c.h",
+    "bytes": 31942,
+    "sha256": "75ea772fc186cab5812a07e076c00521dbc9fb17d4f13a14fb313447e927ca6e"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_iwdg.h",
+    "bytes": 4326,
+    "sha256": "40bea2439a9f41221270a9bd963aff09da00de94e3f45d4e30fce2f760edafcc"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_ltdc.h",
+    "bytes": 21194,
+    "sha256": "7b686e562a7d451923db88de376e48cd628f19bb869aed0cbab63a7371384568"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_pwr.h",
+    "bytes": 7731,
+    "sha256": "72d396853526c1fa3268493627c370de7122c9dd01960c38641143b841f844ab"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_rcc.h",
+    "bytes": 30066,
+    "sha256": "b6cef8d37e3fcea5e700c1675556f532ab9a3f26bcecd82f759b38fe519a726e"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_rng.h",
+    "bytes": 3961,
+    "sha256": "0d4ca9e360ba704dd7b6cc94b7e3d892ebb26b7378361c9d6f4a9a0104091e5f"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_rtc.h",
+    "bytes": 40549,
+    "sha256": "6e0364bc6013dc02e3a7f7fba5221b820ed9948dc33ce99465490333e3d3087a"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_sai.h",
+    "bytes": 25473,
+    "sha256": "a71527d235167d55d796bb2b85123fef1838c75da1b7cfda2e8f3bec61495d5c"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_sdio.h",
+    "bytes": 22780,
+    "sha256": "cc582d9452d63d6a473726db201e4b6577fc8355b8a77853caf31c8fc19cd537"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_spi.h",
+    "bytes": 21181,
+    "sha256": "412f9ab02d4b3fea4b86f6e891e222163abeb98fab0cd9eee52ed4d9b4f1e4e7"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_syscfg.h",
+    "bytes": 8977,
+    "sha256": "fd86a42fa202da9210b291f8cc4c3289b074466c6e89fd082becb729ff4310b5"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_tim.h",
+    "bytes": 51692,
+    "sha256": "122d65d7b83588205345f066af81048b43ec02a2152a00a002e0e01baf3e4ada"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_usart.h",
+    "bytes": 17938,
+    "sha256": "e3a7fd5698a23d0d084594063672c40c19a0e10af02b0c8cce038e1ffd389b95"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/inc/stm32f4xx_wwdg.h",
+    "bytes": 3545,
+    "sha256": "91a958604be7e36c6adec96d317f71c2f203b09091c0ba2a04ebe33d2b906991"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/misc.c",
+    "bytes": 11446,
+    "sha256": "8ecb4362c0b0b772a283a1aa5a39775f4a51e6881cb777b12fb831c99c49cb8f"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_adc.c",
+    "bytes": 69071,
+    "sha256": "5427b61482a2965066fbe652d013cff0536cd15a0d942d94485a2b4d106cad2f"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_can.c",
+    "bytes": 60153,
+    "sha256": "9c9a11bd23785e86395678f5e696a94cfafb9921cdae11005e33758f2426dbc5"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_crc.c",
+    "bytes": 3599,
+    "sha256": "4290c731e713597d28ae98b1fd684f4c112520a6d32a90f7a55bc58b9b9621f2"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_cryp.c",
+    "bytes": 35496,
+    "sha256": "5082ad5c6af2087753e77c558451c90c505cf848e2325cb94c1c5c9b04cd66b3"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_cryp_aes.c",
+    "bytes": 58029,
+    "sha256": "79e69892ad021ff37639c66a8d9e65ff6da3339a192f34c2a808c0c3d93ee311"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_cryp_des.c",
+    "bytes": 9825,
+    "sha256": "5c5fd1e9ca3e4f47f6183ba4e2910bcadd94081ac57829a8219730a9f6030c5a"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_cryp_tdes.c",
+    "bytes": 10580,
+    "sha256": "0bd07a3a351dd669508fcf3de68f8a495f5e5c0afde06e862b23488a04644082"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_dac.c",
+    "bytes": 26807,
+    "sha256": "a383fd469bd0a61ae097cbc62b25e831186edab7b42248fde463ea67f4d7a719"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_dbgmcu.c",
+    "bytes": 6812,
+    "sha256": "d37919d6d0a4a7cd0084281fdf43edfd9317cb4e195a5d5caf0eebd228a2862a"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_dcmi.c",
+    "bytes": 18785,
+    "sha256": "5fd03d5ce6f319bafdc6c33a3a678d747891075f6a761cb2480ef2a08f42a8b2"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_dma.c",
+    "bytes": 52920,
+    "sha256": "78d69f3520abcdb9370870f1017c0f6fdd569bed7940f19c6120fc3d26fd86ff"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_dma2d.c",
+    "bytes": 27168,
+    "sha256": "866db2a3a27f33355f60cdcca6d38e1f0180161df49077d51bb8766d4759cb52"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_exti.c",
+    "bytes": 9831,
+    "sha256": "d9c51a57d2835000ffdbe07d0c9f8847b4bfccb183ab2144b55800b32a90ee17"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_flash.c",
+    "bytes": 63036,
+    "sha256": "6814559aa2ae5583fa69066381f529276bba51e5ef94689fb017c8ab87e9b247"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_flash_ramfunc.c",
+    "bytes": 5447,
+    "sha256": "bc2a8b8794eb18fede38ddb4bb28584312269384b54c8312bcee6c7fb6c87fe4"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_fmc.c",
+    "bytes": 56571,
+    "sha256": "1369d206f75f26e2b8254d288b8c6df9833bac6014cd15f8797689218286322c"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_fsmc.c",
+    "bytes": 41834,
+    "sha256": "969750a81d7b10fa20430b2500ea2d70807198617444368f9fded712cd195171"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_gpio.c",
+    "bytes": 25205,
+    "sha256": "d3b8acc8626ad6c8ac1012224fb0c711b27e8962fe9d0b6eb450843eb2202b4e"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_hash.c",
+    "bytes": 26633,
+    "sha256": "17cb8a0381fe57e6df5ed3e213654d834e2b2fd05b05d8044e5d267b790399af"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_hash_md5.c",
+    "bytes": 9597,
+    "sha256": "9e18902d48a05652a72c231d5032b4a3defcc2d67d502fbbd16fb4139558c02a"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_hash_sha1.c",
+    "bytes": 9796,
+    "sha256": "080c56a2260a0fedb9b1154784c52731d5182693e6fb0512bfe05b390b9c28a2"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_i2c.c",
+    "bytes": 54396,
+    "sha256": "dd2e441c68e401303864189951510667697169f6018ccb4ecf4c780bf7dc93d8"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_iwdg.c",
+    "bytes": 9351,
+    "sha256": "dd611a8c583c1f47b3f05a55fcef4bdb9a26fcccc93446a4115088c292442185"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_ltdc.c",
+    "bytes": 39793,
+    "sha256": "3e292198e77678af18398f2d022fc116fc83bb1284091bec339b31662fa0ffb9"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_pwr.c",
+    "bytes": 37710,
+    "sha256": "184c21f7b6b80fe311b5e8bcea360e4745a6bb810129e56165fa75f0eb129e7a"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_rcc.c",
+    "bytes": 98842,
+    "sha256": "59ab3a24d3660bf8d6315c864e55bd14f2d5eb5cbcc5430041937baaea0bc7d2"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_rng.c",
+    "bytes": 14063,
+    "sha256": "4da89a37d73135ae701b1bd1a727eb24f8035803a2b04b328a43cd209717b3fb"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_rtc.c",
+    "bytes": 102894,
+    "sha256": "1ba694992b92923cd10c958ee6669edbe8b9f710fbee62fa4cff6a2a8dc5263c"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_sai.c",
+    "bytes": 46414,
+    "sha256": "592587189f92440ef25730697a09437576d0a49d21b065c4a72c46f4f1e4bba0"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_sdio.c",
+    "bytes": 38960,
+    "sha256": "563c5892f948216883bcf4fcb3cadac642756a5378e13a69d25efe338c6797b9"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_spi.c",
+    "bytes": 52525,
+    "sha256": "21ff37e0f3820e8a424defb27a74b9aa94e82464af49f643cee91dd8c831a944"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_syscfg.c",
+    "bytes": 9578,
+    "sha256": "a545d7c8e1b2d17b79bcaad59ff7e3b39d7d8e5e14f936f2aae572b765a1477f"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_tim.c",
+    "bytes": 124735,
+    "sha256": "72241d6bbb86a693b1269794690ee06581855313031abdd4865068bbe4d57eb2"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_usart.c",
+    "bytes": 57952,
+    "sha256": "93c89ed5b56f21d7dc78b13fe4f4953e697b02e6f03b1b330fbe785103322a14"
+  },
+  {
+    "path": "03_STM32双主板/主板1/FWLIB/src/stm32f4xx_wwdg.c",
+    "bytes": 10495,
+    "sha256": "cb0c81ea002da658b2fe9f6ab1c8f4fe0ab95e7efe843960ef7625faf27a3aa7"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/control/control.c",
+    "bytes": 562,
+    "sha256": "febc83046f808e1eea16d59ec509219b4304f0847ad33d2d51b9621ca56b33cb"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/control/control.h",
+    "bytes": 339,
+    "sha256": "3f2723078a67800f3be8bc09f7c2352759dce76556a0fec3bcf10cfc33b0e9e9"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/HX711/board1_hx711.c",
+    "bytes": 4469,
+    "sha256": "192cc025c44ad07e7aef599190d29eff8e4aeed95bf60643fba0d2ead1ade686"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/HX711/board1_hx711.h",
+    "bytes": 624,
+    "sha256": "529ba5425dc2ac29e43314b5db05caf9f596a44bcb12857bb30d4638a276ccee"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/Key/key.c",
+    "bytes": 1123,
+    "sha256": "93352b93cfe3a9543b3da339019f53511580fbc34b6f32d20db9122d026894a6"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/Key/key.h",
+    "bytes": 605,
+    "sha256": "a8a5172e74d7e5179ca29fd55b6f67e05e44a25d93d79cc73c76a2591971b954"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/Laser_Common/laser_common.c",
+    "bytes": 1956,
+    "sha256": "29c9665839339a3af5c2b6f2996e0ff1eb98a4f2c8c80b47a0e70b50e846d0f1"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/Laser_Common/laser_common.h",
+    "bytes": 3033,
+    "sha256": "29b539fbf0e7ba40c0fe283dffab590a9b353fac00244c6c86ae9d5d2102a91a"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/Oled/oled.c",
+    "bytes": 15977,
+    "sha256": "1059390892e5d89996b16859b1a186f0bd2bda14fc128e0f577751de51ed2b0e"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/Oled/oled.h",
+    "bytes": 2595,
+    "sha256": "e0c5287834e98032771f29ca3eec550bcfb70e70f83b8cf40d1f1930b61f2d87"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/Oled/oledfont.h",
+    "bytes": 40808,
+    "sha256": "4f7b4e4b030c3d6d0744bd24cbe49f00a70dfb061e9987488c84cd27103c902e"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/Stepper/stepper.c",
+    "bytes": 14556,
+    "sha256": "fe04f8ffaabb82622a9fa4272df5e3bfd8b77c78737e75719c753c21f6acee7e"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/Stepper/Stepper.h",
+    "bytes": 3337,
+    "sha256": "c20873712776f08258063bc24bc18e19dd8520a6dac1f97e74c65ec2ea9af5ae"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/UART3_PI_GATEWAY/board1_uart3_pi_gateway.c",
+    "bytes": 48032,
+    "sha256": "1c1a38cc1bfdb57df29494612b67c4edd3c882d122fe00a4e4e376a147faf3e1"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/UART3_PI_GATEWAY/board1_uart3_pi_gateway.h",
+    "bytes": 7014,
+    "sha256": "281c19aa0b35b9a4db4ec0eb447249ba80c8afee0d986c329ff216ccab895c55"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/UART6_SCREEN/board1_uart6_screen.c",
+    "bytes": 10830,
+    "sha256": "75e927a490d27b887003582a07cfa94682040b1db77b087725a036bdae90f20b"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/UART6_SCREEN/board1_uart6_screen.h",
+    "bytes": 1556,
+    "sha256": "70ce166fe6b6c0bf019f287fcd9b4184f91730a9bd20d6e1fb5b551aa81cd3e5"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/USART1.DMA/usartdma.c",
+    "bytes": 19536,
+    "sha256": "f55952f39a39a2ab8528862e4339b82b1bcab2d9c7974f55e76ecfd3fd193ba0"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/USART1.DMA/usartdma.h",
+    "bytes": 3131,
+    "sha256": "e3134e7710c0c590a679ef686d105bc7a0dd321724487b1ff4d0e6cd690ffa95"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/USART3.DMA/usart3dma.h",
+    "bytes": 1247,
+    "sha256": "9020fafe90c5f89a7580f08041d55574bd539400c5cd88243673f0c834e2e68f"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/USART4.DMA/usart4dma.c",
+    "bytes": 6388,
+    "sha256": "2fc63f21e7d5d739b6ee5f443cca0c7eb1803caae57d1da1b16fb37e07e71b63"
+  },
+  {
+    "path": "03_STM32双主板/主板1/HARDWARE/USART4.DMA/usart4dma.h",
+    "bytes": 1644,
+    "sha256": "ecd4ad06f42676ef6fd5722f14aae31b9d888cec47062b431d027d5e94ba5b13"
+  },
+  {
+    "path": "03_STM32双主板/主板1/OBJ/Radar_2.sct",
+    "bytes": 540,
+    "sha256": "557890b68a4614e0a7be26a8e44ef108c139edb63dc93a5a32e81951d54d8728"
+  },
+  {
+    "path": "03_STM32双主板/主板1/SYSTEM/delay/delay.c",
+    "bytes": 8787,
+    "sha256": "d38cfac7e55ccf1d83eb306503991a83cb4cdd270e74fa0ab645cb64633b6b48"
+  },
+  {
+    "path": "03_STM32双主板/主板1/SYSTEM/delay/delay.h",
+    "bytes": 934,
+    "sha256": "64403137b998a0f21bd781ece454bf80eaa06f1f12e47cc9bf0ae6b19b62701f"
+  },
+  {
+    "path": "03_STM32双主板/主板1/SYSTEM/sys/sys.c",
+    "bytes": 1216,
+    "sha256": "176c2a0f788fc1616132979549015a7404a2b05e9d36295fbea604bf7306cdfe"
+  },
+  {
+    "path": "03_STM32双主板/主板1/SYSTEM/sys/sys.h",
+    "bytes": 3674,
+    "sha256": "86d9e31b6c6fa70d4824d7ade54565950f570e1fa29bc3a5c56f4f29040fc47e"
+  },
+  {
+    "path": "03_STM32双主板/主板1/SYSTEM/Timer/timer.c",
+    "bytes": 4128,
+    "sha256": "df1f7ed8a664a6c504704930aeddac930e8768664dff89b95a8ff0185057d89d"
+  },
+  {
+    "path": "03_STM32双主板/主板1/SYSTEM/Timer/timer.h",
+    "bytes": 1108,
+    "sha256": "b130ba71a2d5349f52f0a83e1fcd7d9ceca93c86fe95a8250c041641ff84be92"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/DebugConfig/MPU6050_STM32F407ZG.dbgconf",
+    "bytes": 2851,
+    "sha256": "3b95d61f76d8d903b61af89769499793969b89a16cf7987734dca09b993bb08b"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/DebugConfig/MPU9250_STM32F407ZG.dbgconf",
+    "bytes": 2851,
+    "sha256": "3b95d61f76d8d903b61af89769499793969b89a16cf7987734dca09b993bb08b"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/EventRecorderStub.scvd",
+    "bytes": 339,
+    "sha256": "c0bc76c307786ae399f79bf32d410f7d6c46e0ac1208cc882f60ac2649cba601"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/JLinkSettings.ini",
+    "bytes": 650,
+    "sha256": "7f36b9ebcb7fdd2b75d502cfb2ad2c3671108c8daccaf5f75cc86ea50c1fab09"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/main.c",
+    "bytes": 10880,
+    "sha256": "f3300e8aa920b9ab51927ae05af1bd00e44a0245923b1acac816cfec8266444d"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/MPU9250.uvoptx",
+    "bytes": 22701,
+    "sha256": "e9dac4e0189bc84c7a73ba4c72ab2448b41f4e3446132ece449026fa08654166"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/MPU9250.uvprojx",
+    "bytes": 22173,
+    "sha256": "9cc1eb6580f4d2a8b6f2b4100657b97259f95a08f0da306f194fc658ba23a8fc"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/PI_GATEWAY_STM32_WIFI_对接记录.md",
+    "bytes": 1427,
+    "sha256": "38dba98e67f58a4d30c61d506e09c3373038c1278bf6ea246d3407e03820f33e"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/stm32f4xx.h",
+    "bytes": 704100,
+    "sha256": "f2d89a90e15d5715e1d749f13d9df6d5977470b4968b880778aba187f6def879"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/stm32f4xx_conf.h",
+    "bytes": 4596,
+    "sha256": "046971d5b2dc5eaa887063a107bce8bb3208c79478b21e427307904bc0d0d114"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/stm32f4xx_it.c",
+    "bytes": 4620,
+    "sha256": "e4beccf8965afafbb49dda678c46d6b1034cbbb9860fd228973a84b67d5bf8b7"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/stm32f4xx_it.h",
+    "bytes": 2225,
+    "sha256": "6285b3610804c63a988096bcca43cef85a6063b062f5eef797361766e7041f04"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/system_stm32f4xx.c",
+    "bytes": 47781,
+    "sha256": "c941172e3d67610fbc040353a7c7f471fc8f674df68b7c2d2766bf2b3cf802e0"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/system_stm32f4xx.h",
+    "bytes": 2236,
+    "sha256": "1aa76a40b248e72b9dac92455f3f3b5ff23cd79aecadf3f7cc58dac55e17a28b"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USER/wifi_screen_protocol.md",
+    "bytes": 1025,
+    "sha256": "6ab340df82d964fc86b2b2a619ffe01c458f6e2a42d6812d4da012593bcef54f"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USMART/readme.txt",
+    "bytes": 2566,
+    "sha256": "817904e389f887eb19a082a8f1a7e86191a627f24bfcccad448364c27de82211"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USMART/usmart.c",
+    "bytes": 17766,
+    "sha256": "ec64b9a56743400067de2378af2fd1e3efefc0b5b12652e63dcaee0c8c35737b"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USMART/usmart.h",
+    "bytes": 6628,
+    "sha256": "bab62c4547ef6cd13d67b50627b0fb213807e99e4a2674a3ad18e4cc5475fab2"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USMART/usmart_config.c",
+    "bytes": 1765,
+    "sha256": "d2028bee9507cd81e158d29dae9abb8a83a6648d43a5e160f9777b2deea0868e"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USMART/usmart_str.c",
+    "bytes": 13573,
+    "sha256": "d8f2eedb6726f8d82c8a13977cc95c8359b4e79da6caad58263cd132df8e2919"
+  },
+  {
+    "path": "03_STM32双主板/主板1/USMART/usmart_str.h",
+    "bytes": 3989,
+    "sha256": "ad633523f40ca652fc13392dbe459d1ab54d47d03b1db459a27cb1e138503800"
+  },
+  {
+    "path": "03_STM32双主板/主板1/主板1.tel",
+    "bytes": 4893,
+    "sha256": "07e4be6158a6f52c5e8f62024e83a397b7ecd76967eb2e52660178c7f07486ef"
+  },
+  {
+    "path": "03_STM32双主板/主板2/.vscode/c_cpp_properties.json",
+    "bytes": 1257,
+    "sha256": "92a30a1f80803b9f308f43ca1b8628791f6123482e544443d7f0e12600ad5e43"
+  },
+  {
+    "path": "03_STM32双主板/主板2/.vscode/settings.json",
+    "bytes": 359,
+    "sha256": "61814c27ef58d0d0359b2db0c79b60d0faca0d524d60ab0b56422ac86adaba89"
+  },
+  {
+    "path": "03_STM32双主板/主板2/CORE/core_cm4.h",
+    "bytes": 109142,
+    "sha256": "9b7fea7bd9d781849b22130db320b5946b73a4ccb1b297b179cff7e85447c2d9"
+  },
+  {
+    "path": "03_STM32双主板/主板2/CORE/core_cm4_simd.h",
+    "bytes": 22735,
+    "sha256": "767a6d37afba9850afaf090faa2ff14730cb61beed8516ab9f3e72853c93a0e0"
+  },
+  {
+    "path": "03_STM32双主板/主板2/CORE/core_cmFunc.h",
+    "bytes": 17146,
+    "sha256": "77ac1af1083cc8f62ea260578108e22d6474cd2f9a1c398cad9988768bd29052"
+  },
+  {
+    "path": "03_STM32双主板/主板2/CORE/core_cmInstr.h",
+    "bytes": 20513,
+    "sha256": "198df99902af512ffb2a54a7aa3bce7642e8825a30b46b93b5fb6df88851c472"
+  },
+  {
+    "path": "03_STM32双主板/主板2/CORE/startup_stm32f40_41xxx.s",
+    "bytes": 29605,
+    "sha256": "fee2962668dbef36f1b03863ce488490738cafcc6f17a89f56dabdd551f73a9d"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/misc.h",
+    "bytes": 6924,
+    "sha256": "fe0b20dc5129ec5dbfeefdc0b552b6fd5f208e0fab3f64a0aac70819dcd08037"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_adc.h",
+    "bytes": 32880,
+    "sha256": "f5d6218c383f4c426f32d36c4263276c4baa11fac55e73a55420bc9c55182c13"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_can.h",
+    "bytes": 27318,
+    "sha256": "a3eebee84d8e739789de599b8fa90c608db7c2d28d04d1ef0199317930717120"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_crc.h",
+    "bytes": 2416,
+    "sha256": "a458fe147e54f913fdb8d9aac05248d96f2d7e1349ebfbbbf8078bba2c670fb4"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_cryp.h",
+    "bytes": 14481,
+    "sha256": "0da14dc2577ca24411dd476ff35cbc341e5d19760a13e642499b54298a21b23e"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_dac.h",
+    "bytes": 14946,
+    "sha256": "2c2eeb87b713a4d21a37b59685b9da057665cb793dc822c9a7b5139be7b3b84e"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_dbgmcu.h",
+    "bytes": 4296,
+    "sha256": "0db3db80fe1aa17e1f7cae45cc016a3023a7554f1653bc47ee96a25b0116b91a"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_dcmi.h",
+    "bytes": 12977,
+    "sha256": "cb9e75b2042d47a5ca20fc5102ffe2626faf8cab6bc7f29f42a24851347ac748"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_dma.h",
+    "bytes": 28882,
+    "sha256": "02341e80f9a541076afff5f63600926a687b8b56c5f934ae0236bbbf1fe54633"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_dma2d.h",
+    "bytes": 19692,
+    "sha256": "e482dc75e4239757fbaa35337d4c04072963a0716918058666249fa18cd1dbe1"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_exti.h",
+    "bytes": 8012,
+    "sha256": "2de6a414a32404eba150f6f06177a38fdd427e3b3eb35caf10f69927f4c055ff"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_flash.h",
+    "bytes": 24467,
+    "sha256": "186476404dc1aada0e990770dabc6545f9961503e5ae39890fdabfa92e8adf18"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_flash_ramfunc.h",
+    "bytes": 3275,
+    "sha256": "905ba4fcc88b977882b543f6f90583ad9f1e13c00962e21763bd5a603c1da494"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_fmc.h",
+    "bytes": 44924,
+    "sha256": "c29f56f845e699f12b020bf7e72aa404c5b5c2bd6bf9a5038b3e7c7e15f0be71"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_fsmc.h",
+    "bytes": 27181,
+    "sha256": "c2d804ef66ce58b29f4d2c0865cd6abdc7e56fa4c027059d48190bf8f9e1c2a0"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_gpio.h",
+    "bytes": 23548,
+    "sha256": "8ec09c73453016095f18f263da39ea1a8559419584bd2090740cebd69a67f867"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_hash.h",
+    "bytes": 10084,
+    "sha256": "ec91e634d86846684da5c52601dd396e61c66d6ed2ebac7f26056961ec4e8a04"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_i2c.h",
+    "bytes": 31939,
+    "sha256": "42e56d9bb2b111fdcd45e23a3b0ef4575f5a89198f5139a94f52526f5ab536f5"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_iwdg.h",
+    "bytes": 4323,
+    "sha256": "26ecc2a4b5bb925262181d7bd220ebaa5126bc928e6fb76c01e8f4a4664af47f"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_ltdc.h",
+    "bytes": 21191,
+    "sha256": "890de684fa058e3db1d516c613dba8258af56b5dafcd5eb6514bafa16393c6f0"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_pwr.h",
+    "bytes": 7728,
+    "sha256": "da06bc8d0e93935066b5528b8e90586569675af3ac508539dd58d474e98aacf7"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_rcc.h",
+    "bytes": 30063,
+    "sha256": "49a6285869951e419e529cdc33a431abf85c99168484f0bcd06e40a797137fbe"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_rng.h",
+    "bytes": 3958,
+    "sha256": "4ecdbb3008a0c1cdd9316df38d36306f823d2848d462609b748805f3d6b2d651"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_rtc.h",
+    "bytes": 40546,
+    "sha256": "5245d8b11c02355dfded024c7340258c9def3d1be7f9ea7e02572d80adc65aa1"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_sai.h",
+    "bytes": 25470,
+    "sha256": "b6469d9e0d3536aabd85962dda8b9caf9945c5a9717c170af908465f69d5e693"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_sdio.h",
+    "bytes": 22777,
+    "sha256": "81c9af6c0f4e5d0c9138ce830db23642896ea809240b42c12e83a138e7198c78"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_spi.h",
+    "bytes": 21178,
+    "sha256": "86785aa59c7ee4c0270493121f9fb5f24235f8dcdb199aee795078b7f7c4a6d1"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_syscfg.h",
+    "bytes": 8974,
+    "sha256": "d2c9dad92e7f50848b70c6b688c5d7e0ae76bbc4a2afd426e7994357cd8e29c3"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_tim.h",
+    "bytes": 51689,
+    "sha256": "01714c33a0fdbbd3f08c530684999765ed4843601aa1f29b2310e835a293c8df"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_usart.h",
+    "bytes": 17935,
+    "sha256": "41ab3ee4f6e7ed6d0afcbbbe9905ae6345fccd9b1deffa1346781806fb5a7c7d"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/inc/stm32f4xx_wwdg.h",
+    "bytes": 3542,
+    "sha256": "2267624089c093cffe2915ef049a094374dc694a9752b59a0a31f38715d1ddff"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/misc.c",
+    "bytes": 11443,
+    "sha256": "4d0b131e42b44e8ad0de1630acf5dccfa7800d2bd952933ea639d79faf3f08c9"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_adc.c",
+    "bytes": 69068,
+    "sha256": "ac9d43d23c44b234a2203f28b0e24fc817e5a9c59eec5609c957770657f6d92e"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_can.c",
+    "bytes": 60150,
+    "sha256": "ee493be61736abf05c1adfc2d0fdfa9a17d01cc8301bf3536a039e8731a5d09f"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_crc.c",
+    "bytes": 3596,
+    "sha256": "edb14d33fc0b461db9380676d14c6e535a1a39206b438d7f4077ab5b13e69dc1"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_cryp.c",
+    "bytes": 35493,
+    "sha256": "f249392f5d5f54a397544a51db27d26f5977896f88b030ff2fd4f6b9d748427f"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_cryp_aes.c",
+    "bytes": 58026,
+    "sha256": "1ef3b1397c81aa2abd6fa11ea5c220710d86d293aac85bb9e82b6618d8e52b80"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_cryp_des.c",
+    "bytes": 9822,
+    "sha256": "e4b6048d2ebf730044514600cf8be1148daa3aca3838c075e12acee385cc57aa"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_cryp_tdes.c",
+    "bytes": 10577,
+    "sha256": "fd68cc28275878f2d5ca9379c5d5f5a209489ea1deeb416745642d23b202b3e8"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_dac.c",
+    "bytes": 26804,
+    "sha256": "f65881fdf51dba20e8e5dc956edde8d325d5fba2a049f1b7f4a58d5ea354df96"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_dbgmcu.c",
+    "bytes": 6809,
+    "sha256": "6d52c2340b90a58bf05314591c9106a5762e710fcdc2bd3d2bdbc0451f8e837b"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_dcmi.c",
+    "bytes": 18782,
+    "sha256": "4cd5a99febfb55ff767250bd1cd621bc04e2b621dcb2d56e3a02f7a396ff6cf0"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_dma.c",
+    "bytes": 52917,
+    "sha256": "2dc54e5901a2656cb625f7aeba4f7698cc17ca340734ed1003d984bee6d945df"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_dma2d.c",
+    "bytes": 27165,
+    "sha256": "58cbce6a92f758dadd61346820d298284f1f14ed2bb5e6302c556e3f17255abd"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_exti.c",
+    "bytes": 9828,
+    "sha256": "5332622af20155911e12a2db864654876c85aeab2a20cd7d61b1534f97c18b6e"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_flash.c",
+    "bytes": 63033,
+    "sha256": "ee5408119f707b47e79494ee8dd8bd09947ca509a870aa4a1bf83e9b317b8a33"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_flash_ramfunc.c",
+    "bytes": 5444,
+    "sha256": "2dcc1ccb798b8cb8b317a33a4ef34107a4823469c9d07916edcdc5c52a4f7e38"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_fmc.c",
+    "bytes": 56568,
+    "sha256": "38355d585c3eb717ab3daac73f7078cd17194c4adf67c0238d20fee0dc60f760"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_fsmc.c",
+    "bytes": 41831,
+    "sha256": "5f840f6216e6f97d31cdb1024bf57a7f2c358d1bd364797b45cde29a18002433"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_gpio.c",
+    "bytes": 25202,
+    "sha256": "3043fe9e52501fad9cea9afa95e741f0697d658471d930610447623784e80bf8"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_hash.c",
+    "bytes": 26630,
+    "sha256": "645ec11bfb03f52de89450bbf14042657be8504f2f54c68426c2385d506da106"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_hash_md5.c",
+    "bytes": 9594,
+    "sha256": "4bed23ec56bd12431204ce0219e83abe83a71c6d4f70dda88a37bfb439645786"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_hash_sha1.c",
+    "bytes": 9793,
+    "sha256": "97a30d33395a82b908b66a88347c0b21be3161c8574fd66d71c6f162822201b4"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_i2c.c",
+    "bytes": 54393,
+    "sha256": "cbb0d1331f42fd179b6ddc4a72a177ac0b41586225000a951b8d715af12ec739"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_iwdg.c",
+    "bytes": 9348,
+    "sha256": "cbbbd466c003924bde831d9ebc28799df523896f2d0d328e859e4273bb3397c7"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_ltdc.c",
+    "bytes": 39790,
+    "sha256": "53ef01c0ddd80d91af1e722f0dc081be03b98ee00f27309ae80f752cdb5b29a5"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_pwr.c",
+    "bytes": 37707,
+    "sha256": "edc6077e20529b7cacde29f2b07b361500b5977b8bc934e0d2764bb0709b2601"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_rcc.c",
+    "bytes": 98839,
+    "sha256": "4169568c167d701fada6c2366d2537c62d194dbe9a311e513fc9ff80061dc998"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_rng.c",
+    "bytes": 14060,
+    "sha256": "17031f7e9a3b55ae87077c4487f4c36290088d3af9c9612c297d58517900cd94"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_rtc.c",
+    "bytes": 102891,
+    "sha256": "7671f66c16f106d6e893b8a93711afca11f5e962d5275a5b8d1f906a74f727d3"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_sai.c",
+    "bytes": 46411,
+    "sha256": "11a946bc1a5cb735177817dda3e4420c63bbb4b9bd438f0459f5bacb8e9a699c"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_sdio.c",
+    "bytes": 38957,
+    "sha256": "e46169e982b2ad653a7093b2499878b7673e244fbbbc7d55af12080d23581534"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_spi.c",
+    "bytes": 52522,
+    "sha256": "d170e859aa5bba0bf09c28104dbe2c724f225cc0252ebe6a7327c2b0c0321224"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_syscfg.c",
+    "bytes": 9575,
+    "sha256": "50df08b1fa5afa13bc0e41eff85d2d40193a6992a5775f442cba99548d88a695"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_tim.c",
+    "bytes": 124732,
+    "sha256": "5148767f785e72eb404d137d9d9198e8a4458c4eca936cc449bcd86e1aa1c7e9"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_usart.c",
+    "bytes": 57949,
+    "sha256": "f76877834c69e6f44f6a5daa61191ae06c17ef19c80318b3e05542f7bd6d869c"
+  },
+  {
+    "path": "03_STM32双主板/主板2/FWLIB/src/stm32f4xx_wwdg.c",
+    "bytes": 10492,
+    "sha256": "397a9852a8822903f7b0b11918466df36ccbd58b3eae3bef2e4342dfb2ebeadd"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/Action_List/board2_action_list.c",
+    "bytes": 68882,
+    "sha256": "87efc51a119242942906430cd8e05adef0d3cf1c281a81ba95d5c53b1613106d"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/Action_List/board2_action_list.h",
+    "bytes": 4309,
+    "sha256": "8a5254439629def4076a1ca322598c772d2dbfde3b8c1c6da9f62ca30349a18c"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/Action_List/board2_action_tuning.h",
+    "bytes": 17489,
+    "sha256": "ed6dc2e08ccb74e9082655829b31576566883079df2a28fb7170909b7d43be84"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/Action_List/README.md",
+    "bytes": 14335,
+    "sha256": "973ef5f42bb0cf7a2896d2a10963ca4c24c76d8027ba907c29431f42f61757e7"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/control/control.c",
+    "bytes": 16038,
+    "sha256": "7c64ad7b0ec581cb841438377eb34147ee321a5017211d548354f18401cde6a1"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/control/control.h",
+    "bytes": 9317,
+    "sha256": "de023b6863f5bad7644847ff5a74a7325c873cb7118c5cba9613e6feeb06e747"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/Key/key.c",
+    "bytes": 1463,
+    "sha256": "908422533e1582d750dd1f57b7c6cb7883e3b0f8647cfa6b30f47cf1aee8ca93"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/Key/key.h",
+    "bytes": 558,
+    "sha256": "e8265169b5ae23d3c62ff914353d45ebae9d956300c7a22f0249224bcde7cdc3"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/Oled/oled.c",
+    "bytes": 15393,
+    "sha256": "0c1bb7991bad128cea020a5df85a8da7b67f190291198b7d8075707f20dac014"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/Oled/oled.h",
+    "bytes": 2483,
+    "sha256": "8a60953ae3ed2f8100faa0def01a3f921b830df0080b3b02eadad2a4eee9125c"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/Oled/oledfont.h",
+    "bytes": 40805,
+    "sha256": "c8facaf625922588965a25006f5d1976b85cdf2209d204b4e39ce7df180081cf"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/Stepper_Multi/stepper_multi.c",
+    "bytes": 13920,
+    "sha256": "77e9c93f05c673d41dfa1da39232981b0ffb173926cf5dcd1ccb3c567d1345e9"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/Stepper_Multi/stepper_multi.h",
+    "bytes": 2655,
+    "sha256": "a5ff8178415924dd274157a9378a1e3045229eebde00246c4a1088410fd14648"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/USART1.DMA/usartdma.c",
+    "bytes": 38228,
+    "sha256": "ea122562b37a043465150537e765d2625f42a7e889e870335bc76073c0551cdc"
+  },
+  {
+    "path": "03_STM32双主板/主板2/HARDWARE/USART1.DMA/usartdma.h",
+    "bytes": 2330,
+    "sha256": "3c267dbbd1e5925260c80b79cda0b9825018b84cb4714dee44b26ab05641acef"
+  },
+  {
+    "path": "03_STM32双主板/主板2/OBJ/Radar_2.sct",
+    "bytes": 540,
+    "sha256": "557890b68a4614e0a7be26a8e44ef108c139edb63dc93a5a32e81951d54d8728"
+  },
+  {
+    "path": "03_STM32双主板/主板2/SYSTEM/delay/delay.c",
+    "bytes": 7683,
+    "sha256": "6be7a6d236657763ebb911f44daf42d3f1fd63debd11bb5bfbae6308920d0b3d"
+  },
+  {
+    "path": "03_STM32双主板/主板2/SYSTEM/delay/delay.h",
+    "bytes": 838,
+    "sha256": "b28b9cb0c17f305051a751239d596f114de1860d791bcabe428d479854335ce3"
+  },
+  {
+    "path": "03_STM32双主板/主板2/SYSTEM/sys/sys.c",
+    "bytes": 1067,
+    "sha256": "5c0147f135e7008641babe0879e411f1ca52684d3414f17b2f384a0cb914717d"
+  },
+  {
+    "path": "03_STM32双主板/主板2/SYSTEM/sys/sys.h",
+    "bytes": 3442,
+    "sha256": "8deb1f08c38a977765a227d78d15ce65353866278172ca8d8cbed20f7d338b36"
+  },
+  {
+    "path": "03_STM32双主板/主板2/SYSTEM/Timer/timer.c",
+    "bytes": 7154,
+    "sha256": "8b58813c6e9b5fa1a9309a30b852fe5bd5a7d05ac5d290eb0fb00479864f033b"
+  },
+  {
+    "path": "03_STM32双主板/主板2/SYSTEM/Timer/timer.h",
+    "bytes": 1204,
+    "sha256": "5ed28e88bbf25ea07d7cbc25bd0847f34e8eafbb8ebf24d2bc42fa12f589dd55"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/DebugConfig/MPU6050_STM32F407ZG.dbgconf",
+    "bytes": 2851,
+    "sha256": "3b95d61f76d8d903b61af89769499793969b89a16cf7987734dca09b993bb08b"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/DebugConfig/MPU9250_STM32F407ZG.dbgconf",
+    "bytes": 2851,
+    "sha256": "3b95d61f76d8d903b61af89769499793969b89a16cf7987734dca09b993bb08b"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/EventRecorderStub.scvd",
+    "bytes": 339,
+    "sha256": "c0bc76c307786ae399f79bf32d410f7d6c46e0ac1208cc882f60ac2649cba601"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/JLinkSettings.ini",
+    "bytes": 650,
+    "sha256": "7f36b9ebcb7fdd2b75d502cfb2ad2c3671108c8daccaf5f75cc86ea50c1fab09"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/main.c",
+    "bytes": 2236,
+    "sha256": "e3f1c227f066872e7bc5f4d9be5e69343f0b61f5d94410f6b1bda81d6f7fec7a"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/MPU9250.uvoptx",
+    "bytes": 20734,
+    "sha256": "fa23830f4bd19b7778085ee5dfe29506639f74100feaf218813eeeed8e5fd565"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/MPU9250.uvprojx",
+    "bytes": 21103,
+    "sha256": "281840c86d01533739644e76ed51df60f762c3cf1b774a134d56b5c26c1b2222"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/stm32f4xx.h",
+    "bytes": 704094,
+    "sha256": "44f69b1b56fb7f3afd1c469e06c3b24c0a99f5ef59f581b2900143733ba967af"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/stm32f4xx_conf.h",
+    "bytes": 4593,
+    "sha256": "1de02ba948488f61e50a0d217390ec90c0459ed63944acb9854426904469152b"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/stm32f4xx_it.c",
+    "bytes": 4603,
+    "sha256": "9351304fde5178c2d709f226384297671c2d24782b6327e663c90be10716fcc4"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/stm32f4xx_it.h",
+    "bytes": 2222,
+    "sha256": "f6f91ec5aa586bc6bafad43760c89271ace1064ed9b47097d5977fa3473063d8"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/system_stm32f4xx.c",
+    "bytes": 47778,
+    "sha256": "fd655dd3d705bd703c813b7abfdaa409ce4815f5e7cf5705ed6abb94ce79e91c"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USER/system_stm32f4xx.h",
+    "bytes": 2233,
+    "sha256": "50f5887a8d62d774e1bc3d0a2e8892dd43b5d200a2f6d9266f5b747d5810cb0f"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USMART/readme.txt",
+    "bytes": 2566,
+    "sha256": "817904e389f887eb19a082a8f1a7e86191a627f24bfcccad448364c27de82211"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USMART/usmart.c",
+    "bytes": 15502,
+    "sha256": "d69a5c173a47e5c12c08a949e9bce773ca273f115f8e90d68791ea597989092a"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USMART/usmart.h",
+    "bytes": 5488,
+    "sha256": "def5d3d3cff8cbc084fea535cb28447dbf791e5d67f4aeefe761ce4ea417639d"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USMART/usmart_config.c",
+    "bytes": 1604,
+    "sha256": "7728612aa35c35d64159ed365ccb0151da3237b39a697fa3687b1e7561c3f312"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USMART/usmart_str.c",
+    "bytes": 11560,
+    "sha256": "cafbd1a44fb27a7733620cc77020eabee173766b6df7cb5a06ab1327c332820c"
+  },
+  {
+    "path": "03_STM32双主板/主板2/USMART/usmart_str.h",
+    "bytes": 3233,
+    "sha256": "855e999e4c39c10a14cf9720392464cae1ca5cea4c2924cb371222b6c5776d3b"
+  },
+  {
+    "path": "03_STM32双主板/主板2/主板2.tel",
+    "bytes": 4902,
+    "sha256": "dd682817559bb0df1981e1622334d7d82faebb01e352a25f9032bf4715242946"
+  },
+  {
+    "path": "03_STM32双主板/既有构建产物_未重新编译/主板1/Radar_2.4G",
+    "bytes": 531780,
+    "sha256": "42fbd7d5b91a3f7ee08660ef98954edcab27fa707b1a5c53b9b16b00a4eb5473"
+  },
+  {
+    "path": "03_STM32双主板/既有构建产物_未重新编译/主板1/Radar_2.hex",
+    "bytes": 95885,
+    "sha256": "b99b97494b8324ea6cd0b4bf7b8ba8f72f804afe461e63f9802326ee44b80273"
+  },
+  {
+    "path": "03_STM32双主板/既有构建产物_未重新编译/主板1/Radar_2.map",
+    "bytes": 141576,
+    "sha256": "7eb479777cc70bc91bb5d65cb7334235c0a28e4f9855a0bd6168e7a1207281e8"
+  },
+  {
+    "path": "03_STM32双主板/既有构建产物_未重新编译/主板2/Radar_2.4G",
+    "bytes": 521552,
+    "sha256": "14e6c1bf0bba4a073ee343c2bfd5e3cd2fcec7be765f3f47e87cd3dd5bb9415c"
+  },
+  {
+    "path": "03_STM32双主板/既有构建产物_未重新编译/主板2/Radar_2.hex",
+    "bytes": 104488,
+    "sha256": "693f62c8556dab7585945b81abf9112dc9a055eb570df496e46aa31ccd87dc5d"
+  },
+  {
+    "path": "03_STM32双主板/既有构建产物_未重新编译/主板2/Radar_2.map",
+    "bytes": 96957,
+    "sha256": "654819d0a628eed82dda0bfa84ed7dcbce6402073e5b69555d51072be64794e7"
+  },
+  {
+    "path": "04_PCB与接线/README_本部分说明.md",
+    "bytes": 665,
+    "sha256": "09e26990cbac97cc5a3f2953663f0a0ded59f2b6752a5708ee85114d92ce0cde"
+  },
+  {
+    "path": "04_PCB与接线/原始机构草图_设计参考/01_主板1原始功能草图.jpg",
+    "bytes": 873741,
+    "sha256": "a5a9336569f0281d76fdc6720ea5186e7086b6abbd7848a887af8fd8535e12f9"
+  },
+  {
+    "path": "04_PCB与接线/原始机构草图_设计参考/02_主板2原始动作草图.jpg",
+    "bytes": 958320,
+    "sha256": "5809951e13e6ba257e58db11b126ea35d687b3c5f81215398333f4727761ee51"
+  },
+  {
+    "path": "04_PCB与接线/原始机构草图_设计参考/03_原始XYZ机构与串口分配草图.jpg",
+    "bytes": 605532,
+    "sha256": "607191191f09838177c525a8db0688c0549bcd86ae664583544c99f986d65789"
+  },
+  {
+    "path": "04_PCB与接线/立创EDA工程/家居.eprj2",
+    "bytes": 7172096,
+    "sha256": "8c47adeaec0911cf40c2235ae82572f81fabee1bd09e1a442df5b4e818e566b5"
+  },
+  {
+    "path": "04_PCB与接线/立创EDA工程/家居串口拓展板.eprj2",
+    "bytes": 2748416,
+    "sha256": "a4d15f87782c00a216096779b61a015b74cf6bb268c0809df1ffa816b4adb257"
+  },
+  {
+    "path": "05_护理与器件资料/HX711资料/5Kg电子秤开发必读教程.pdf",
+    "bytes": 158728,
+    "sha256": "9833330791602adf77c1c84db60ba2f25db0a4d4ba407d162d8faddc5502eb7b"
+  },
+  {
+    "path": "05_护理与器件资料/HX711资料/hx711官方资料(海芯).pdf",
+    "bytes": 225994,
+    "sha256": "a1276d20d9cf8e8014a8a2fe27b4a0440e97fb874fde74e41a0f88538859dbda"
+  },
+  {
+    "path": "05_护理与器件资料/HX711资料/HX711模块原理图.pdf",
+    "bytes": 62292,
+    "sha256": "66f9b8d9c022e1b3c2f89ae0081b4b0d2eb121abbcb82e153080ba6bbb66fa9e"
+  },
+  {
+    "path": "05_护理与器件资料/README_本部分说明.md",
+    "bytes": 638,
+    "sha256": "4dd0c7ebcf06677eebc98b8b89443e8f1381c067d38e4da17436072db8dab96c"
+  },
+  {
+    "path": "05_护理与器件资料/原器件文件/新建 XLSX 工作表.xlsx",
+    "bytes": 11604,
+    "sha256": "ae8dd8b008ae92dac06ad4dd1c6ebea0b14ffd0da2bb48436ae07b12c3a0c463"
+  },
+  {
+    "path": "05_护理与器件资料/原器件文件/语言.png",
+    "bytes": 856024,
+    "sha256": "d572c13e431807f4d290c29298a269ce87206d3959ca38ad02dc1e3617398e21"
+  },
+  {
+    "path": "05_护理与器件资料/器件与接口说明/DHT22温湿度传感器使用指南.md",
+    "bytes": 16585,
+    "sha256": "eb8831beded0baba5e9d9eb281e40d1781d2d71152a2037db6c2599238b7f309"
+  },
+  {
+    "path": "05_护理与器件资料/器件与接口说明/HC-SR505人体感应传感器使用指南.md",
+    "bytes": 18744,
+    "sha256": "be243f98f2571bb96881e865a5cb36d5940d1b0631089df74fa856f2adfefe45"
+  },
+  {
+    "path": "05_护理与器件资料/器件与接口说明/STM32标准库开发说明.md",
+    "bytes": 9832,
+    "sha256": "dc23f99eb0c85fbce6083d93c7ba9ef73f640d31e984fc6d095f7a05d3cdbaa2"
+  },
+  {
+    "path": "05_护理与器件资料/器件与接口说明/天气数据获取方案.md",
+    "bytes": 15942,
+    "sha256": "6dc02affe0477a513468680e4617056b0ff9e993403e6969fd3fb2b01cdeb08f"
+  },
+  {
+    "path": "05_护理与器件资料/器件与接口说明/智能衣柜器件选型清单.md",
+    "bytes": 12877,
+    "sha256": "4a3d190f79bb12eb5aeaff4d7f02aa3036b150180f053a7702dba43ff8cc68d3"
+  },
+  {
+    "path": "05_护理与器件资料/护理方案/方案.jpg",
+    "bytes": 3376975,
+    "sha256": "b72cd4eb2bfe6b86693720ef8c35266a90aedc0ace0ff72f4296122ab64b7fb2"
+  },
+  {
+    "path": "05_护理与器件资料/护理方案/智能护衣系统-5点位方案可行性分析.md",
+    "bytes": 7775,
+    "sha256": "05b9aa9a2d0439bf519ea8bfed4c582152bef5b0847a482d3eacaa28363fa0c7"
+  },
+  {
+    "path": "05_护理与器件资料/护理方案/智能护衣系统-全技术链路分析报告-双风机导轨版.md",
+    "bytes": 12124,
+    "sha256": "5417c5825c6c851d99df664e54315c90df832a840934d6f03cb83bf1896fef81"
+  },
+  {
+    "path": "05_护理与器件资料/护理方案/智能护衣系统设计方案.md",
+    "bytes": 21326,
+    "sha256": "659a9e5f5e00abea5db32547f9204adab75406736966418331f9ccbb01ebbb0c"
+  },
+  {
+    "path": "06_演示申报与专利/ppt_diagrams/01_系统架构.png",
+    "bytes": 222860,
+    "sha256": "9277559346bbd02ee2d44416f741209f76690b5b59118db4fa13456d2a2e5888"
+  },
+  {
+    "path": "06_演示申报与专利/ppt_diagrams/02_硬件连接拓扑.png",
+    "bytes": 175788,
+    "sha256": "a6255362e6aa9a1f8740ca323e10ceeb18e1d76506a521574db0a28011c4c11a"
+  },
+  {
+    "path": "06_演示申报与专利/ppt_diagrams/03_操作流程.png",
+    "bytes": 117375,
+    "sha256": "b2dca0eb573ccf012da35acedd2d30d60ed9993e4ae0f79116eb563705c04011"
+  },
+  {
+    "path": "06_演示申报与专利/ppt_diagrams/04_模块功能概览.png",
+    "bytes": 232396,
+    "sha256": "ee32fef36b5709eb0a61cc8f3c825fed4efd3d8b5585f1368669df4514e6445a"
+  },
+  {
+    "path": "06_演示申报与专利/ppt_diagrams/05_双板协同.png",
+    "bytes": 226970,
+    "sha256": "00d829099a65083eebe87107aba7120103754f72bc375a1f485125dca306e08b"
+  },
+  {
+    "path": "06_演示申报与专利/ppt_diagrams/06_视觉链路.png",
+    "bytes": 147803,
+    "sha256": "d70bbe2cadcc9f39a6d584280ec40b610e63d3651da0f7709a8471f995011d24"
+  },
+  {
+    "path": "06_演示申报与专利/ppt_diagrams/07_任务队列.png",
+    "bytes": 190383,
+    "sha256": "fe4766c0f0b4f2281ffa1d7131774a0b96fd2d4d83a35ca15591b28c68fed25b"
+  },
+  {
+    "path": "06_演示申报与专利/README_本部分说明.md",
+    "bytes": 696,
+    "sha256": "d4fd8eab64304d219ef136c2de84a0adf12e6b0db35532768053b95901c3c7b6"
+  },
+  {
+    "path": "06_演示申报与专利/专利说明/基于AI Agent的智能管理衣橱系统-专利核心思想 (1)..docx",
+    "bytes": 18025,
+    "sha256": "3af3e08ab7d6c6acc64ef0696deb7d323512a41d623797363c21439983c3f9f1"
+  },
+  {
+    "path": "06_演示申报与专利/专利说明/基于AI Agent的智能管理衣橱系统-专利核心思想_技术细化.docx",
+    "bytes": 18393,
+    "sha256": "5a0e794db78bd6f5ad7ac398190e2860f934fcd1e2c86e6b3fa364d0674d0013"
+  },
+  {
+    "path": "06_演示申报与专利/展示海报/smart_wardrobe_showcase_poster.png",
+    "bytes": 1125785,
+    "sha256": "ddf382ab055a351e4fb7f002b833b26c24ff605213ec92e589ac65bc08fbc805"
+  },
+  {
+    "path": "06_演示申报与专利/展示海报/smart_wardrobe_showcase_poster_v2.png",
+    "bytes": 1129779,
+    "sha256": "27197d7ec37ef6d5ab47b2ac82c6bd9135bce831a71c43a657518717db291013"
+  },
+  {
+    "path": "06_演示申报与专利/文案与生成提示词/豆包_PPT提示词_当前方案.docx",
+    "bytes": 40870,
+    "sha256": "c65aef4a1f2c3787e223b74ea41acba1d5fe2b9b38a6025d3f79a2d219f1334f"
+  },
+  {
+    "path": "06_演示申报与专利/文案与生成提示词/豆包_PPT提示词_当前方案.md",
+    "bytes": 8880,
+    "sha256": "ef37c24415d4ed46f14abb1920306528a938d6e85a475e9811016d7bc917a12c"
+  },
+  {
+    "path": "06_演示申报与专利/文案与生成提示词/豆包_套现有背景版_当前方案.docx",
+    "bytes": 39296,
+    "sha256": "5b98c0a49ac2c97fa141b9af823bb1b3f14bed40acdec389e83590fc694d808f"
+  },
+  {
+    "path": "06_演示申报与专利/文案与生成提示词/豆包_套现有背景版_当前方案.md",
+    "bytes": 5083,
+    "sha256": "b82373e7c67583dd63d97baf2f280cfbe1c6d3df35cd7e917b01e0101bb89d03"
+  },
+  {
+    "path": "06_演示申报与专利/文案与生成提示词/豆包_最终投喂版_当前方案.docx",
+    "bytes": 39838,
+    "sha256": "35d9bb40ac81d03d46630443710f726c8d9b7d6377d7bc1c65036fb45008dcb8"
+  },
+  {
+    "path": "06_演示申报与专利/文案与生成提示词/豆包_最终投喂版_当前方案.md",
+    "bytes": 6471,
+    "sha256": "4aab170c545d578a0e99dff39b52f88d7d2ac0c006db2456e9b768e5f293b646"
+  },
+  {
+    "path": "06_演示申报与专利/文案与生成提示词/豆包_电控_套现有背景版_当前方案.docx",
+    "bytes": 38806,
+    "sha256": "c0256c32b22f1b85f813c9815d5dba9b2a18f85aa88deb2fd6b4b5cbe43226cf"
+  },
+  {
+    "path": "06_演示申报与专利/文案与生成提示词/豆包_电控_套现有背景版_当前方案.md",
+    "bytes": 4004,
+    "sha256": "90b679336ca678539b466a65289b89aa2929a68e442ca886250ad5d692b5a513"
+  },
+  {
+    "path": "06_演示申报与专利/文案与生成提示词/豆包_电控PPT提示词_当前方案.docx",
+    "bytes": 39307,
+    "sha256": "2d710c6e1b7e75c3cde3dd1b2a03e68f31d9aa39995372b0c2ff75310527dfab"
+  },
+  {
+    "path": "06_演示申报与专利/文案与生成提示词/豆包_电控PPT提示词_当前方案.md",
+    "bytes": 5164,
+    "sha256": "e6d03afbfe297a302e9478efbce9e0d495b93c1cfaa9289c1a47bee4915ffb4c"
+  },
+  {
+    "path": "06_演示申报与专利/文案与生成提示词/豆包_精简投喂版_当前方案.docx",
+    "bytes": 39169,
+    "sha256": "057f019d4d3a4a78c42db731bcc3cbed30ac44ff4b8771380443dae7eb9844be"
+  },
+  {
+    "path": "06_演示申报与专利/文案与生成提示词/豆包_精简投喂版_当前方案.md",
+    "bytes": 4645,
+    "sha256": "88a8f3eb5520b42b0085fae7150bdb6abf7555159646b3de9f4165f7b8bd9091"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/Image2_图2点位路径规划_优雅极简版提示词.md",
+    "bytes": 2907,
+    "sha256": "c5c82063bd1edb174f676a7ab74ff49584c309cf0c9fbb3f81ded9d987462425"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/Image2_图2点位路径规划_双流程极简版提示词.md",
+    "bytes": 2931,
+    "sha256": "9e1ab62640779411352741d34617d281f476fa0bea9a0cc36ad0ca92e09c8827"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/Image2_图2点位路径规划_平面优雅版提示词.md",
+    "bytes": 2796,
+    "sha256": "89b8e1e73cf31787c04744e3ba1b64d6db3d05f1122a3b8e6fd92716a7326f07"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/Image2_图2点位路径规划_申报书简洁版提示词.md",
+    "bytes": 2968,
+    "sha256": "f6559bc36c5b4e885b32418e4df4bf15337caa8ad4f8bd9100fe38f57d8d9de2"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/Image2_图2点位路径规划_真实代码提示词.md",
+    "bytes": 6155,
+    "sha256": "65f43abd2914bf096ff035fdd3867ebdf8377eeb985326654cc04a40bf479a29"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/Image2_图2点位路径规划_高质感版提示词.md",
+    "bytes": 2882,
+    "sha256": "e386143bc3cc297683e322e08f4e01d0bce49e7ffaa1499d07df79596891c237"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/Image2_智能衣橱电控单图提示词.md",
+    "bytes": 5462,
+    "sha256": "d6239a3b4637fb3fd936263a13d5faa1e60df5a28be199c5d4da3fd2103e80f0"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/Image2_智能衣橱电控背景说明.md",
+    "bytes": 6575,
+    "sha256": "595dfe8ee2f2878efa8c036bbd9fb2894f5633a2aef0bf039c87adac587d90f3"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/图1_四层架构.png",
+    "bytes": 136344,
+    "sha256": "037f1c0f41b55c4106a6f4a7f83706d472b8e72174645f0767b6e557bbfd945f"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/图2_点位路径规划_代码点位草图.png",
+    "bytes": 394126,
+    "sha256": "28aa16e9cd3fbd684eeed80c14e68851551d345814ea239ebf51116a085a5b78"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/图2_点位路径规划_优雅极简版.png",
+    "bytes": 189614,
+    "sha256": "9be10014dc4ae65c5988f82f218ac45fff87d659313e7093ec966545a2ec3e60"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/图2_点位路径规划_双流程极简版.png",
+    "bytes": 188696,
+    "sha256": "d0adde4f8bea5c675394cb9baa4ac72ff7f69ee9d82237a1eb3bdb4bc2ac7b7c"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/图2_点位路径规划_平面优雅版.png",
+    "bytes": 165748,
+    "sha256": "9bb91d164e530f638cffe58db4b66de5411515edda1970ea48a2750b3827e512"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/图2_点位路径规划_申报书推荐版.png",
+    "bytes": 210725,
+    "sha256": "c38ec8b180c7fe529254370bd863496682ec24201996f60b319acbec5eb19e59"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/图2_点位路径规划_申报书简洁版.png",
+    "bytes": 294712,
+    "sha256": "220276704b3c257f6e3693f99b724715e2e286bfa2d431532028e5a86c375ea1"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/图2_点位路径规划_高质感版.png",
+    "bytes": 218164,
+    "sha256": "1d6c919b2187d1391d9919d527e11663876cdfb2e6911f7bd36b59d594d45a20"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/图3_数据流.png",
+    "bytes": 106441,
+    "sha256": "47760ea55c91dd957bf13118b91238ac38f6a032730c77ef87914c62e7dc6612"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/图4b_XY轨迹对比.png",
+    "bytes": 59202,
+    "sha256": "d6d99efcbe920ca6eccc3446b26be33e461481582bef7fb45cd8bf4cd3bfcdae"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/图5_安全保护.png",
+    "bytes": 148707,
+    "sha256": "d07053a616e4e3c4e1fc6f52af4b69851d73be7a70ea775454e572faded39cad"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/智能衣橱电控系统_优化版申报书.docx",
+    "bytes": 4649567,
+    "sha256": "d537d79bbf9a2c5aa98f18bf3d75a5a5c8b04f059162a1bc83b164cbc59619f1"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/智能衣橱电控系统_参考格式申报书.docx",
+    "bytes": 2131255,
+    "sha256": "daddd67ba40644d7787ad47f1f71b576c1e0230911c19c12251653e233d9a98a"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/智能衣橱电控配图_Image2提示词.md",
+    "bytes": 4748,
+    "sha256": "f07482f2596abde4b4e90934fc7bdb68cae6686b52f3338b867728e4851611f9"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/电控系统_申报书正式版.docx",
+    "bytes": 42546,
+    "sha256": "457ee18351868beb55aea044aaec627d8c1bdeb6816f661ef1c84f6309157f29"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/电控系统_申报内容.docx",
+    "bytes": 40800,
+    "sha256": "f3ab1e97ae0d93e1e69daec12a531b6e10f92e66e5c71b8f89ff987c05c23ab0"
+  },
+  {
+    "path": "06_演示申报与专利/申报书_电控/电控系统_申报内容.md",
+    "bytes": 9999,
+    "sha256": "41ec4a5c13731232861d225bf3986ade4963d8791b1d95a79e8c6763d74946c3"
+  },
+  {
+    "path": "06_演示申报与专利/申报书PDF/既有申报书导出.pdf",
+    "bytes": 451836,
+    "sha256": "53425ef6f4679370c5b0e6935800b356a088d1660180c21aaeb33993da73bd7e"
+  },
+  {
+    "path": "06_演示申报与专利/答辩PPT/智能衣橱电控系统设计.pptx",
+    "bytes": 1003754,
+    "sha256": "a589341420c28b8cdb6de61de8762f10bb8848e29bc7efc94c01839ed7613290"
+  },
+  {
+    "path": "06_演示申报与专利/答辩PPT/智能衣橱电控系统设计_浅色扩展版.pptx",
+    "bytes": 1034553,
+    "sha256": "e32230ad1b79215bada340e3862cecf6252d770389c7746506c5117dab6bb21c"
+  },
+  {
+    "path": "06_演示申报与专利/答辩PPT/智能衣橱答辩_证据版.pptx",
+    "bytes": 853541,
+    "sha256": "1774df95fa6145ce23264d3a73dcab6e3396509db4ca228f29e049591809ac28"
+  },
+  {
+    "path": "06_演示申报与专利/答辩PPT/智能衣橱答辩_证据重做版.pptx",
+    "bytes": 1109638,
+    "sha256": "2a1ab3557b73651342e63e145062cb93638667cde810863dc207373ef7e0ad42"
+  },
+  {
+    "path": "06_演示申报与专利/答辩PPT/智能衣橱答辩PPT.pptx",
+    "bytes": 1260066,
+    "sha256": "0fbcb2d1906e412ae42db5761bf73e26491fac941161cd4dcc4e4397e7aa0271"
+  },
+  {
+    "path": "06_演示申报与专利/答辩PPT/智能衣橱答辩PPT_v2.pptx",
+    "bytes": 704670,
+    "sha256": "d16064e7f3e5c5ce708f9f6496cc7920557954e2ed45927eee0264d84cb88de0"
+  },
+  {
+    "path": "06_演示申报与专利/答辩PPT/智能衣橱答辩PPT_手绘版.pptx",
+    "bytes": 815356,
+    "sha256": "53b2e964f0201a9cf51f4ea5c3dab461ab28535d8a93f66e3eb043781bcc4717"
+  },
+  {
+    "path": "06_演示申报与专利/答辩PPT/智能衣橱答辩PPT_清晰版.pptx",
+    "bytes": 2111346,
+    "sha256": "53e71de76abe612bfaf3b01259cde9d1c15217be28d5f759aeb3740e94e55622"
+  },
+  {
+    "path": "06_演示申报与专利/答辩PPT/智能衣橱系统总体设计_答辩讲解版.pptx",
+    "bytes": 1485539,
+    "sha256": "0d8ce73d4baa616f67cd7d9293e0054a0339e9d0e93db6ca3a9c81d8acf9075f"
+  },
+  {
+    "path": "06_演示申报与专利/系统配图/电控配图_树莓派双板架构.png",
+    "bytes": 86927,
+    "sha256": "5cee1bcfbf9099fe74c366baf2e5c534b715813aae879c90c69b025a550153c9"
+  },
+  {
+    "path": "07_安卓客户端/README_本部分说明.md",
+    "bytes": 678,
+    "sha256": "b5cdb19ba80de734956b8fc51e04fe7061ef435985a65332d6e8d5c68c0fba5f"
+  },
+  {
+    "path": "07_安卓客户端/安装包内网页/www/index.html",
+    "bytes": 121696,
+    "sha256": "148b3a2e6025b37f26f4707959bce5a12ab8912acda3774dfa12c7b1ea50b1c7"
+  },
+  {
+    "path": "07_安卓客户端/安装包内网页/www/manifest.json",
+    "bytes": 4977,
+    "sha256": "8c1885a4e073842a6bcd8ce2ca877b247448904fedff420831d8acf0b30ba89e"
+  },
+  {
+    "path": "07_安卓客户端/既有安装包/H594B5CF3_20260607_care_schedule_installable_v2v3.apk",
+    "bytes": 4723166,
+    "sha256": "4f8cfd77ebacc4bdca037549e1a69cc5f25c4e48af80d6f5f9556daf49ff6d2d"
+  },
+  {
+    "path": "08_联调与开发工具/collect_readonly.py",
+    "bytes": 3229,
+    "sha256": "a38f8922e6c93a2ffb03d713ed0c4dd4b6d1d58c1c1b51ce51101b7abb1e5394"
+  },
+  {
+    "path": "08_联调与开发工具/README_本部分说明.md",
+    "bytes": 1320,
+    "sha256": "2112238e682ac77676efa025bf5c0df49509f2b89a581e1c1fcd77f0146db4c2"
+  },
+  {
+    "path": "08_联调与开发工具/run_offline_suite.py",
+    "bytes": 1792,
+    "sha256": "8aa0caacf59e5c4a7e3234fc513fc76500cbf4cdd93b2b2c6c7a10ab92fbe4dd"
+  },
+  {
+    "path": "08_联调与开发工具/verify_package.py",
+    "bytes": 1047,
+    "sha256": "5515395df16daef614b5bb0d4dcb4c4effb7b7afd8bec95c11ede2b581b9b835"
+  },
+  {
+    "path": "08_联调与开发工具/后端排查说明_20261023/01_接口与执行链路.md",
+    "bytes": 7423,
+    "sha256": "11c3cb03954ca3915e6b594adc8d0905141fc7e707af7ddccaa6f58e43de5f81"
+  },
+  {
+    "path": "08_联调与开发工具/后端排查说明_20261023/02_伸缩杆伸出后停止_排查手册.md",
+    "bytes": 5919,
+    "sha256": "4a8e1aee29c81e9d10d08e2be061e4a3ce9155d89d1702c5825410cffc061afd"
+  },
+  {
+    "path": "08_联调与开发工具/后端排查说明_20261023/04_关键代码索引.md",
+    "bytes": 4249,
+    "sha256": "0e26e5586f7c1ab6bd079e9a5c276d1bc2194275cee3782b06bea7b55f5a1d44"
+  },
+  {
+    "path": "08_联调与开发工具/接口样例/mqtt_terminal.json",
+    "bytes": 222,
+    "sha256": "885285159cc965c3fb2f022b8612d3a68d07691ae16abb53835e5039c1f472aa"
+  },
+  {
+    "path": "08_联调与开发工具/接口样例/prepare_action12_mqtt.json",
+    "bytes": 111,
+    "sha256": "3022162b8d5aab58e85a0e4396d490c8a85b2f4659556f0761ecf0f18c6e03da"
+  },
+  {
+    "path": "08_联调与开发工具/接口样例/README.md",
+    "bytes": 845,
+    "sha256": "d708dc7fef63e2a0ed66fa7e4cc6bd6e5cba4c2c5a2683073a75d91a94125ec5"
+  },
+  {
+    "path": "08_联调与开发工具/接口样例/store_after_retract_http.json",
+    "bytes": 281,
+    "sha256": "6a1b82e58dfa36163a6455db97a800f89f71ead4f7a33915909603d8dd9968db"
+  },
+  {
+    "path": "08_联调与开发工具/接口样例/现场时间线模板.csv",
+    "bytes": 514,
+    "sha256": "3fc0b90840fbd3bcc35e2d6fdb27050b71af8a3c0354e09f8595f504f98f9135"
+  },
+  {
+    "path": "08_联调与开发工具/整理工具/package_current_project_20261025.py",
+    "bytes": 37784,
+    "sha256": "0bd4dc8881f81361691d027d8c1fb96bb7d936c35e278d0c7aef342876d94aeb"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/build_application_book.py",
+    "bytes": 27730,
+    "sha256": "ec3b514e0b207a1390640affbbcacc9cd54f247647da6bdc24cf043b2fb428a5"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/build_control_arch_image.py",
+    "bytes": 4946,
+    "sha256": "6d6dfdafb1cd0f64361856243202c0304c1978673bb710d721c28688edb1a472"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/build_doubao_compact_feed_docx.py",
+    "bytes": 2796,
+    "sha256": "997f060ece9626e14b7cd9f2658bbe4cbc7af8d59330a0830739a16f7573b37b"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/build_doubao_control_overlay_docx.py",
+    "bytes": 2804,
+    "sha256": "7dae60b01a3f2e3bf2047d849ce78212f6949f6b25efd3a2907e83a92f25f060"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/build_doubao_control_prompt_docx.py",
+    "bytes": 4022,
+    "sha256": "029e73242ec04657069425329869e789c717099ed5d54644b6ddbc59b5a38498"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/build_doubao_final_feed_docx.py",
+    "bytes": 2772,
+    "sha256": "9b88403424bebbc89c94229457f3ab5f18cb273364443b2ee34e7b3d5f971d0f"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/build_doubao_overlay_feed_docx.py",
+    "bytes": 2787,
+    "sha256": "2866415525788387b09320fcedbc77af2aa669d7495436a255d2fa6311d41c60"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/build_electrical_section_doc.py",
+    "bytes": 17549,
+    "sha256": "545c556bd28e35029c7a980989c9d5d7fb37c8138e41de031f4afb30ed6f1185"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/build_electrical_section_docx_from_md.py",
+    "bytes": 7010,
+    "sha256": "d5e01c6aa49168db237c34f5f91a1ac0daa37dbdb77a880d18d1600b0187530a"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/build_reference_style_electrical_application.py",
+    "bytes": 22769,
+    "sha256": "52b4c85a12e41be668d9f1d2b550545cb718aea5ca87bac2718fd6fae739f03b"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/build_wps_ai_prompt_docx.py",
+    "bytes": 4050,
+    "sha256": "063c24cdccbf765c300ab4ae89ed1c9e6a164972ea0ffef45f1172b04689f98b"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/deck.json",
+    "bytes": 91838,
+    "sha256": "5b81c6c3d5e060b73823e8e7e0a11701ad3d4378763f888f6dda738255930cbd"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/generate_deck.py",
+    "bytes": 45349,
+    "sha256": "307937e11ca6516dcb73d75cf58ae6871897abbcc718904592232f8031f0a942"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/generate_diagrams_for_doc.py",
+    "bytes": 7488,
+    "sha256": "ec455ff35a637a88d9b250194c188f6172795481b05d22607c219a66bed8ef70"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/generate_docx.py",
+    "bytes": 12564,
+    "sha256": "89d502fa27aaa3c017feab5b00f6423dd37e0febce82a562b70c03ab2eae3e42"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/generate_ppt.py",
+    "bytes": 18989,
+    "sha256": "b7b91a56cfa2a78cd22540fc17266382f65294c5008d574bb12341048577676c"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/generate_ppt_diagrams.py",
+    "bytes": 19054,
+    "sha256": "ae1f9d222d8431a53d2c01b38e4f2fbbbe9145fa6cc16ffb201da81497d52f6e"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/generate_ppt_v2.py",
+    "bytes": 28174,
+    "sha256": "b627d305a2a0983b30d8d01f26ef1a673b4e9405639385a4f0a98cef965d6d62"
+  },
+  {
+    "path": "08_联调与开发工具/文档生成脚本/generate_正式版.py",
+    "bytes": 19043,
+    "sha256": "149dbf1e1acb8ebb3f323501f5694a740ca24ffc21300fb3ec29f5057928e9d1"
+  },
+  {
+    "path": "09_整理校验/README_本部分说明.md",
+    "bytes": 786,
+    "sha256": "95ddbabfcb6018ff7347146d5c6a9c50cffa8dd9f01ab5d90323c5a8236f8bef"
+  },
+  {
+    "path": "09_整理校验/原目录统计.json",
+    "bytes": 9505,
+    "sha256": "9f05272bfd6047f947428046e75a203beb9b6e63f4d717bee40ca5da60979970"
+  },
+  {
+    "path": "09_整理校验/文件来源清单.csv",
+    "bytes": 127898,
+    "sha256": "3960c222fb83b5af8b8ce2b4b64df95749c97621ab896070abb1f9caf68b45b7"
+  },
+  {
+    "path": "09_整理校验/文件来源清单.json",
+    "bytes": 217383,
+    "sha256": "8f4cd77e3ad74a5110b290d8e9f18457ba641d248a47a594e7e5e73824b171cb"
+  },
+  {
+    "path": "09_整理校验/未纳入内容.csv",
+    "bytes": 4452,
+    "sha256": "a47ff84e802233e2cd91a73008c09e8fbe190a1cc71b4b48ca309be7ddcd3d9b"
+  },
+  {
+    "path": "09_整理校验/本轮检查结果.json",
+    "bytes": 1682,
+    "sha256": "c26a7430c041f8050ce2589d3668984a01ae129927e86f62129e656a6c1a5d7f"
+  },
+  {
+    "path": "09_整理校验/本轮网关测试.txt",
+    "bytes": 1905,
+    "sha256": "8b2a8e7fe4061b42666f5646444b310ae1b408281f133b82c7e14899f1d421ac"
+  },
+  {
+    "path": "09_整理校验/页面语法检查.json",
+    "bytes": 659,
+    "sha256": "d1443382dab791f84f90fef6ac97145d9bf3700c0370ae58fb86df91beff9fe6"
+  },
+  {
+    "path": "AGENTS.md",
+    "bytes": 570,
+    "sha256": "c7c5e8d4994f0c2c943f9a9eef1b80ce5ae0dd1aa5d713b4b76d18ccd91e459b"
+  },
+  {
+    "path": "README_先看这里.md",
+    "bytes": 3743,
+    "sha256": "5e7742eaf60f7222f2768f97d6eff6324aa50140be53834ea5a85af2aa3fc92d"
+  },
+  {
+    "path": "打开项目导航.html",
+    "bytes": 3800,
+    "sha256": "b2651c4c20722135abe9446ff9ead2355e334fcf63a725bbbe56bb0a7b01f778"
+  },
+  {
+    "path": "文件目录.txt",
+    "bytes": 26972,
+    "sha256": "58437605f573df16ea85e65c5c989624ec2dde632f2932c4cbc19a16d92cfb2c"
+  }
+]

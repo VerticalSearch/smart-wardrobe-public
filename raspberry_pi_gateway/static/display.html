@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>智能衣橱控制屏</title>
+  <style>
+    :root {
+      --bg: #eef2f4;
+      --panel: #ffffff;
+      --ink: #253039;
+      --muted: #6d7a84;
+      --line: #d8e0e5;
+      --green: #597d43;
+      --blue: #356f98;
+      --orange: #bf6737;
+      --danger: #bd4343;
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { width: 100%; height: 100%; overflow: hidden; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", system-ui, sans-serif;
+      user-select: none;
+      letter-spacing: 0;
+    }
+    .screen {
+      width: 100vw;
+      height: 100vh;
+      min-width: 800px;
+      min-height: 480px;
+      padding: 12px;
+      display: grid;
+      grid-template-rows: 54px 1fr 58px;
+      gap: 10px;
+    }
+    .topbar, .bottom, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .mark {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--green); color: #fff;
+      display: grid; place-items: center; font-weight: 900;
+    }
+    h1, h2, p { margin: 0; letter-spacing: 0; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 17px; }
+    .muted { color: var(--muted); font-size: 12px; }
+    .pill {
+      min-width: 76px;
+      height: 28px;
+      padding: 0 12px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #eef4e8;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .pill.bad { background: #f9e8e8; color: var(--danger); }
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      min-height: 0;
+    }
+    .panel {
+      min-height: 0;
+      padding: 12px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 10px;
+    }
+    .big-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      min-height: 0;
+    }
+    button {
+      border: 0;
+      border-radius: 8px;
+      background: #edf2f4;
+      color: var(--ink);
+      font: inherit;
+      font-size: 18px;
+      font-weight: 850;
+    }
+    button.primary { background: var(--green); color: #fff; }
+    button.blue { background: var(--blue); color: #fff; }
+    button.orange { background: var(--orange); color: #fff; }
+    button.danger { background: var(--danger); color: #fff; }
+    .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      gap: 10px;
+    }
+    .log {
+      min-height: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px;
+      background: #f8fafb;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      overflow: hidden;
+    }
+    .log div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .status-list {
+      display: grid;
+      gap: 9px;
+      align-content: start;
+    }
+    .status-item {
+      min-height: 56px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px;
+      display: grid;
+      gap: 4px;
+      background: #fbfcfd;
+    }
+    .status-item b { font-size: 14px; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <main class="screen">
+    <section class="topbar">
+      <div class="brand"><div class="mark">衣</div><div><h1>智能衣橱控制屏</h1><p class="muted">树莓派网关</p></div></div>
+      <div class="pill" id="serialPill">检查中</div>
+    </section>
+    <section class="content">
+      <div class="panel">
+        <h2>衣物流程</h2>
+        <div class="big-grid">
+          <button class="primary" data-task="6">放衣</button>
+          <button class="primary" data-task="7">取衣</button>
+          <button class="blue" data-task="8">风扇移动</button>
+          <button class="blue" data-task="9">风扇停止</button>
+          <button class="orange" data-task="10">刷毛</button>
+          <button class="danger" id="emergencyBtn">急停</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>拍照</h2>
+        <div class="big-grid">
+          <button class="primary" id="captureBtn">拍照上传</button>
+          <button id="refreshBtn">刷新</button>
+          <button id="uvOnBtn">紫外灯开</button>
+          <button id="uvOffBtn">紫外灯关</button>
+          <button id="fanOnBtn">换气开</button>
+          <button id="fanOffBtn">换气关</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>状态</h2>
+        <div class="status-list">
+          <div class="status-item"><span class="muted">CH340</span><b id="serialStatus">--</b></div>
+          <div class="status-item"><span class="muted">摄像头</span><b id="cameraStatus">--</b></div>
+          <div class="status-item"><span class="muted">上传</span><b id="uploadStatus">--</b></div>
+          <div class="log" id="log"></div>
+        </div>
+      </div>
+    </section>
+    <section class="bottom">
+      <span class="muted" id="clock">--</span>
+      <span class="muted">电脑调试页：/debug</span>
+    </section>
+  </main>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const uid = (prefix) => `${prefix}-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
+    async function postJson(path, payload) {
+      const response = await fetch(path, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload || {}),
+      });
+      const data = await response.json();
+      await refreshStatus();
+      return data;
+    }
+
+    async function control(payload, prefix) {
+      return postJson("/api/control", {...payload, id: uid(prefix), source: "touch-display"});
+    }
+
+    function setText(id, text) { $(id).textContent = text || "--"; }
+
+    function renderStatus(data) {
+      const serial = data.serial || {};
+      const camera = data.camera || {};
+      const upload = data.last_upload || {};
+      $("serialPill").textContent = serial.connected ? "串口在线" : "串口离线";
+      $("serialPill").className = `pill ${serial.connected ? "" : "bad"}`;
+      setText("serialStatus", serial.connected ? serial.port : serial.error);
+      setText("cameraStatus", camera.ok ? "可用" : camera.error || "未检测");
+      setText("uploadStatus", upload.ok ? `成功 style=${upload.style_id}` : upload.error || `等待上传`);
+      const log = $("log");
+      log.innerHTML = "";
+      for (const item of (data.logs || []).slice(0, 5)) {
+        const line = document.createElement("div");
+        line.textContent = `${item.direction}: ${item.message}`;
+        log.appendChild(line);
+      }
+    }
+
+    async function refreshStatus() {
+      const response = await fetch("/api/status", {cache: "no-store"});
+      renderStatus(await response.json());
+      $("clock").textContent = new Date().toLocaleString();
+    }
+
+    document.querySelectorAll("[data-task]").forEach((button) => {
+      button.addEventListener("click", () => control({action: "todo", action_id: Number(button.dataset.task)}, `task-${button.dataset.task}`));
+    });
+    $("emergencyBtn").addEventListener("click", () => control({action: "emergency"}, "emergency"));
+    $("captureBtn").addEventListener("click", () => postJson("/api/camera/capture-upload", {upload: false, source: "display-manual"}));
+    $("refreshBtn").addEventListener("click", refreshStatus);
+    $("uvOnBtn").addEventListener("click", () => control({action: "board1_output", device: "uv_lamp", enable: 1}, "uv-on"));
+    $("uvOffBtn").addEventListener("click", () => control({action: "board1_output", device: "uv_lamp", enable: 0}, "uv-off"));
+    $("fanOnBtn").addEventListener("click", () => control({action: "board1_output", device: "vent_fan", enable: 1}, "fan-on"));
+    $("fanOffBtn").addEventListener("click", () => control({action: "board1_output", device: "vent_fan", enable: 0}, "fan-off"));
+    refreshStatus();
+    setInterval(refreshStatus, 3000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+﻿page_no,page_name,page_title,recommended_component_count
+01,boot,智能衣橱,8
+02,home,智能衣橱,13
+03,retrieve_select,选择衣物,20
+04,retrieve_progress,取衣中,10
+05,retrieve_done,取衣完成,10
+06,return_prepare,归还准备,11
+07,return_progress,归还中,10
+08,return_done,归还完成,10
+09,treat_select,护理选择,11
+10,treat_progress,护理中,10
+11,treat_done,护理完成,10
+12,browse,衣物浏览,20
+13,network,网络设置,14
+14,wifi_password,输入密码,12
+15,error,异常提示,11

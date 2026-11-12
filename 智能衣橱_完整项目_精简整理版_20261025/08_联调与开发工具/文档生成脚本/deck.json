@@ -1,0 +1,2028 @@
+{
+  "style": {
+    "bg": "#fffdf7",
+    "text": "#1a1a2e",
+    "text_muted": "#495057",
+    "roughness": 1.5,
+    "stroke_width": 2
+  },
+  "slides": [
+    {
+      "id": 1,
+      "render_mode": "dual",
+      "accent_index": 0,
+      "html": "<div style=\"display:flex;flex-direction:column;align-items:center;justify-content:center;height:1080px;text-align:center;\">\n<h1 style=\"font-size:100px;color:var(--accent);margin-bottom:30px;letter-spacing:12px;\">智能衣橱系统</h1>\n<p style=\"font-size:42px;color:var(--text-muted);margin-bottom:200px;\">基于云端协同的智能衣物存取与管理系统</p>\n<p class=\"annotation\" style=\"font-size:30px;color:var(--text);\">毕业设计答辩</p>\n</div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}",
+      "shapes_js": "drawRect(80, 80, 1760, 920, {stroke: STYLE.accent, strokeWidth: 3});\ndrawRect(100, 100, 1720, 880, {stroke: STYLE.accentLight, strokeWidth: 1, roughness: 1});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 180,
+          "w": 1760,
+          "h": 160,
+          "paragraphs": [
+            {
+              "text": "智能衣橱系统",
+              "font": "heading",
+              "size": 100,
+              "align": "center",
+              "bold": true,
+              "color": "#1971c2"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 380,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "基于云端协同的智能衣物存取与管理系统",
+              "font": "body",
+              "size": 40,
+              "align": "center",
+              "color": "#495057"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 860,
+          "w": 1760,
+          "h": 60,
+          "paragraphs": [
+            {
+              "text": "毕业设计答辩",
+              "font": "annotation",
+              "size": 30,
+              "align": "center",
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "render_mode": "dual",
+      "accent_index": 0,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>项目背景与痛点分析</h2></div>\n<div class=\"card\" style=\"left:130px;top:220px;width:780px;height:370px;\">\n<div style=\"font-size:64px;margin-bottom:16px;\">🔍</div>\n<h3>查找困难</h3>\n<p>传统衣柜衣物堆积，翻找耗时<br>经常找不到想穿的衣服</p></div>\n<div class=\"card\" style=\"left:1010px;top:220px;width:780px;height:370px;\">\n<div style=\"font-size:64px;margin-bottom:16px;\">😵</div>\n<h3>管理混乱</h3>\n<p>换季衣物混放，重复购买<br>无法掌握衣柜存量状况</p></div>\n<div class=\"card\" style=\"left:130px;top:630px;width:780px;height:370px;\">\n<div style=\"font-size:64px;margin-bottom:16px;\">📱</div>\n<h3>缺乏智能</h3>\n<p>无远程控制与自动分类<br>每次翻找全靠人工记忆</p></div>\n<div class=\"card\" style=\"left:1010px;top:630px;width:780px;height:370px;\">\n<div style=\"font-size:64px;margin-bottom:16px;\">🏠</div>\n<h3>市场空白</h3>\n<p>现有产品价格高昂<br>缺乏面向大众的解决方案</p></div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.card{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;\ntext-align:center;padding:40px;border-radius:20px;}\n.card h3{font-size:48px;margin-bottom:24px;color:var(--accent);}\n.card p{font-size:32px;line-height:1.5;color:var(--text);}\n.card ul{list-style:none;padding:0;}\n.card ul li{font-size:30px;margin-bottom:12px;color:var(--text);padding-left:0;}\n.card ul li::before{content:none;}\n",
+      "shapes_js": "drawLine(130,220,170,220,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,220,130,260,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,220,870,220,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,220,910,260,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,590,170,590,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,590,130,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,590,870,590,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,590,910,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,220,1050,220,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,220,1010,260,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,220,1750,220,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,220,1790,260,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,590,1050,590,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,590,1010,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,590,1750,590,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,590,1790,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,630,170,630,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,630,130,670,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,630,870,630,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,630,910,670,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,1000,170,1000,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,1000,130,960,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,1000,870,1000,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,1000,910,960,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,630,1050,630,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,630,1010,670,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,630,1750,630,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,630,1790,670,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,1000,1050,1000,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,1000,1010,960,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,1000,1750,1000,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,1000,1790,960,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(580,110,1280,110,{stroke:STYLE.accent,strokeWidth:3,roughness:2});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "项目背景与痛点分析",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 170,
+          "y": 280,
+          "w": 700,
+          "h": 200,
+          "paragraphs": [
+            {
+              "text": "查找困难",
+              "font": "heading",
+              "size": 48,
+              "align": "center",
+              "bold": true,
+              "color": "#1971c2"
+            },
+            {
+              "text": "传统衣柜衣物堆积，翻找耗时",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "经常找不到想穿的衣服",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1050,
+          "y": 280,
+          "w": 700,
+          "h": 200,
+          "paragraphs": [
+            {
+              "text": "管理混乱",
+              "font": "heading",
+              "size": 48,
+              "align": "center",
+              "bold": true,
+              "color": "#1971c2"
+            },
+            {
+              "text": "换季衣物混放，重复购买",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "无法掌握衣柜存量状况",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 170,
+          "y": 690,
+          "w": 700,
+          "h": 200,
+          "paragraphs": [
+            {
+              "text": "缺乏智能",
+              "font": "heading",
+              "size": 48,
+              "align": "center",
+              "bold": true,
+              "color": "#1971c2"
+            },
+            {
+              "text": "无远程控制与自动分类",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "每次翻找全靠人工记忆",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1050,
+          "y": 690,
+          "w": 700,
+          "h": 200,
+          "paragraphs": [
+            {
+              "text": "市场空白",
+              "font": "heading",
+              "size": 48,
+              "align": "center",
+              "bold": true,
+              "color": "#1971c2"
+            },
+            {
+              "text": "现有产品价格高昂",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "缺乏面向大众的解决方案",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "render_mode": "dual",
+      "accent_index": 1,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>系统设计目标</h2></div>\n<div class=\"card\" style=\"left:130px;top:220px;width:780px;height:370px;\">\n<div style=\"font-size:64px;margin-bottom:16px;\">📱</div>\n<h3>多端操控</h3>\n<p>手机App / 触摸屏<br>随时远程控制衣橱</p></div>\n<div class=\"card\" style=\"left:1010px;top:220px;width:780px;height:370px;\">\n<div style=\"font-size:64px;margin-bottom:16px;\">👁️</div>\n<h3>视觉识别</h3>\n<p>K230摄像头拍照<br>AI云端识别衣物</p></div>\n<div class=\"card\" style=\"left:130px;top:630px;width:780px;height:370px;\">\n<div style=\"font-size:64px;margin-bottom:16px;\">🤖</div>\n<h3>自动存取</h3>\n<p>双STM32主板驱动<br>5轴机械手精准取衣</p></div>\n<div class=\"card\" style=\"left:1010px;top:630px;width:780px;height:370px;\">\n<div style=\"font-size:64px;margin-bottom:16px;\">☁️</div>\n<h3>云端管理</h3>\n<p>FastAPI后端服务<br>任务队列持久化</p></div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.card{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;\ntext-align:center;padding:40px;border-radius:20px;}\n.card h3{font-size:48px;margin-bottom:24px;color:var(--accent);}\n.card p{font-size:32px;line-height:1.5;color:var(--text);}\n.card ul{list-style:none;padding:0;}\n.card ul li{font-size:30px;margin-bottom:12px;color:var(--text);padding-left:0;}\n.card ul li::before{content:none;}\n",
+      "shapes_js": "drawLine(130,220,170,220,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,220,130,260,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,220,870,220,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,220,910,260,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,590,170,590,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,590,130,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,590,870,590,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,590,910,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,220,1050,220,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,220,1010,260,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,220,1750,220,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,220,1790,260,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,590,1050,590,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,590,1010,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,590,1750,590,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,590,1790,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,630,170,630,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,630,130,670,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,630,870,630,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,630,910,670,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,1000,170,1000,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,1000,130,960,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,1000,870,1000,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,1000,910,960,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,630,1050,630,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,630,1010,670,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,630,1750,630,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,630,1790,670,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,1000,1050,1000,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,1000,1010,960,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,1000,1750,1000,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,1000,1790,960,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(580,110,1280,110,{stroke:STYLE.accent,strokeWidth:3,roughness:2});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "系统设计目标",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 170,
+          "y": 280,
+          "w": 700,
+          "h": 200,
+          "paragraphs": [
+            {
+              "text": "多端操控",
+              "font": "heading",
+              "size": 48,
+              "align": "center",
+              "bold": true,
+              "color": "#2f9e44"
+            },
+            {
+              "text": "手机App / 触摸屏",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "随时远程控制衣橱",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1050,
+          "y": 280,
+          "w": 700,
+          "h": 200,
+          "paragraphs": [
+            {
+              "text": "视觉识别",
+              "font": "heading",
+              "size": 48,
+              "align": "center",
+              "bold": true,
+              "color": "#2f9e44"
+            },
+            {
+              "text": "K230摄像头拍照",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "AI云端识别衣物",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 170,
+          "y": 690,
+          "w": 700,
+          "h": 200,
+          "paragraphs": [
+            {
+              "text": "自动存取",
+              "font": "heading",
+              "size": 48,
+              "align": "center",
+              "bold": true,
+              "color": "#2f9e44"
+            },
+            {
+              "text": "双STM32主板驱动",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "5轴机械手精准取衣",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1050,
+          "y": 690,
+          "w": 700,
+          "h": 200,
+          "paragraphs": [
+            {
+              "text": "云端管理",
+              "font": "heading",
+              "size": 48,
+              "align": "center",
+              "bold": true,
+              "color": "#2f9e44"
+            },
+            {
+              "text": "FastAPI后端服务",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "任务队列持久化",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "render_mode": "dual",
+      "accent_index": 0,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>系统整体架构</h2></div>\n<div class=\"split-left\"><img src=\"file:///C:/Users/ECHO/Desktop/%E5%AE%B6%E5%B1%85/ppt_diagrams/01_%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84.png\" style=\"width:100%;height:100%;object-fit:contain;border-radius:18px;\"></div>\n<div class=\"split-right\">\n<h3>系统拓扑</h3>\n<p style=\"margin-bottom:20px;\">端—云—边 三层协同架构</p>\n<ul>\n<li>手机 / 触控屏幕</li>\n<li>云端 FastAPI 服务器</li>\n<li>K230 CanMV 摄像头</li>\n<li>双 STM32F407 主板</li>\n<li>5轴步进电机机械手</li>\n<li>激光测距精准定位</li>\n</ul>\n</div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.split-left{position:absolute;top:200px;left:80px;width:820px;height:700px;\ndisplay:flex;align-items:center;justify-content:center;border-radius:20px;\nborder:2px dashed var(--text-muted);}\n.split-left img{width:100%;height:100%;object-fit:contain;border-radius:18px;}\n.split-right{position:absolute;top:200px;left:960px;width:880px;height:700px;\ndisplay:flex;flex-direction:column;justify-content:center;padding:20px 40px;}\n.split-right h3{font-size:44px;margin-bottom:30px;color:var(--accent);}\n.split-right ul{list-style:none;padding:0;}\n.split-right ul li{font-size:34px;margin-bottom:20px;padding-left:32px;position:relative;}\n.split-right ul li::before{content:'';position:absolute;left:0;top:14px;width:14px;height:14px;\nborder-radius:50%;background:var(--accent);}\n.split-right p{font-size:32px;line-height:1.6;color:var(--text);}\n",
+      "shapes_js": "drawRect(80, 80, 1760, 920, {stroke: STYLE.accent, strokeWidth: 3});\ndrawRect(100, 100, 1720, 880, {stroke: STYLE.accentLight, strokeWidth: 1, roughness: 1});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "系统整体架构",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "image",
+          "x": 80,
+          "y": 200,
+          "w": 820,
+          "h": 700,
+          "label": "系统架构图",
+          "src": "C:\\Users\\ECHO\\Desktop\\家居\\ppt_diagrams\\01_系统架构.png",
+          "border_color": "#1971c2"
+        },
+        {
+          "type": "textbox",
+          "x": 960,
+          "y": 220,
+          "w": 880,
+          "h": 650,
+          "paragraphs": [
+            {
+              "text": "系统拓扑",
+              "font": "heading",
+              "size": 44,
+              "align": "left",
+              "bold": true,
+              "color": "#1971c2"
+            },
+            {
+              "text": "端—云—边 三层协同架构",
+              "font": "body",
+              "size": 30,
+              "align": "left",
+              "color": "#495057"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "手机 / 触控屏幕",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "云端 FastAPI 服务器",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "K230 CanMV 摄像头",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "双 STM32F407 主板",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "5轴步进电机机械手",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "激光测距精准定位",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            }
+          ],
+          "valign": "top"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "render_mode": "dual",
+      "accent_index": 1,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>硬件实物展示</h2></div>\n<div class=\"split-left\" style=\"left:80px;width:820px;\">\n<h3>自研PCB电路板</h3>\n<p style=\"margin-bottom:16px;\">双 STM32F407 主板</p>\n<p style=\"margin-bottom:16px;\">兼容6路UART通信接口</p>\n<p style=\"margin-bottom:16px;\">集成步进电机驱动模块</p>\n<p style=\"margin-bottom:16px;\">激光测距传感器接口</p>\n<p>OLED显示屏状态监控</p>\n</div>\n<div class=\"split-left\" style=\"left:960px;width:820px;border:2px dashed var(--text-muted);display:flex;align-items:center;justify-content:center;\">\n<p class=\"annotation\" style=\"font-size:28px;color:var(--text-muted);\">[ 自研PCB电路板实拍照片 ]</p>\n</div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.split-left{position:absolute;top:200px;left:80px;width:820px;height:700px;\ndisplay:flex;align-items:center;justify-content:center;border-radius:20px;\n}\n.split-left img{width:100%;height:100%;object-fit:contain;border-radius:18px;}\n.split-right{position:absolute;top:200px;left:960px;width:880px;height:700px;\ndisplay:flex;flex-direction:column;justify-content:center;padding:20px 40px;}\n.split-right h3{font-size:44px;margin-bottom:30px;color:var(--accent);}\n.split-right ul{list-style:none;padding:0;}\n.split-right ul li{font-size:34px;margin-bottom:20px;padding-left:32px;position:relative;}\n.split-right ul li::before{content:'';position:absolute;left:0;top:14px;width:14px;height:14px;\nborder-radius:50%;background:var(--accent);}\n.split-right p{font-size:32px;line-height:1.6;color:var(--text);}\n",
+      "shapes_js": "drawRect(80, 80, 1760, 920, {stroke: STYLE.accent, strokeWidth: 2.5});\ndrawRect(100, 100, 1720, 880, {stroke: STYLE.accentLight, strokeWidth: 1, roughness: 1});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "硬件实物展示",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 250,
+          "w": 820,
+          "h": 550,
+          "paragraphs": [
+            {
+              "text": "自研PCB电路板",
+              "font": "heading",
+              "size": 44,
+              "align": "left",
+              "bold": true,
+              "color": "#2f9e44"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "双 STM32F407 主板",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "兼容6路UART通信接口",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "集成步进电机驱动模块",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "激光测距传感器接口",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "OLED显示屏状态监控",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            }
+          ],
+          "valign": "top"
+        },
+        {
+          "type": "image",
+          "x": 960,
+          "y": 200,
+          "w": 820,
+          "h": 700,
+          "label": "自研PCB电路板实拍照片",
+          "bg_color": "#d3f9d8",
+          "border_color": "#2f9e44"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "render_mode": "dual",
+      "accent_index": 1,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>双板协同架构</h2></div>\n<div class=\"compare-left\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<h3 style=\"color:var(--accent-dark);\">主板1 — 协调调度</h3>\n<ul>\n<li>任务流程编排</li>\n<li>6路UART通信</li>\n<li>激光测距定位</li>\n<li>OLED状态显示</li>\n<li>WiFi云端轮询</li>\n</ul>\n</div>\n<div class=\"compare-arrow\"><span>→</span></div>\n<div class=\"compare-right\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<h3 style=\"color:var(--accent-dark);\">主板2 — 运动执行</h3>\n<ul>\n<li>5轴步进电机</li>\n<li>夹爪联动控制</li>\n<li>动作序列解析</li>\n<li>回零校准机制</li>\n<li>限位安全保护</li>\n</ul>\n</div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.card{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;\ntext-align:center;padding:40px;border-radius:20px;}\n.card h3{font-size:48px;margin-bottom:24px;color:var(--accent);}\n.card p{font-size:32px;line-height:1.5;color:var(--text);}\n.card ul{list-style:none;padding:0;}\n.card ul li{font-size:30px;margin-bottom:12px;color:var(--text);padding-left:0;}\n.card ul li::before{content:none;}\n\n.compare-left{position:absolute;top:200px;left:80px;width:700px;height:700px;\ndisplay:flex;flex-direction:column;align-items:center;justify-content:center;\ntext-align:center;padding:40px;border-radius:20px;}\n.compare-right{position:absolute;top:200px;left:1140px;width:700px;height:700px;\ndisplay:flex;flex-direction:column;align-items:center;justify-content:center;\ntext-align:center;padding:40px;border-radius:20px;}\n.compare-arrow{position:absolute;top:500px;left:820px;width:280px;height:100px;\ndisplay:flex;align-items:center;justify-content:center;}\n.compare-arrow span{font-size:60px;color:var(--accent);}\n.compare-left h3,.compare-right h3{font-size:48px;margin-bottom:30px;color:var(--accent);}\n.compare-left ul,.compare-right ul{list-style:none;padding:0;text-align:left;}\n.compare-left ul li,.compare-right ul li{font-size:30px;margin-bottom:16px;\ncolor:var(--text);padding-left:28px;position:relative;}\n.compare-left ul li::before,.compare-right ul li::before{content:'';position:absolute;\nleft:0;top:10px;width:12px;height:12px;border-radius:50%;background:var(--accent);}\n",
+      "shapes_js": "drawRect(80,200,700,700,{stroke:STYLE.accent,strokeWidth:2.5,roughness:1.8});\ndrawRect(1140,200,700,700,{stroke:STYLE.accent,strokeWidth:2.5,roughness:1.8});\ndrawLine(800,550,1120,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1120,550,1104,538,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1120,550,1104,562,{stroke:STYLE.accent,strokeWidth:3});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "双板协同架构",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 120,
+          "y": 240,
+          "w": 620,
+          "h": 600,
+          "paragraphs": [
+            {
+              "text": "主板1 — 协调调度",
+              "font": "heading",
+              "size": 42,
+              "align": "center",
+              "bold": true,
+              "color": "#2b8a3e"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "任务流程编排",
+              "font": "body",
+              "size": 32,
+              "align": "center"
+            },
+            {
+              "text": "6路UART通信",
+              "font": "body",
+              "size": 32,
+              "align": "center"
+            },
+            {
+              "text": "激光测距定位",
+              "font": "body",
+              "size": 32,
+              "align": "center"
+            },
+            {
+              "text": "OLED状态显示",
+              "font": "body",
+              "size": 32,
+              "align": "center"
+            },
+            {
+              "text": "WiFi云端轮询",
+              "font": "body",
+              "size": 32,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1180,
+          "y": 240,
+          "w": 620,
+          "h": 600,
+          "paragraphs": [
+            {
+              "text": "主板2 — 运动执行",
+              "font": "heading",
+              "size": 42,
+              "align": "center",
+              "bold": true,
+              "color": "#2b8a3e"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "5轴步进电机",
+              "font": "body",
+              "size": 32,
+              "align": "center"
+            },
+            {
+              "text": "夹爪联动控制",
+              "font": "body",
+              "size": 32,
+              "align": "center"
+            },
+            {
+              "text": "动作序列解析",
+              "font": "body",
+              "size": 32,
+              "align": "center"
+            },
+            {
+              "text": "回零校准机制",
+              "font": "body",
+              "size": 32,
+              "align": "center"
+            },
+            {
+              "text": "限位安全保护",
+              "font": "body",
+              "size": 32,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "render_mode": "image_only",
+      "accent_index": 1,
+      "html": "<div style=\"position:absolute;top:80px;left:80px;width:1760px;height:920px;\">\n<img src=\"file:///C:/Users/ECHO/Desktop/%E5%AE%B6%E5%B1%85/ppt_diagrams/02_%E7%A1%AC%E4%BB%B6%E8%BF%9E%E6%8E%A5%E6%8B%93%E6%89%91.png\" style=\"width:100%;height:100%;object-fit:contain;border-radius:18px;\">\n</div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}",
+      "shapes_js": "drawRect(80, 80, 1760, 920, {stroke: STYLE.accent, strokeWidth: 2});\ndrawRect(100, 100, 1720, 880, {stroke: STYLE.accentLight, strokeWidth: 1, roughness: 1});",
+      "elements": []
+    },
+    {
+      "id": 8,
+      "render_mode": "dual",
+      "accent_index": 1,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>机械手动作流程</h2></div>\n<div class=\"flow-row\"><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div class=\"step-num\">01</div>\n<div class=\"step-text\">激光测距</div></div><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div class=\"step-num\">02</div>\n<div class=\"step-text\">区间判定</div></div><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div class=\"step-num\">03</div>\n<div class=\"step-text\">任务匹配</div></div><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div class=\"step-num\">04</div>\n<div class=\"step-text\">电机驱动</div></div><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div class=\"step-num\">05</div>\n<div class=\"step-text\">取衣完成</div></div></div><div style=\"position:absolute;bottom:220px;left:80px;width:1760px;text-align:center;\">\n<p class=\"annotation\" style=\"font-size:26px;color:var(--text-muted);\">驱动 5 轴步进电机 + 夹爪机构，精准取放衣物</p></div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.flow-row{position:absolute;top:340px;left:80px;width:1760px;display:flex;\njustify-content:space-around;align-items:center;}\n.flow-step{width:280px;height:280px;display:flex;flex-direction:column;\nalign-items:center;justify-content:center;text-align:center;padding:20px;border-radius:20px;}\n.flow-step .step-num{font-size:48px;color:var(--accent);font-family:var(--font-heading);\nfont-weight:700;margin-bottom:12px;}\n.flow-step .step-text{font-size:30px;color:var(--text);line-height:1.4;}\n",
+      "shapes_js": "drawLine(360,480,520,480,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(520,480,504,468,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(520,480,504,492,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(800,480,960,480,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(960,480,944,468,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(960,480,944,492,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1240,480,1400,480,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1400,480,1384,468,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1400,480,1384,492,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1680,480,1840,480,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1840,480,1824,468,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1840,480,1824,492,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(500,110,1400,110,{stroke:STYLE.accent,strokeWidth:3,roughness:2});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "机械手动作流程",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 120,
+          "y": 400,
+          "w": 280,
+          "h": 160,
+          "paragraphs": [
+            {
+              "text": "激光测距",
+              "font": "heading",
+              "size": 40,
+              "align": "center",
+              "bold": true,
+              "color": "#2f9e44"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 560,
+          "y": 400,
+          "w": 280,
+          "h": 160,
+          "paragraphs": [
+            {
+              "text": "区间判定",
+              "font": "heading",
+              "size": 40,
+              "align": "center",
+              "bold": true,
+              "color": "#2f9e44"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1000,
+          "y": 400,
+          "w": 280,
+          "h": 160,
+          "paragraphs": [
+            {
+              "text": "任务匹配",
+              "font": "heading",
+              "size": 40,
+              "align": "center",
+              "bold": true,
+              "color": "#2f9e44"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1440,
+          "y": 400,
+          "w": 280,
+          "h": 160,
+          "paragraphs": [
+            {
+              "text": "电机驱动",
+              "font": "heading",
+              "size": 40,
+              "align": "center",
+              "bold": true,
+              "color": "#2f9e44"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 120,
+          "y": 640,
+          "w": 1640,
+          "h": 160,
+          "paragraphs": [
+            {
+              "text": "取衣完成",
+              "font": "heading",
+              "size": 40,
+              "align": "center",
+              "bold": true,
+              "color": "#2b8a3e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 810,
+          "w": 1760,
+          "h": 50,
+          "paragraphs": [
+            {
+              "text": "驱动 5 轴步进电机 + 夹爪机构，精准取放衣物",
+              "font": "annotation",
+              "size": 26,
+              "align": "center",
+              "color": "#495057"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "render_mode": "dual",
+      "accent_index": 3,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>K230 CanMV 视觉模块</h2></div>\n<div class=\"split-left\" style=\"border:2px dashed var(--text-muted);display:flex;align-items:center;justify-content:center;\">\n<p class=\"annotation\" style=\"font-size:28px;color:var(--text-muted);\">[ K230 CanMV 摄像头模块实拍照片 ]</p>\n</div>\n<div class=\"split-right\">\n<h3>硬件规格</h3>\n<ul>\n<li>RISC-V 双核处理器</li>\n<li>KPU AI 神经网络加速</li>\n<li>320×240 图像采集</li>\n<li>WiFi 直连云服务器</li>\n<li>舵机云台角度控制</li>\n<li>MicroPython 开发</li>\n</ul>\n</div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.split-left{position:absolute;top:200px;left:80px;width:820px;height:700px;\ndisplay:flex;align-items:center;justify-content:center;border-radius:20px;\nborder:2px dashed var(--text-muted);}\n.split-left img{width:100%;height:100%;object-fit:contain;border-radius:18px;}\n.split-right{position:absolute;top:200px;left:960px;width:880px;height:700px;\ndisplay:flex;flex-direction:column;justify-content:center;padding:20px 40px;}\n.split-right h3{font-size:44px;margin-bottom:30px;color:var(--accent);}\n.split-right ul{list-style:none;padding:0;}\n.split-right ul li{font-size:34px;margin-bottom:20px;padding-left:32px;position:relative;}\n.split-right ul li::before{content:'';position:absolute;left:0;top:14px;width:14px;height:14px;\nborder-radius:50%;background:var(--accent);}\n.split-right p{font-size:32px;line-height:1.6;color:var(--text);}\n",
+      "shapes_js": "drawRect(80, 80, 1760, 920, {stroke: STYLE.accent, strokeWidth: 2.5});\ndrawRect(100, 100, 1720, 880, {stroke: STYLE.accentLight, strokeWidth: 1, roughness: 1});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "K230 CanMV 视觉模块",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "image",
+          "x": 80,
+          "y": 200,
+          "w": 820,
+          "h": 700,
+          "label": "K230 CanMV 摄像头模块实拍照片",
+          "bg_color": "#e5dbff",
+          "border_color": "#7048e8"
+        },
+        {
+          "type": "textbox",
+          "x": 960,
+          "y": 250,
+          "w": 880,
+          "h": 600,
+          "paragraphs": [
+            {
+              "text": "硬件规格",
+              "font": "heading",
+              "size": 44,
+              "align": "left",
+              "bold": true,
+              "color": "#7048e8"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "RISC-V 双核处理器",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "KPU AI 神经网络加速",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "320×240 图像采集",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "WiFi 直连云服务器",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "舵机云台角度控制",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            },
+            {
+              "text": "MicroPython 开发",
+              "font": "body",
+              "size": 34,
+              "align": "left"
+            }
+          ],
+          "valign": "top"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "render_mode": "dual",
+      "accent_index": 3,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>衣物视觉识别</h2></div>\n<div class=\"compare-left\" style=\"background:var(--accent-light);border:2px dashed var(--accent);display:flex;align-items:center;justify-content:center;\">\n<p class=\"annotation\" style=\"font-size:28px;color:var(--text-muted);\">[ K230 拍摄衣物照片 ]</p>\n</div>\n<div class=\"compare-arrow\"><span>→</span></div>\n<div class=\"compare-right\" style=\"background:var(--accent-light);border:2px dashed var(--accent);display:flex;align-items:center;justify-content:center;\">\n<p class=\"annotation\" style=\"font-size:28px;color:var(--text-muted);\">[ AI 云端识别结果 ]</p>\n</div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.card{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;\ntext-align:center;padding:40px;border-radius:20px;}\n.card h3{font-size:48px;margin-bottom:24px;color:var(--accent);}\n.card p{font-size:32px;line-height:1.5;color:var(--text);}\n.card ul{list-style:none;padding:0;}\n.card ul li{font-size:30px;margin-bottom:12px;color:var(--text);padding-left:0;}\n.card ul li::before{content:none;}\n\n.compare-left{position:absolute;top:200px;left:80px;width:700px;height:700px;\ndisplay:flex;flex-direction:column;align-items:center;justify-content:center;\ntext-align:center;padding:40px;border-radius:20px;}\n.compare-right{position:absolute;top:200px;left:1140px;width:700px;height:700px;\ndisplay:flex;flex-direction:column;align-items:center;justify-content:center;\ntext-align:center;padding:40px;border-radius:20px;}\n.compare-arrow{position:absolute;top:500px;left:820px;width:280px;height:100px;\ndisplay:flex;align-items:center;justify-content:center;}\n.compare-arrow span{font-size:60px;color:var(--accent);}\n.compare-left h3,.compare-right h3{font-size:48px;margin-bottom:30px;color:var(--accent);}\n.compare-left ul,.compare-right ul{list-style:none;padding:0;text-align:left;}\n.compare-left ul li,.compare-right ul li{font-size:30px;margin-bottom:16px;\ncolor:var(--text);padding-left:28px;position:relative;}\n.compare-left ul li::before,.compare-right ul li::before{content:'';position:absolute;\nleft:0;top:10px;width:12px;height:12px;border-radius:50%;background:var(--accent);}\n",
+      "shapes_js": "drawRect(80,200,700,700,{stroke:STYLE.accent,strokeWidth:2.5,roughness:1.8});\ndrawRect(1140,200,700,700,{stroke:STYLE.accent,strokeWidth:2.5,roughness:1.8});\ndrawLine(800,550,1120,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1120,550,1104,538,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1120,550,1104,562,{stroke:STYLE.accent,strokeWidth:3});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "衣物视觉识别",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "image",
+          "x": 80,
+          "y": 200,
+          "w": 700,
+          "h": 700,
+          "label": "K230 拍摄衣物照片",
+          "bg_color": "#e5dbff",
+          "border_color": "#7048e8"
+        },
+        {
+          "type": "image",
+          "x": 1140,
+          "y": 200,
+          "w": 700,
+          "h": 700,
+          "label": "AI 云端识别结果",
+          "bg_color": "#e5dbff",
+          "border_color": "#7048e8"
+        },
+        {
+          "type": "textbox",
+          "x": 820,
+          "y": 520,
+          "w": 280,
+          "h": 60,
+          "paragraphs": [
+            {
+              "text": "→",
+              "font": "body",
+              "size": 48,
+              "align": "center",
+              "color": "#7048e8"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "render_mode": "dual",
+      "accent_index": 3,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>视觉识别链路</h2></div>\n<div class=\"flow-row\" style=\"top:360px;\"><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div class=\"step-num\">01</div>\n<div class=\"step-text\">K230拍照</div></div><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div class=\"step-num\">02</div>\n<div class=\"step-text\">WiFi上传</div></div><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div class=\"step-num\">03</div>\n<div class=\"step-text\">云端识别</div></div><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div class=\"step-num\">04</div>\n<div class=\"step-text\">存入数据库</div></div></div>\n<div style=\"position:absolute;bottom:260px;left:80px;width:1760px;text-align:center;\">\n<p class=\"annotation\" style=\"font-size:26px;color:var(--text-muted);\">K230捕获图像 → 实时上传 → AI模型推理 → 结构化存储</p></div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.flow-row{position:absolute;top:340px;left:80px;width:1760px;display:flex;\njustify-content:space-around;align-items:center;}\n.flow-step{width:280px;height:280px;display:flex;flex-direction:column;\nalign-items:center;justify-content:center;text-align:center;padding:20px;border-radius:20px;}\n.flow-step .step-num{font-size:48px;color:var(--accent);font-family:var(--font-heading);\nfont-weight:700;margin-bottom:12px;}\n.flow-step .step-text{font-size:30px;color:var(--text);line-height:1.4;}\n",
+      "shapes_js": "drawLine(450,500,530,500,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(530,500,514,488,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(530,500,514,512,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,500,990,500,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(990,500,974,488,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(990,500,974,512,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1370,500,1450,500,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1450,500,1434,488,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1450,500,1434,512,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(500,110,1400,110,{stroke:STYLE.accent,strokeWidth:3,roughness:2});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "视觉识别链路",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 120,
+          "y": 420,
+          "w": 360,
+          "h": 160,
+          "paragraphs": [
+            {
+              "text": "K230拍照",
+              "font": "heading",
+              "size": 40,
+              "align": "center",
+              "bold": true,
+              "color": "#7048e8"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 580,
+          "y": 420,
+          "w": 360,
+          "h": 160,
+          "paragraphs": [
+            {
+              "text": "WiFi上传",
+              "font": "heading",
+              "size": 40,
+              "align": "center",
+              "bold": true,
+              "color": "#7048e8"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1040,
+          "y": 420,
+          "w": 360,
+          "h": 160,
+          "paragraphs": [
+            {
+              "text": "云端识别",
+              "font": "heading",
+              "size": 40,
+              "align": "center",
+              "bold": true,
+              "color": "#7048e8"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1500,
+          "y": 420,
+          "w": 360,
+          "h": 160,
+          "paragraphs": [
+            {
+              "text": "存入数据库",
+              "font": "heading",
+              "size": 40,
+              "align": "center",
+              "bold": true,
+              "color": "#7048e8"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 780,
+          "w": 1760,
+          "h": 50,
+          "paragraphs": [
+            {
+              "text": "K230捕获图像 → 实时上传 → AI模型推理 → 结构化存储",
+              "font": "annotation",
+              "size": 26,
+              "align": "center",
+              "color": "#495057"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "render_mode": "dual",
+      "accent_index": 2,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>云端 API 接口设计</h2></div>\n<div class=\"split-left\" style=\"border:2px dashed var(--text-muted);display:flex;align-items:center;justify-content:center;\">\n<p class=\"annotation\" style=\"font-size:28px;color:var(--text-muted);\">[ FastAPI Swagger 接口文档截图 ]</p>\n</div>\n<div class=\"split-right\">\n<h3>RESTful API 端点</h3>\n<ul><li><span style=\"display:inline-block;background:#2f9e44;color:#fff;padding:2px 12px;border-radius:8px;font-size:22px;margin-right:12px;\">GET</span> /api/clothes</li><li><span style=\"display:inline-block;background:#2f9e44;color:#fff;padding:2px 12px;border-radius:8px;font-size:22px;margin-right:12px;\">GET</span> /api/clothes/{id}</li><li><span style=\"display:inline-block;background:#1971c2;color:#fff;padding:2px 12px;border-radius:8px;font-size:22px;margin-right:12px;\">POST</span> /api/tasks</li><li><span style=\"display:inline-block;background:#2f9e44;color:#fff;padding:2px 12px;border-radius:8px;font-size:22px;margin-right:12px;\">GET</span> /api/tasks/queue</li><li><span style=\"display:inline-block;background:#1971c2;color:#fff;padding:2px 12px;border-radius:8px;font-size:22px;margin-right:12px;\">POST</span> /api/upload</li><li><span style=\"display:inline-block;background:#e8590c;color:#fff;padding:2px 12px;border-radius:8px;font-size:22px;margin-right:12px;\">PUT</span> /api/tasks/{id}</li></ul></div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.split-left{position:absolute;top:200px;left:80px;width:820px;height:700px;\ndisplay:flex;align-items:center;justify-content:center;border-radius:20px;\nborder:2px dashed var(--text-muted);}\n.split-left img{width:100%;height:100%;object-fit:contain;border-radius:18px;}\n.split-right{position:absolute;top:200px;left:960px;width:880px;height:700px;\ndisplay:flex;flex-direction:column;justify-content:center;padding:20px 40px;}\n.split-right h3{font-size:44px;margin-bottom:30px;color:var(--accent);}\n.split-right ul{list-style:none;padding:0;}\n.split-right ul li{font-size:34px;margin-bottom:20px;padding-left:32px;position:relative;}\n.split-right ul li::before{content:'';position:absolute;left:0;top:14px;width:14px;height:14px;\nborder-radius:50%;background:var(--accent);}\n.split-right p{font-size:32px;line-height:1.6;color:var(--text);}\n",
+      "shapes_js": "drawRect(80, 80, 1760, 920, {stroke: STYLE.accent, strokeWidth: 2.5});\ndrawRect(100, 100, 1720, 880, {stroke: STYLE.accentLight, strokeWidth: 1, roughness: 1});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "云端 API 接口设计",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "image",
+          "x": 80,
+          "y": 200,
+          "w": 820,
+          "h": 700,
+          "label": "FastAPI Swagger 接口文档截图",
+          "bg_color": "#ffe8cc",
+          "border_color": "#e8590c"
+        },
+        {
+          "type": "textbox",
+          "x": 960,
+          "y": 220,
+          "w": 880,
+          "h": 680,
+          "paragraphs": [
+            {
+              "text": "RESTful API 端点",
+              "font": "heading",
+              "size": 44,
+              "align": "left",
+              "bold": true,
+              "color": "#e8590c"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "GET    /api/clothes      获取衣物列表",
+              "font": "body",
+              "size": 30,
+              "align": "left"
+            },
+            {
+              "text": "GET    /api/clothes/{id}  查询单件衣物",
+              "font": "body",
+              "size": 30,
+              "align": "left"
+            },
+            {
+              "text": "POST   /api/tasks         创建取衣任务",
+              "font": "body",
+              "size": 30,
+              "align": "left"
+            },
+            {
+              "text": "GET    /api/tasks/queue   查询任务队列",
+              "font": "body",
+              "size": 30,
+              "align": "left"
+            },
+            {
+              "text": "POST   /api/upload        上传衣物照片",
+              "font": "body",
+              "size": 30,
+              "align": "left"
+            },
+            {
+              "text": "PUT    /api/tasks/{id}    更新任务状态",
+              "font": "body",
+              "size": 30,
+              "align": "left"
+            }
+          ],
+          "valign": "top"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "render_mode": "image_only",
+      "accent_index": 2,
+      "html": "<div style=\"position:absolute;top:80px;left:80px;width:1760px;height:920px;\">\n<img src=\"file:///C:/Users/ECHO/Desktop/%E5%AE%B6%E5%B1%85/ppt_diagrams/07_%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97.png\" style=\"width:100%;height:100%;object-fit:contain;border-radius:18px;\">\n</div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}",
+      "shapes_js": "drawRect(80, 80, 1760, 920, {stroke: STYLE.accent, strokeWidth: 2});\ndrawRect(100, 100, 1720, 880, {stroke: STYLE.accentLight, strokeWidth: 1, roughness: 1});",
+      "elements": []
+    },
+    {
+      "id": 14,
+      "render_mode": "dual",
+      "accent_index": 2,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>多终端协同操控</h2></div>\n<div class=\"col-row\" style=\"top:240px;\"><div class=\"col-card\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div style=\"font-size:64px;margin-bottom:20px;\">📱</div>\n<h3>手机 App</h3>\n<p>Android 应用<br>蓝牙 + WiFi<br>远程控制衣橱</p></div><div class=\"col-card\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div style=\"font-size:64px;margin-bottom:20px;\">🖥️</div>\n<h3>触控屏幕</h3>\n<p>本地触摸屏<br>直观操作界面<br>无需手机</p></div><div class=\"col-card\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div style=\"font-size:64px;margin-bottom:20px;\">🌐</div>\n<h3>Web 管理</h3>\n<p>浏览器访问<br>云端数据管理<br>跨平台兼容</p></div></div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.col-row{position:absolute;top:220px;left:80px;width:1760px;display:flex;\njustify-content:space-between;}\n.col-card{width:520px;height:660px;display:flex;flex-direction:column;\nalign-items:center;justify-content:center;text-align:center;padding:30px;border-radius:20px;}\n.col-card h3{font-size:44px;margin-bottom:30px;color:var(--accent);}\n.col-card p,.col-card ul li{font-size:30px;line-height:1.6;color:var(--text);}\n.col-card ul{list-style:none;padding:0;text-align:center;}\n.col-card ul li{margin-bottom:14px;}\n.col-card ul li::before{content:none;}\n",
+      "shapes_js": "drawRect(80,240,520,640,{stroke:STYLE.accent,strokeWidth:2.5,roughness:1.8});\ndrawRect(700,240,520,640,{stroke:STYLE.accent,strokeWidth:2.5,roughness:1.8});\ndrawRect(1320,240,520,640,{stroke:STYLE.accent,strokeWidth:2.5,roughness:1.8});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "多终端协同操控",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "image",
+          "x": 130,
+          "y": 320,
+          "w": 420,
+          "h": 460,
+          "label": "手机 App 截图",
+          "bg_color": "#ffe8cc",
+          "border_color": "#e8590c"
+        },
+        {
+          "type": "textbox",
+          "x": 130,
+          "y": 800,
+          "w": 420,
+          "h": 60,
+          "paragraphs": [
+            {
+              "text": "手机 App",
+              "font": "heading",
+              "size": 36,
+              "align": "center",
+              "bold": true,
+              "color": "#e8590c"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "image",
+          "x": 750,
+          "y": 320,
+          "w": 420,
+          "h": 460,
+          "label": "触摸屏截图",
+          "bg_color": "#ffe8cc",
+          "border_color": "#e8590c"
+        },
+        {
+          "type": "textbox",
+          "x": 750,
+          "y": 800,
+          "w": 420,
+          "h": 60,
+          "paragraphs": [
+            {
+              "text": "触控屏幕",
+              "font": "heading",
+              "size": 36,
+              "align": "center",
+              "bold": true,
+              "color": "#e8590c"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "image",
+          "x": 1370,
+          "y": 320,
+          "w": 420,
+          "h": 460,
+          "label": "Web 管理截图",
+          "bg_color": "#ffe8cc",
+          "border_color": "#e8590c"
+        },
+        {
+          "type": "textbox",
+          "x": 1370,
+          "y": 800,
+          "w": 420,
+          "h": 60,
+          "paragraphs": [
+            {
+              "text": "Web 管理",
+              "font": "heading",
+              "size": 36,
+              "align": "center",
+              "bold": true,
+              "color": "#e8590c"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "render_mode": "dual",
+      "accent_index": 4,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>全流程操作演示</h2></div>\n<div class=\"flow-row\" style=\"top:200px;\"><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);width:260px;height:200px;\">\n<div class=\"step-num\" style=\"font-size:36px;\">01</div>\n<div class=\"step-text\" style=\"font-size:24px;\">App点击</div></div><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);width:260px;height:200px;\">\n<div class=\"step-num\" style=\"font-size:36px;\">02</div>\n<div class=\"step-text\" style=\"font-size:24px;\">云端生成任务</div></div><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);width:260px;height:200px;\">\n<div class=\"step-num\" style=\"font-size:36px;\">03</div>\n<div class=\"step-text\" style=\"font-size:24px;\">主板轮询</div></div><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);width:260px;height:200px;\">\n<div class=\"step-num\" style=\"font-size:36px;\">04</div>\n<div class=\"step-text\" style=\"font-size:24px;\">K230拍照</div></div><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);width:260px;height:200px;\">\n<div class=\"step-num\" style=\"font-size:36px;\">05</div>\n<div class=\"step-text\" style=\"font-size:24px;\">电机取衣</div></div><div class=\"flow-step\" style=\"background:var(--accent-light);border:2px dashed var(--accent);width:260px;height:200px;\">\n<div class=\"step-num\" style=\"font-size:36px;\">06</div>\n<div class=\"step-text\" style=\"font-size:24px;\">完成回传</div></div></div>\n<div style=\"position:absolute;top:480px;left:80px;width:1760px;height:420px;\">\n<img src=\"file:///C:/Users/ECHO/Desktop/%E5%AE%B6%E5%B1%85/ppt_diagrams/03_%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B.png\" style=\"width:100%;height:100%;object-fit:contain;border-radius:18px;\">\n</div>\n<div style=\"position:absolute;bottom:40px;left:80px;width:1760px;text-align:center;\">\n<p style=\"font-size:36px;color:var(--accent);font-weight:700;font-family:var(--font-heading);\">全流程 &lt; 15 秒</p>\n<p class=\"annotation\" style=\"font-size:24px;color:var(--text-muted);\">从点击到取衣完成的端到端延迟</p>\n</div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.flow-row{position:absolute;top:340px;left:80px;width:1760px;display:flex;\njustify-content:space-around;align-items:center;}\n.flow-step{width:280px;height:280px;display:flex;flex-direction:column;\nalign-items:center;justify-content:center;text-align:center;padding:20px;border-radius:20px;}\n.flow-step .step-num{font-size:48px;color:var(--accent);font-family:var(--font-heading);\nfont-weight:700;margin-bottom:12px;}\n.flow-step .step-text{font-size:30px;color:var(--text);line-height:1.4;}\n",
+      "shapes_js": "drawLine(290,300,430,300,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(430,300,414,288,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(430,300,414,312,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(570,300,710,300,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(710,300,694,288,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(710,300,694,312,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(850,300,990,300,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(990,300,974,288,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(990,300,974,312,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1130,300,1270,300,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1270,300,1254,288,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1270,300,1254,312,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1410,300,1550,300,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1550,300,1534,288,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1550,300,1534,312,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(600,980,1300,980,{stroke:STYLE.accent,strokeWidth:3,roughness:2});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 20,
+          "w": 1760,
+          "h": 60,
+          "paragraphs": [
+            {
+              "text": "全流程操作演示",
+              "font": "heading",
+              "size": 52,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 120,
+          "y": 220,
+          "w": 260,
+          "h": 150,
+          "paragraphs": [
+            {
+              "text": "App点击",
+              "font": "heading",
+              "size": 32,
+              "align": "center",
+              "bold": true,
+              "color": "#c92a2a"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 400,
+          "y": 220,
+          "w": 260,
+          "h": 150,
+          "paragraphs": [
+            {
+              "text": "云端生成任务",
+              "font": "heading",
+              "size": 32,
+              "align": "center",
+              "bold": true,
+              "color": "#c92a2a"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 680,
+          "y": 220,
+          "w": 260,
+          "h": 150,
+          "paragraphs": [
+            {
+              "text": "主板轮询",
+              "font": "heading",
+              "size": 32,
+              "align": "center",
+              "bold": true,
+              "color": "#c92a2a"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 960,
+          "y": 220,
+          "w": 260,
+          "h": 150,
+          "paragraphs": [
+            {
+              "text": "K230拍照",
+              "font": "heading",
+              "size": 32,
+              "align": "center",
+              "bold": true,
+              "color": "#c92a2a"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1240,
+          "y": 220,
+          "w": 260,
+          "h": 150,
+          "paragraphs": [
+            {
+              "text": "电机取衣",
+              "font": "heading",
+              "size": 32,
+              "align": "center",
+              "bold": true,
+              "color": "#c92a2a"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1520,
+          "y": 220,
+          "w": 260,
+          "h": 150,
+          "paragraphs": [
+            {
+              "text": "完成回传",
+              "font": "heading",
+              "size": 32,
+              "align": "center",
+              "bold": true,
+              "color": "#c92a2a"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "image",
+          "x": 80,
+          "y": 490,
+          "w": 1760,
+          "h": 400,
+          "label": "操作流程图",
+          "src": "C:\\Users\\ECHO\\Desktop\\家居\\ppt_diagrams\\03_操作流程.png"
+        },
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 940,
+          "w": 1760,
+          "h": 50,
+          "paragraphs": [
+            {
+              "text": "全流程 < 15 秒",
+              "font": "heading",
+              "size": 36,
+              "align": "center",
+              "bold": true,
+              "color": "#c92a2a"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 990,
+          "w": 1760,
+          "h": 40,
+          "paragraphs": [
+            {
+              "text": "从点击到取衣完成的端到端延迟",
+              "font": "annotation",
+              "size": 24,
+              "align": "center",
+              "color": "#495057"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "render_mode": "dual",
+      "accent_index": 4,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>系统演示</h2></div>\n<div style=\"position:absolute;top:180px;left:160px;width:1600px;height:680px;\nborder:3px dashed var(--accent);border-radius:20px;display:flex;align-items:center;\njustify-content:center;background:var(--accent-light);\">\n<p class=\"annotation\" style=\"font-size:40px;color:var(--accent-dark);\">🎬 系统演示视频</p>\n</div>\n<div style=\"position:absolute;bottom:60px;left:80px;width:1760px;text-align:center;\">\n<p class=\"annotation\" style=\"font-size:26px;color:var(--text-muted);\">智能衣橱系统完整操作流程演示</p>\n</div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}",
+      "shapes_js": "drawRect(80, 80, 1760, 920, {stroke: STYLE.accent, strokeWidth: 3});\ndrawRect(100, 100, 1720, 880, {stroke: STYLE.accentLight, strokeWidth: 1, roughness: 1});\ndrawCircle(960,500,600,{stroke:STYLE.accent,strokeWidth:2.5,roughness:2});\ndrawCircle(960,500,620,{stroke:STYLE.accentLight,strokeWidth:2.5,roughness:2});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "系统演示",
+              "font": "heading",
+              "size": 60,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "image",
+          "x": 160,
+          "y": 180,
+          "w": 1600,
+          "h": 680,
+          "label": "系统演示视频",
+          "bg_color": "#ffe3e3",
+          "border_color": "#c92a2a"
+        },
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 920,
+          "w": 1760,
+          "h": 50,
+          "paragraphs": [
+            {
+              "text": "智能衣橱系统完整操作流程演示",
+              "font": "annotation",
+              "size": 26,
+              "align": "center",
+              "color": "#495057"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "render_mode": "dual",
+      "accent_index": 5,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>创新点与亮点</h2></div>\n<div class=\"card\" style=\"left:130px;top:220px;width:780px;height:370px;\">\n<div style=\"font-size:56px;margin-bottom:12px;\">🔧</div>\n<h3>双板解耦设计</h3>\n<p>协调板与执行板分离<br>6路UART高效通信<br>故障隔离、易于维护</p></div>\n<div class=\"card\" style=\"left:1010px;top:220px;width:780px;height:370px;\">\n<div style=\"font-size:56px;margin-bottom:12px;\">👁️</div>\n<h3>视觉识别闭环</h3>\n<p>K230拍照 + 云端AI<br>自动分类与检索<br>识别准确率持续提升</p></div>\n<div class=\"card\" style=\"left:130px;top:630px;width:780px;height:370px;\">\n<div style=\"font-size:56px;margin-bottom:12px;\">📋</div>\n<h3>任务队列容错</h3>\n<p>云端持久化任务队列<br>断网重试、状态追踪<br>保证指令不丢失</p></div>\n<div class=\"card\" style=\"left:1010px;top:630px;width:780px;height:370px;\">\n<div style=\"font-size:56px;margin-bottom:12px;\">☁️</div>\n<h3>云边端协同</h3>\n<p>端侧执行、云端调度<br>多终端统一接入<br>架构可水平扩展</p></div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.card{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;\ntext-align:center;padding:40px;border-radius:20px;}\n.card h3{font-size:48px;margin-bottom:24px;color:var(--accent);}\n.card p{font-size:32px;line-height:1.5;color:var(--text);}\n.card ul{list-style:none;padding:0;}\n.card ul li{font-size:30px;margin-bottom:12px;color:var(--text);padding-left:0;}\n.card ul li::before{content:none;}\n",
+      "shapes_js": "drawLine(130,220,170,220,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,220,130,260,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,220,870,220,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,220,910,260,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,590,170,590,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,590,130,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,590,870,590,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,590,910,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,220,1050,220,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,220,1010,260,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,220,1750,220,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,220,1790,260,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,590,1050,590,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,590,1010,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,590,1750,590,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,590,1790,550,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,630,170,630,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,630,130,670,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,630,870,630,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,630,910,670,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,1000,170,1000,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(130,1000,130,960,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,1000,870,1000,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(910,1000,910,960,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,630,1050,630,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,630,1010,670,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,630,1750,630,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,630,1790,670,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,1000,1050,1000,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1010,1000,1010,960,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,1000,1750,1000,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(1790,1000,1790,960,{stroke:STYLE.accent,strokeWidth:3});\ndrawLine(580,110,1280,110,{stroke:STYLE.accent,strokeWidth:3,roughness:2});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "创新点与亮点",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 170,
+          "y": 270,
+          "w": 700,
+          "h": 220,
+          "paragraphs": [
+            {
+              "text": "双板解耦设计",
+              "font": "heading",
+              "size": 42,
+              "align": "center",
+              "bold": true,
+              "color": "#0c8599"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "协调板与执行板分离",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "6路UART高效通信",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "故障隔离、易于维护",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1050,
+          "y": 270,
+          "w": 700,
+          "h": 220,
+          "paragraphs": [
+            {
+              "text": "视觉识别闭环",
+              "font": "heading",
+              "size": 42,
+              "align": "center",
+              "bold": true,
+              "color": "#0c8599"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "K230拍照 + 云端AI",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "自动分类与检索",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "识别准确率持续提升",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 170,
+          "y": 680,
+          "w": 700,
+          "h": 220,
+          "paragraphs": [
+            {
+              "text": "任务队列容错",
+              "font": "heading",
+              "size": 42,
+              "align": "center",
+              "bold": true,
+              "color": "#0c8599"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "云端持久化任务队列",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "断网重试、状态追踪",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "保证指令不丢失",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1050,
+          "y": 680,
+          "w": 700,
+          "h": 220,
+          "paragraphs": [
+            {
+              "text": "云边端协同",
+              "font": "heading",
+              "size": 42,
+              "align": "center",
+              "bold": true,
+              "color": "#0c8599"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "端侧执行、云端调度",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "多终端统一接入",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            },
+            {
+              "text": "架构可水平扩展",
+              "font": "body",
+              "size": 28,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "render_mode": "dual",
+      "accent_index": 5,
+      "html": "<div style=\"position:absolute;top:30px;left:80px;width:1760px;text-align:center;\">\n<h2>项目总结与展望</h2></div>\n<div class=\"col-row\" style=\"top:240px;\"><div class=\"col-card\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div style=\"font-size:56px;margin-bottom:16px;\">✅</div>\n<h3>已完成</h3>\n<p style=\"text-align:left;line-height:1.7;font-size:26px;\">双STM32F407电控系统<br>K230视觉识别模块<br>FastAPI云端后端<br>任务队列管理系统<br>多终端应用开发</p></div><div class=\"col-card\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div style=\"font-size:56px;margin-bottom:16px;\">🔮</div>\n<h3>可扩展</h3>\n<p style=\"text-align:left;line-height:1.7;font-size:26px;\">接入大语言模型<br>智能穿搭推荐<br>更多传感器融合<br>衣柜集群管理<br>社区共享功能</p></div><div class=\"col-card\" style=\"background:var(--accent-light);border:2px dashed var(--accent);\">\n<div style=\"font-size:56px;margin-bottom:16px;\">📦</div>\n<h3>项目产出</h3>\n<p style=\"text-align:left;line-height:1.7;font-size:26px;\">PCB电路板 ×2<br>Android App<br>触控屏固件<br>云端API服务<br>技术文档与论文</p></div></div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.col-row{position:absolute;top:220px;left:80px;width:1760px;display:flex;\njustify-content:space-between;}\n.col-card{width:520px;height:660px;display:flex;flex-direction:column;\nalign-items:center;justify-content:center;text-align:center;padding:30px;border-radius:20px;}\n.col-card h3{font-size:44px;margin-bottom:30px;color:var(--accent);}\n.col-card p,.col-card ul li{font-size:30px;line-height:1.6;color:var(--text);}\n.col-card ul{list-style:none;padding:0;text-align:center;}\n.col-card ul li{margin-bottom:14px;}\n.col-card ul li::before{content:none;}\n",
+      "shapes_js": "drawRect(80,240,520,670,{stroke:STYLE.accent,strokeWidth:2.5,roughness:1.8});\ndrawRect(700,240,520,670,{stroke:STYLE.accent,strokeWidth:2.5,roughness:1.8});\ndrawRect(1320,240,520,670,{stroke:STYLE.accent,strokeWidth:2.5,roughness:1.8});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 30,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "项目总结与展望",
+              "font": "heading",
+              "size": 56,
+              "align": "center",
+              "bold": true,
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 120,
+          "y": 280,
+          "w": 440,
+          "h": 550,
+          "paragraphs": [
+            {
+              "text": "已完成",
+              "font": "heading",
+              "size": 42,
+              "align": "center",
+              "bold": true,
+              "color": "#0c8599"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "双STM32F407电控系统",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            },
+            {
+              "text": "K230视觉识别模块",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            },
+            {
+              "text": "FastAPI云端后端",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            },
+            {
+              "text": "任务队列管理系统",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            },
+            {
+              "text": "多终端应用开发",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 740,
+          "y": 280,
+          "w": 440,
+          "h": 550,
+          "paragraphs": [
+            {
+              "text": "可扩展",
+              "font": "heading",
+              "size": 42,
+              "align": "center",
+              "bold": true,
+              "color": "#0c8599"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "接入大语言模型",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            },
+            {
+              "text": "智能穿搭推荐",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            },
+            {
+              "text": "更多传感器融合",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            },
+            {
+              "text": "衣柜集群管理",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            },
+            {
+              "text": "社区共享功能",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 1360,
+          "y": 280,
+          "w": 440,
+          "h": 550,
+          "paragraphs": [
+            {
+              "text": "项目产出",
+              "font": "heading",
+              "size": 42,
+              "align": "center",
+              "bold": true,
+              "color": "#0c8599"
+            },
+            {
+              "text": "",
+              "font": "body",
+              "size": 32,
+              "align": "left"
+            },
+            {
+              "text": "PCB电路板 ×2",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            },
+            {
+              "text": "Android App",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            },
+            {
+              "text": "触控屏固件",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            },
+            {
+              "text": "云端API服务",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            },
+            {
+              "text": "技术文档与论文",
+              "font": "body",
+              "size": 26,
+              "align": "center"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "render_mode": "dual",
+      "accent_index": 0,
+      "html": "<div class=\"close-center\">\n<h1 style=\"font-size:100px;color:var(--accent);margin-bottom:40px;letter-spacing:16px;\">感谢聆听</h1>\n<p class=\"annotation\" style=\"font-size:36px;color:var(--text);margin-bottom:80px;\">请各位老师批评指正</p>\n<p style=\"font-size:28px;color:var(--text-muted);\">智能衣橱系统 — 基于云端协同的智能衣物存取与管理系统</p>\n</div>",
+      "css": "#content{padding:0!important;width:1920px;height:1080px;}\n.close-center{position:absolute;top:0;left:0;width:1920px;height:1080px;\ndisplay:flex;flex-direction:column;align-items:center;justify-content:center;}\n",
+      "shapes_js": "drawCircle(960,380,400,{stroke:STYLE.accentLight,strokeWidth:2.5,roughness:2});\ndrawCircle(960,380,420,{stroke:STYLE.accent,strokeWidth:2.5,roughness:2});\ndrawCircle(960,380,440,{stroke:STYLE.accentLight,strokeWidth:2.5,roughness:2});\ndrawRect(80, 80, 1760, 920, {stroke: STYLE.accent, strokeWidth: 2});\ndrawRect(100, 100, 1720, 880, {stroke: STYLE.accentLight, strokeWidth: 1, roughness: 1});",
+      "elements": [
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 300,
+          "w": 1760,
+          "h": 160,
+          "paragraphs": [
+            {
+              "text": "感谢聆听",
+              "font": "heading",
+              "size": 100,
+              "align": "center",
+              "bold": true,
+              "color": "#1971c2"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 500,
+          "w": 1760,
+          "h": 80,
+          "paragraphs": [
+            {
+              "text": "请各位老师批评指正",
+              "font": "annotation",
+              "size": 36,
+              "align": "center",
+              "color": "#1a1a2e"
+            }
+          ],
+          "valign": "middle"
+        },
+        {
+          "type": "textbox",
+          "x": 80,
+          "y": 620,
+          "w": 1760,
+          "h": 60,
+          "paragraphs": [
+            {
+              "text": "智能衣橱系统 — 基于云端协同的智能衣物存取与管理系统",
+              "font": "annotation",
+              "size": 28,
+              "align": "center",
+              "color": "#495057"
+            }
+          ],
+          "valign": "middle"
+        }
+      ]
+    }
+  ]
+}

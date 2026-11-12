@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-25",
+  "executed": false,
+  "results": [
+    {
+      "file": "02_树莓派网关与网页/raspberry_pi_gateway/static/cloud_display.html",
+      "inline_scripts": 1,
+      "status": "passed"
+    },
+    {
+      "file": "02_树莓派网关与网页/raspberry_pi_gateway/static/debug.html",
+      "inline_scripts": 1,
+      "status": "passed"
+    },
+    {
+      "file": "02_树莓派网关与网页/raspberry_pi_gateway/static/display.html",
+      "inline_scripts": 1,
+      "status": "passed"
+    },
+    {
+      "file": "07_安卓客户端/安装包内网页/www/index.html",
+      "inline_scripts": 1,
+      "status": "passed"
+    }
+  ]
+}

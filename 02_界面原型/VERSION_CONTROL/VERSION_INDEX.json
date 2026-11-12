@@ -1,0 +1,10 @@
+[
+  {
+    "id": "current_user_native_v5",
+    "status": "CURRENT",
+    "title": "用户版原生 PPT v5",
+    "purpose": "当前唯一保留版本。顶部状态栏、全宽主控件区、底部导航，15 页，800x480 串口屏比例。",
+    "location": "C:\\Users\\ECHO\\Desktop\\综合\\家居\\02_界面原型\\VERSION_CONTROL\\CURRENT\\v5_CURRENT",
+    "items": "ppt/serial_screen_user_backgrounds_v5.pptx; ppt/serial_screen_user_controls_plan_v5.pptx; serial_screen_tjc_native_ppt_v5.zip; previews/; reference_tables/"
+  }
+]

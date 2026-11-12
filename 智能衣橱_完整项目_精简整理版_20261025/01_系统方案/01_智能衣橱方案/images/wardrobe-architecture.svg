@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 920" width="1600" height="920" role="img" aria-label="智能衣橱系统架构图">
+  <defs>
+    <style>
+      .bg{fill:#f7fafc}
+      .title{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:36px;font-weight:700;fill:#0f172a}
+      .subtitle{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:18px;fill:#475569}
+      .panel{fill:#ffffff;stroke:#dbe4ee;stroke-width:1.5}
+      .box{stroke-width:2}
+      .app{fill:#eff6ff;stroke:#93c5fd}
+      .cloud{fill:#f5f3ff;stroke:#c4b5fd}
+      .vision{fill:#ecfeff;stroke:#67e8f9}
+      .board1{fill:#ecfdf5;stroke:#86efac}
+      .screen{fill:#f0fdfa;stroke:#5eead4}
+      .board2{fill:#fff7ed;stroke:#fdba74}
+      .mechanic{fill:#f8fafc;stroke:#cbd5e1}
+      .label{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:24px;font-weight:700;fill:#0f172a;text-anchor:middle}
+      .text{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:17px;fill:#334155;text-anchor:middle}
+      .small{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:15px;fill:#475569;text-anchor:middle}
+      .arrow{stroke:#475569;stroke-width:2.5;fill:none;marker-end:url(#arrowhead)}
+      .note{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:16px;fill:#334155}
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1600" height="920"/>
+  <text x="70" y="64" class="title">智能衣橱系统架构图</text>
+  <text x="70" y="100" class="subtitle">按当前落地基线组织：树莓派触摸屏网页、云端、K230、主板1、主板2、B区清理、C区护理与挂位检测</text>
+
+  <rect x="60" y="135" width="1480" height="680" rx="24" class="panel"/>
+
+  <!-- top row -->
+  <rect x="80" y="180" width="210" height="130" rx="18" class="box app"/>
+  <text x="185" y="225" class="label">树莓派触摸屏</text>
+  <text x="185" y="258" class="text">网页 HMI / 点击上传</text>
+  <text x="185" y="286" class="text">App / Web 远程入口</text>
+
+  <rect x="340" y="180" width="240" height="130" rx="18" class="box cloud"/>
+  <text x="460" y="225" class="label">云端后端</text>
+  <text x="460" y="258" class="text">衣物数据 / 上身预览</text>
+  <text x="460" y="286" class="text">识别结果 / 控制任务</text>
+
+  <rect x="650" y="180" width="210" height="130" rx="18" class="box vision"/>
+  <text x="755" y="225" class="label">K230 CanMV</text>
+  <text x="755" y="258" class="text">可摆动摄像头</text>
+  <text x="755" y="286" class="text">Wi-Fi / 上传 / 解析</text>
+
+  <rect x="930" y="180" width="210" height="130" rx="18" class="box board1"/>
+  <text x="1035" y="225" class="label">主板1</text>
+  <text x="1035" y="258" class="text">流程协调</text>
+  <text x="1035" y="286" class="text">串口屏 / K230 / 主板2</text>
+
+  <rect x="1210" y="180" width="210" height="130" rx="18" class="box screen"/>
+  <text x="1315" y="225" class="label">串口屏</text>
+  <text x="1315" y="258" class="text">调试 / 备用 HMI</text>
+  <text x="1315" y="286" class="text">状态显示 / 图片预览</text>
+
+  <!-- bottom row -->
+  <rect x="520" y="390" width="240" height="130" rx="18" class="box board2"/>
+  <text x="640" y="435" class="label">主板2</text>
+  <text x="640" y="468" class="text">电机 / 舵机 / 毛刷 / 热风</text>
+  <text x="640" y="496" class="text">只执行命令，不做业务决策</text>
+
+  <rect x="860" y="390" width="300" height="130" rx="18" class="box mechanic"/>
+  <text x="1010" y="435" class="label">机械机构</text>
+  <text x="1010" y="468" class="text">夹爪 / 导轨 / 输出位</text>
+  <text x="1010" y="496" class="text">B区毛刷 / C区护理 / 挂位限位</text>
+
+  <!-- arrows -->
+  <path class="arrow" d="M290 245 L340 245"/>
+  <path class="arrow" d="M580 245 L650 245"/>
+  <path class="arrow" d="M860 245 L930 245"/>
+  <path class="arrow" d="M1140 245 L1210 245"/>
+  <path class="arrow" d="M1035 310 L1035 360"/>
+  <path class="arrow" d="M640 390 L640 320"/>
+  <path class="arrow" d="M760 455 L860 455"/>
+
+  <!-- side notes -->
+  <text x="90" y="595" class="note">关键职责边界：</text>
+  <text x="90" y="630" class="note">树莓派触摸屏网页负责现场入口，不直接控制电机。</text>
+  <text x="90" y="660" class="note">云端后端负责数据汇聚，不直接连硬件串口。</text>
+  <text x="90" y="690" class="note">K230 是唯一直接访问云端的硬件侧视觉节点。</text>
+  <text x="90" y="720" class="note">主板1负责编排流程，主板2负责动作执行。</text>
+  <text x="90" y="750" class="note">串口屏保留为调试和备用状态反馈。</text>
+
+  <text x="900" y="595" class="note">新增硬件口径：</text>
+  <text x="900" y="630" class="note">处理区 B：步进电机 + 舵机毛刷清理衣物毛发。</text>
+  <text x="900" y="660" class="note">存储区 C：Y向热风机 + 负离子 + 通风风扇。</text>
+  <text x="900" y="690" class="note">挂位限位开关只判断有衣，身份仍需记录绑定。</text>
+  <text x="900" y="720" class="note">RFID / NFC、tag_id 仍作为后续身份增强保留。</text>
+</svg>

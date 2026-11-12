@@ -1,0 +1,1062 @@
+[
+  {
+    "page": "boot",
+    "zone": "enter_home",
+    "x": 86,
+    "y": 350,
+    "w": 132,
+    "h": 38,
+    "event": "ENTER_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "home",
+    "zone": "retrieve",
+    "x": 36,
+    "y": 156,
+    "w": 348,
+    "h": 168,
+    "event": "HOME_RETRIEVE",
+    "note": "touch"
+  },
+  {
+    "page": "home",
+    "zone": "return",
+    "x": 416,
+    "y": 156,
+    "w": 348,
+    "h": 168,
+    "event": "HOME_RETURN",
+    "note": "touch"
+  },
+  {
+    "page": "home",
+    "zone": "护理",
+    "x": 36,
+    "y": 348,
+    "w": 224,
+    "h": 84,
+    "event": "HOME_TREAT",
+    "note": "touch"
+  },
+  {
+    "page": "home",
+    "zone": "浏览",
+    "x": 288,
+    "y": 348,
+    "w": 224,
+    "h": 84,
+    "event": "HOME_BROWSE",
+    "note": "touch"
+  },
+  {
+    "page": "home",
+    "zone": "网络",
+    "x": 540,
+    "y": 348,
+    "w": 224,
+    "h": 84,
+    "event": "HOME_NETWORK",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "item_1",
+    "x": 36,
+    "y": 96,
+    "w": 348,
+    "h": 118,
+    "event": "RETRIEVE_ITEM_1",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "item_2",
+    "x": 416,
+    "y": 96,
+    "w": 348,
+    "h": 118,
+    "event": "RETRIEVE_ITEM_2",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "item_3",
+    "x": 36,
+    "y": 246,
+    "w": 348,
+    "h": 118,
+    "event": "RETRIEVE_ITEM_3",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "item_4",
+    "x": 416,
+    "y": 246,
+    "w": 348,
+    "h": 118,
+    "event": "RETRIEVE_ITEM_4",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "prev",
+    "x": 278,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "RETRIEVE_PREV",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "next",
+    "x": 386,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "RETRIEVE_NEXT",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_progress",
+    "zone": "cancel",
+    "x": 344,
+    "y": 424,
+    "w": 110,
+    "h": 36,
+    "event": "RETRIEVE_CANCEL",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_progress",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_done",
+    "zone": "home",
+    "x": 260,
+    "y": 404,
+    "w": 128,
+    "h": 40,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_done",
+    "zone": "continue",
+    "x": 412,
+    "y": 404,
+    "w": 128,
+    "h": 40,
+    "event": "RETRIEVE_AGAIN",
+    "note": "touch"
+  },
+  {
+    "page": "return_prepare",
+    "zone": "start",
+    "x": 124,
+    "y": 292,
+    "w": 150,
+    "h": 42,
+    "event": "RETURN_START",
+    "note": "touch"
+  },
+  {
+    "page": "return_prepare",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "return_progress",
+    "zone": "cancel",
+    "x": 344,
+    "y": 424,
+    "w": 110,
+    "h": 36,
+    "event": "RETURN_CANCEL",
+    "note": "touch"
+  },
+  {
+    "page": "return_progress",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "return_done",
+    "zone": "home",
+    "x": 260,
+    "y": 404,
+    "w": 128,
+    "h": 40,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "return_done",
+    "zone": "continue",
+    "x": 412,
+    "y": 404,
+    "w": 128,
+    "h": 40,
+    "event": "RETURN_AGAIN",
+    "note": "touch"
+  },
+  {
+    "page": "treat_select",
+    "zone": "mode_通风",
+    "x": 58,
+    "y": 236,
+    "w": 200,
+    "h": 92,
+    "event": "TREAT_MODE_通风",
+    "note": "touch"
+  },
+  {
+    "page": "treat_select",
+    "zone": "mode_低温热风",
+    "x": 300,
+    "y": 236,
+    "w": 200,
+    "h": 92,
+    "event": "TREAT_MODE_低温热风",
+    "note": "touch"
+  },
+  {
+    "page": "treat_select",
+    "zone": "mode_除味",
+    "x": 542,
+    "y": 236,
+    "w": 200,
+    "h": 92,
+    "event": "TREAT_MODE_除味",
+    "note": "touch"
+  },
+  {
+    "page": "treat_select",
+    "zone": "start",
+    "x": 318,
+    "y": 378,
+    "w": 150,
+    "h": 42,
+    "event": "TREAT_START",
+    "note": "touch"
+  },
+  {
+    "page": "treat_select",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "treat_progress",
+    "zone": "stop",
+    "x": 344,
+    "y": 424,
+    "w": 110,
+    "h": 36,
+    "event": "TREAT_STOP",
+    "note": "touch"
+  },
+  {
+    "page": "treat_progress",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "treat_done",
+    "zone": "home",
+    "x": 260,
+    "y": 404,
+    "w": 128,
+    "h": 40,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "treat_done",
+    "zone": "continue",
+    "x": 412,
+    "y": 404,
+    "w": 128,
+    "h": 40,
+    "event": "TREAT_AGAIN",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "card_1",
+    "x": 36,
+    "y": 94,
+    "w": 348,
+    "h": 112,
+    "event": "BROWSE_CARD_1",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "card_2",
+    "x": 416,
+    "y": 94,
+    "w": 348,
+    "h": 112,
+    "event": "BROWSE_CARD_2",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "card_3",
+    "x": 36,
+    "y": 248,
+    "w": 348,
+    "h": 112,
+    "event": "BROWSE_CARD_3",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "card_4",
+    "x": 416,
+    "y": 248,
+    "w": 348,
+    "h": 112,
+    "event": "BROWSE_CARD_4",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "prev",
+    "x": 278,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "BROWSE_PREV",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "next",
+    "x": 386,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "BROWSE_NEXT",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "wifi_1",
+    "x": 44,
+    "y": 138,
+    "w": 684,
+    "h": 36,
+    "event": "WIFI_SELECT_1",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "wifi_2",
+    "x": 44,
+    "y": 184,
+    "w": 684,
+    "h": 36,
+    "event": "WIFI_SELECT_2",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "wifi_3",
+    "x": 44,
+    "y": 230,
+    "w": 684,
+    "h": 36,
+    "event": "WIFI_SELECT_3",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "wifi_4",
+    "x": 44,
+    "y": 276,
+    "w": 684,
+    "h": 36,
+    "event": "WIFI_SELECT_4",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "wifi_5",
+    "x": 44,
+    "y": 322,
+    "w": 684,
+    "h": 36,
+    "event": "WIFI_SELECT_5",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "scan",
+    "x": 250,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "WIFI_SCAN",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "prev",
+    "x": 358,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "WIFI_PREV",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "next",
+    "x": 466,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "WIFI_NEXT",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "wifi_password",
+    "zone": "cancel",
+    "x": 352,
+    "y": 404,
+    "w": 96,
+    "h": 36,
+    "event": "WIFI_CANCEL",
+    "note": "touch"
+  },
+  {
+    "page": "wifi_password",
+    "zone": "connect",
+    "x": 464,
+    "y": 404,
+    "w": 112,
+    "h": 36,
+    "event": "WIFI_CONNECT",
+    "note": "touch"
+  },
+  {
+    "page": "wifi_password",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "error",
+    "zone": "ok",
+    "x": 260,
+    "y": 392,
+    "w": 128,
+    "h": 40,
+    "event": "ERROR_OK",
+    "note": "touch"
+  },
+  {
+    "page": "error",
+    "zone": "home",
+    "x": 412,
+    "y": 392,
+    "w": 128,
+    "h": 40,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "boot",
+    "zone": "enter_home",
+    "x": 86,
+    "y": 350,
+    "w": 132,
+    "h": 38,
+    "event": "ENTER_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "home",
+    "zone": "retrieve",
+    "x": 36,
+    "y": 156,
+    "w": 348,
+    "h": 168,
+    "event": "HOME_RETRIEVE",
+    "note": "touch"
+  },
+  {
+    "page": "home",
+    "zone": "return",
+    "x": 416,
+    "y": 156,
+    "w": 348,
+    "h": 168,
+    "event": "HOME_RETURN",
+    "note": "touch"
+  },
+  {
+    "page": "home",
+    "zone": "护理",
+    "x": 36,
+    "y": 348,
+    "w": 224,
+    "h": 84,
+    "event": "HOME_TREAT",
+    "note": "touch"
+  },
+  {
+    "page": "home",
+    "zone": "浏览",
+    "x": 288,
+    "y": 348,
+    "w": 224,
+    "h": 84,
+    "event": "HOME_BROWSE",
+    "note": "touch"
+  },
+  {
+    "page": "home",
+    "zone": "网络",
+    "x": 540,
+    "y": 348,
+    "w": 224,
+    "h": 84,
+    "event": "HOME_NETWORK",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "item_1",
+    "x": 36,
+    "y": 96,
+    "w": 348,
+    "h": 118,
+    "event": "RETRIEVE_ITEM_1",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "item_2",
+    "x": 416,
+    "y": 96,
+    "w": 348,
+    "h": 118,
+    "event": "RETRIEVE_ITEM_2",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "item_3",
+    "x": 36,
+    "y": 246,
+    "w": 348,
+    "h": 118,
+    "event": "RETRIEVE_ITEM_3",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "item_4",
+    "x": 416,
+    "y": 246,
+    "w": 348,
+    "h": 118,
+    "event": "RETRIEVE_ITEM_4",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "prev",
+    "x": 278,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "RETRIEVE_PREV",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "next",
+    "x": 386,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "RETRIEVE_NEXT",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_select",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_progress",
+    "zone": "cancel",
+    "x": 344,
+    "y": 424,
+    "w": 110,
+    "h": 36,
+    "event": "RETRIEVE_CANCEL",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_progress",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_done",
+    "zone": "home",
+    "x": 260,
+    "y": 404,
+    "w": 128,
+    "h": 40,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "retrieve_done",
+    "zone": "continue",
+    "x": 412,
+    "y": 404,
+    "w": 128,
+    "h": 40,
+    "event": "RETRIEVE_AGAIN",
+    "note": "touch"
+  },
+  {
+    "page": "return_prepare",
+    "zone": "start",
+    "x": 124,
+    "y": 292,
+    "w": 150,
+    "h": 42,
+    "event": "RETURN_START",
+    "note": "touch"
+  },
+  {
+    "page": "return_prepare",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "return_progress",
+    "zone": "cancel",
+    "x": 344,
+    "y": 424,
+    "w": 110,
+    "h": 36,
+    "event": "RETURN_CANCEL",
+    "note": "touch"
+  },
+  {
+    "page": "return_progress",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "return_done",
+    "zone": "home",
+    "x": 260,
+    "y": 404,
+    "w": 128,
+    "h": 40,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "return_done",
+    "zone": "continue",
+    "x": 412,
+    "y": 404,
+    "w": 128,
+    "h": 40,
+    "event": "RETURN_AGAIN",
+    "note": "touch"
+  },
+  {
+    "page": "treat_select",
+    "zone": "mode_通风",
+    "x": 58,
+    "y": 236,
+    "w": 200,
+    "h": 92,
+    "event": "TREAT_MODE_通风",
+    "note": "touch"
+  },
+  {
+    "page": "treat_select",
+    "zone": "mode_低温热风",
+    "x": 300,
+    "y": 236,
+    "w": 200,
+    "h": 92,
+    "event": "TREAT_MODE_低温热风",
+    "note": "touch"
+  },
+  {
+    "page": "treat_select",
+    "zone": "mode_除味",
+    "x": 542,
+    "y": 236,
+    "w": 200,
+    "h": 92,
+    "event": "TREAT_MODE_除味",
+    "note": "touch"
+  },
+  {
+    "page": "treat_select",
+    "zone": "start",
+    "x": 318,
+    "y": 378,
+    "w": 150,
+    "h": 42,
+    "event": "TREAT_START",
+    "note": "touch"
+  },
+  {
+    "page": "treat_select",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "treat_progress",
+    "zone": "stop",
+    "x": 344,
+    "y": 424,
+    "w": 110,
+    "h": 36,
+    "event": "TREAT_STOP",
+    "note": "touch"
+  },
+  {
+    "page": "treat_progress",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "treat_done",
+    "zone": "home",
+    "x": 260,
+    "y": 404,
+    "w": 128,
+    "h": 40,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "treat_done",
+    "zone": "continue",
+    "x": 412,
+    "y": 404,
+    "w": 128,
+    "h": 40,
+    "event": "TREAT_AGAIN",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "card_1",
+    "x": 36,
+    "y": 94,
+    "w": 348,
+    "h": 112,
+    "event": "BROWSE_CARD_1",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "card_2",
+    "x": 416,
+    "y": 94,
+    "w": 348,
+    "h": 112,
+    "event": "BROWSE_CARD_2",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "card_3",
+    "x": 36,
+    "y": 248,
+    "w": 348,
+    "h": 112,
+    "event": "BROWSE_CARD_3",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "card_4",
+    "x": 416,
+    "y": 248,
+    "w": 348,
+    "h": 112,
+    "event": "BROWSE_CARD_4",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "prev",
+    "x": 278,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "BROWSE_PREV",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "next",
+    "x": 386,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "BROWSE_NEXT",
+    "note": "touch"
+  },
+  {
+    "page": "browse",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "wifi_1",
+    "x": 44,
+    "y": 138,
+    "w": 684,
+    "h": 36,
+    "event": "WIFI_SELECT_1",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "wifi_2",
+    "x": 44,
+    "y": 184,
+    "w": 684,
+    "h": 36,
+    "event": "WIFI_SELECT_2",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "wifi_3",
+    "x": 44,
+    "y": 230,
+    "w": 684,
+    "h": 36,
+    "event": "WIFI_SELECT_3",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "wifi_4",
+    "x": 44,
+    "y": 276,
+    "w": 684,
+    "h": 36,
+    "event": "WIFI_SELECT_4",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "wifi_5",
+    "x": 44,
+    "y": 322,
+    "w": 684,
+    "h": 36,
+    "event": "WIFI_SELECT_5",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "scan",
+    "x": 250,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "WIFI_SCAN",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "prev",
+    "x": 358,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "WIFI_PREV",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "next",
+    "x": 466,
+    "y": 424,
+    "w": 96,
+    "h": 36,
+    "event": "WIFI_NEXT",
+    "note": "touch"
+  },
+  {
+    "page": "network",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "wifi_password",
+    "zone": "cancel",
+    "x": 352,
+    "y": 404,
+    "w": 96,
+    "h": 36,
+    "event": "WIFI_CANCEL",
+    "note": "touch"
+  },
+  {
+    "page": "wifi_password",
+    "zone": "connect",
+    "x": 464,
+    "y": 404,
+    "w": 112,
+    "h": 36,
+    "event": "WIFI_CONNECT",
+    "note": "touch"
+  },
+  {
+    "page": "wifi_password",
+    "zone": "back",
+    "x": 678,
+    "y": 424,
+    "w": 92,
+    "h": 36,
+    "event": "BACK_HOME",
+    "note": "touch"
+  },
+  {
+    "page": "error",
+    "zone": "ok",
+    "x": 260,
+    "y": 392,
+    "w": 128,
+    "h": 40,
+    "event": "ERROR_OK",
+    "note": "touch"
+  },
+  {
+    "page": "error",
+    "zone": "home",
+    "x": 412,
+    "y": 392,
+    "w": 128,
+    "h": 40,
+    "event": "BACK_HOME",
+    "note": "touch"
+  }
+]

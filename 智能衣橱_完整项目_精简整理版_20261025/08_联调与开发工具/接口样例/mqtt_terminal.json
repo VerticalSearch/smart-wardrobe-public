@@ -1,0 +1,9 @@
+{
+  "device_id": "raspberry-pi-wardrobe-001",
+  "source": "raspberry-pi",
+  "status": "task",
+  "detail": "@TASK|type=store|action=12|id=prep-demo-001|state=done",
+  "command_id": "",
+  "stage": "board1_task",
+  "ts": 0
+}

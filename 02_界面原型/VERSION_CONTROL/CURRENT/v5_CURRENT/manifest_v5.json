@@ -1,0 +1,105 @@
+﻿{
+    "version":  "v5-clean-flat",
+    "slideSize":  {
+                      "width":  800,
+                      "height":  480
+                  },
+    "generatedAt":  "2026-05-12T20:29:24",
+    "note":  "Slides are rebuilt from verified PNG previews to avoid text encoding or font rendering issues.",
+    "decks":  {
+                  "backgrounds":  "C:\\Users\\ECHO\\Desktop\\家居\\02_界面原型\\VERSION_CONTROL\\CURRENT\\v5_CURRENT\\ppt\\serial_screen_user_backgrounds_v5.pptx",
+                  "controls":  "C:\\Users\\ECHO\\Desktop\\家居\\02_界面原型\\VERSION_CONTROL\\CURRENT\\v5_CURRENT\\ppt\\serial_screen_user_controls_plan_v5.pptx"
+              },
+    "pages":  [
+                  {
+                      "no":  1,
+                      "name":  "boot",
+                      "title":  "启动页",
+                      "note":  "更大气的启动页"
+                  },
+                  {
+                      "no":  2,
+                      "name":  "home",
+                      "title":  "主页",
+                      "note":  "大入口用户主页"
+                  },
+                  {
+                      "no":  3,
+                      "name":  "retrieve_select",
+                      "title":  "选择衣物",
+                      "note":  "衣物选择列表"
+                  },
+                  {
+                      "no":  4,
+                      "name":  "retrieve_progress",
+                      "title":  "取衣中",
+                      "note":  "取衣进度"
+                  },
+                  {
+                      "no":  5,
+                      "name":  "retrieve_done",
+                      "title":  "取衣完成",
+                      "note":  "完成页"
+                  },
+                  {
+                      "no":  6,
+                      "name":  "return_prepare",
+                      "title":  "归还准备",
+                      "note":  "归还提示"
+                  },
+                  {
+                      "no":  7,
+                      "name":  "return_progress",
+                      "title":  "归还中",
+                      "note":  "归还进度"
+                  },
+                  {
+                      "no":  8,
+                      "name":  "return_done",
+                      "title":  "归还完成",
+                      "note":  "归还完成页"
+                  },
+                  {
+                      "no":  9,
+                      "name":  "treat_select",
+                      "title":  "护理选择",
+                      "note":  "护理选择页"
+                  },
+                  {
+                      "no":  10,
+                      "name":  "treat_progress",
+                      "title":  "护理中",
+                      "note":  "护理进度"
+                  },
+                  {
+                      "no":  11,
+                      "name":  "treat_done",
+                      "title":  "护理完成",
+                      "note":  "护理完成页"
+                  },
+                  {
+                      "no":  12,
+                      "name":  "browse",
+                      "title":  "衣物浏览",
+                      "note":  "浏览列表"
+                  },
+                  {
+                      "no":  13,
+                      "name":  "network",
+                      "title":  "网络设置",
+                      "note":  "网络列表"
+                  },
+                  {
+                      "no":  14,
+                      "name":  "wifi_password",
+                      "title":  "输入密码",
+                      "note":  "密码输入"
+                  },
+                  {
+                      "no":  15,
+                      "name":  "error",
+                      "title":  "提示页",
+                      "note":  "统一提示页"
+                  }
+              ]
+}

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>K230 云端任务控制台</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <section class="topbar">
+      <div>
+        <p class="eyebrow">K230 Task Control</p>
+        <h1>K230 云端任务控制台</h1>
+        <p class="subtitle">通过 MQTT 下发任务码，K230 转发给主板1，再由主板1触发主板2动作流程。</p>
+      </div>
+      <div class="status-pill" id="connectionState">未连接</div>
+    </section>
+
+    <section class="panel connection-panel">
+      <div class="panel-title">
+        <h2>云端连接</h2>
+        <span>MQTT over WebSocket</span>
+      </div>
+      <div class="form-grid">
+        <label>
+          <span>Broker</span>
+          <input id="brokerUrl" value="wss://broker.emqx.io:8084/mqtt" autocomplete="off">
+        </label>
+        <label>
+          <span>命令主题</span>
+          <input id="commandTopic" value="smart_wardrobe/k230-wardrobe-001/cmd" autocomplete="off">
+        </label>
+        <label>
+          <span>状态主题</span>
+          <input id="statusTopic" value="smart_wardrobe/k230-wardrobe-001/status" autocomplete="off">
+        </label>
+        <label>
+          <span>Token</span>
+          <input id="token" placeholder="调试可留空" autocomplete="off">
+        </label>
+      </div>
+      <div class="actions">
+        <button class="primary" id="connectBtn" type="button">连接云端</button>
+        <button id="disconnectBtn" type="button">断开</button>
+        <button id="statusBtn" type="button">查询 K230 状态</button>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <section class="panel">
+        <div class="panel-title">
+          <h2>任务码直接控制</h2>
+          <span>发送到 K230 后转为 @ACMD</span>
+        </div>
+        <div class="task-grid">
+          <article class="task-card">
+            <div>
+              <span class="task-code">6</span>
+              <h3>自动放衣流程</h3>
+              <p>等价于主板2收到 USART6 数字 6，启动当前默认动作队列。</p>
+            </div>
+            <button class="primary" data-action-code="6" type="button">发送数字 6</button>
+          </article>
+          <article class="task-card">
+            <div>
+              <span class="task-code">7</span>
+              <h3>自动取衣流程</h3>
+              <p>等价于主板2收到 USART6 数字 7，启动取衣动作流程。</p>
+            </div>
+            <button class="primary" data-action-code="7" type="button">发送数字 7</button>
+          </article>
+          <article class="task-card">
+            <div>
+              <span class="task-code">8</span>
+              <h3>风机移动启动</h3>
+              <p>网页下发任务码 8，主板1打开风机风扇、保持加热关闭，并通过串口4驱动风机移动电机。</p>
+            </div>
+            <button class="primary" data-action-code="8" type="button">发送数字 8</button>
+          </article>
+          <article class="task-card">
+            <div>
+              <span class="task-code">9</span>
+              <h3>风机移动停止</h3>
+              <p>网页下发任务码 9，主板1停止串口4风机移动电机，并关闭风机风扇与加热输出。</p>
+            </div>
+            <button class="primary" data-action-code="9" type="button">发送数字 9</button>
+          </article>
+          <article class="task-card danger-card">
+            <div>
+              <span class="task-code">0</span>
+              <h3>急停任务</h3>
+              <p>发送动作码 0，同时让 K230 下发急停命令，停止自动流程并失能步进轴。</p>
+            </div>
+            <button class="danger" id="emergencyBtn" type="button">急停</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <h2>自定义任务码</h2>
+          <span>用于后续扩展主板1/主板2动作</span>
+        </div>
+        <div class="custom-task">
+          <label>
+            <span>动作码</span>
+            <input id="customCode" type="number" min="0" max="255" step="1" value="6">
+          </label>
+          <label>
+            <span>备注</span>
+            <input id="customNote" value="任务码触发" autocomplete="off">
+          </label>
+        </div>
+        <div class="actions">
+          <button class="primary" id="sendCustomBtn" type="button">发送自定义任务</button>
+          <button id="previewCustomBtn" type="button">只预览</button>
+        </div>
+
+        <div class="route">
+          <div>
+            <strong>网页</strong>
+            <span>JSON/MQTT</span>
+          </div>
+          <div>
+            <strong>K230</strong>
+            <span>@ACMD|任务码</span>
+          </div>
+          <div>
+            <strong>主板1</strong>
+            <span>解析并执行 8/9</span>
+          </div>
+          <div>
+            <strong>主板2</strong>
+            <span>执行 6/7 流程</span>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h2>当前指令</h2>
+        <span>网页发布到命令主题的 JSON</span>
+      </div>
+      <pre id="payloadPreview"></pre>
+      <div class="actions">
+        <button id="copyPayloadBtn" type="button">复制 JSON</button>
+        <button id="clearLogBtn" type="button">清空日志</button>
+      </div>
+    </section>
+
+    <section class="panel log-panel">
+      <div class="panel-title">
+        <h2>通信日志</h2>
+        <span>发送记录和 K230 状态回传</span>
+      </div>
+      <div class="log" id="log"></div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

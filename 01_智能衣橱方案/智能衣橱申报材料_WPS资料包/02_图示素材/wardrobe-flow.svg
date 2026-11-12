@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" width="1600" height="960" role="img" aria-label="智能衣橱总体执行流程图">
+  <defs>
+    <style>
+      .bg{fill:#f7fafc}
+      .title{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:36px;font-weight:700;fill:#0f172a}
+      .subtitle{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:18px;fill:#475569}
+      .panel{fill:#fff;stroke:#dbe4ee;stroke-width:1.5}
+      .step{stroke-width:2}
+      .boot{fill:#eff6ff;stroke:#93c5fd}
+      .wifi{fill:#ecfdf5;stroke:#86efac}
+      .capture{fill:#ecfeff;stroke:#67e8f9}
+      .cloud{fill:#f5f3ff;stroke:#c4b5fd}
+      .execute{fill:#fff7ed;stroke:#fdba74}
+      .return{fill:#fef2f2;stroke:#fca5a5}
+      .note{fill:#f8fafc;stroke:#cbd5e1}
+      .label{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:23px;font-weight:700;fill:#0f172a;text-anchor:middle}
+      .text{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:16px;fill:#334155;text-anchor:middle}
+      .small{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:14px;fill:#475569;text-anchor:middle}
+      .num{font-family:Arial,sans-serif;font-size:19px;font-weight:700;fill:#fff;text-anchor:middle;dominant-baseline:central}
+      .arrow{stroke:#475569;stroke-width:2.5;fill:none;marker-end:url(#arrowhead)}
+      .arrow2{stroke:#64748b;stroke-width:2.2;fill:none;marker-end:url(#arrowhead2);stroke-dasharray:8 7}
+      .noteText{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:16px;fill:#334155}
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#475569"/>
+    </marker>
+    <marker id="arrowhead2" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1600" height="960"/>
+  <text x="70" y="64" class="title">智能衣橱总体执行流程图</text>
+  <text x="70" y="100" class="subtitle">从树莓派触摸屏网页点击、全身照上身预览、云端任务到取衣、B区清理、C区护理与状态回写的当前主线</text>
+
+  <rect x="60" y="135" width="1480" height="760" rx="24" class="panel"/>
+
+  <!-- top row steps -->
+  <g transform="translate(80 185)">
+    <rect width="230" height="145" rx="18" class="step boot"/>
+    <circle cx="42" cy="42" r="24" fill="#2563eb"/>
+    <text x="42" y="42" class="num">1</text>
+    <text x="115" y="68" class="label">上电初始化</text>
+    <text x="115" y="104" class="text">主板1 / 主板2 / K230</text>
+    <text x="115" y="132" class="text">树莓派网页待命</text>
+  </g>
+
+  <g transform="translate(350 185)">
+    <rect width="230" height="145" rx="18" class="step wifi"/>
+    <circle cx="42" cy="42" r="24" fill="#059669"/>
+    <text x="42" y="42" class="num">2</text>
+    <text x="115" y="68" class="label">Wi-Fi 配网</text>
+    <text x="115" y="104" class="text">屏幕扫描网络</text>
+    <text x="115" y="132" class="text">主板1 转发 K230</text>
+  </g>
+
+  <g transform="translate(620 185)">
+    <rect width="230" height="145" rx="18" class="step capture"/>
+    <circle cx="42" cy="42" r="24" fill="#0891b2"/>
+    <text x="42" y="42" class="num">3</text>
+    <text x="115" y="68" class="label">拍照入库</text>
+    <text x="115" y="104" class="text">K230 拍照保存 JPEG</text>
+    <text x="115" y="132" class="text">转 Base64 上传云端</text>
+  </g>
+
+  <g transform="translate(890 185)">
+    <rect width="230" height="145" rx="18" class="step cloud"/>
+    <circle cx="42" cy="42" r="24" fill="#7c3aed"/>
+    <text x="42" y="42" class="num">4</text>
+    <text x="115" y="68" class="label">云端识别预览</text>
+    <text x="115" y="104" class="text">衣物记录 / 上身效果</text>
+    <text x="115" y="132" class="text">返回 style_id / try_on</text>
+  </g>
+
+  <g transform="translate(1160 185)">
+    <rect width="230" height="145" rx="18" class="step execute"/>
+    <circle cx="42" cy="42" r="24" fill="#d97706"/>
+    <text x="42" y="42" class="num">5</text>
+    <text x="115" y="68" class="label">取衣执行</text>
+    <text x="115" y="104" class="text">云端任务下发</text>
+    <text x="115" y="132" class="text">限位确认 / 夹爪取衣</text>
+  </g>
+
+  <!-- bottom row steps -->
+  <g transform="translate(350 420)">
+    <rect width="230" height="145" rx="18" class="step return"/>
+    <circle cx="42" cy="42" r="24" fill="#ef4444"/>
+    <text x="42" y="42" class="num">6</text>
+    <text x="115" y="68" class="label">清理护理</text>
+    <text x="115" y="104" class="text">B区毛刷清理</text>
+    <text x="115" y="132" class="text">C区热风 / 通风</text>
+  </g>
+
+  <g transform="translate(620 420)">
+    <rect width="230" height="145" rx="18" class="step boot"/>
+    <circle cx="42" cy="42" r="24" fill="#2563eb"/>
+    <text x="42" y="42" class="num">7</text>
+    <text x="115" y="68" class="label">状态回写</text>
+    <text x="115" y="104" class="text">挂位 / 护理状态</text>
+    <text x="115" y="132" class="text">同步云端 / 本地</text>
+  </g>
+
+  <g transform="translate(890 420)">
+    <rect width="230" height="145" rx="18" class="step wifi"/>
+    <circle cx="42" cy="42" r="24" fill="#059669"/>
+    <text x="42" y="42" class="num">8</text>
+    <text x="115" y="68" class="label">异常处理</text>
+    <text x="115" y="104" class="text">限位 / 毛刷 / 热风</text>
+    <text x="115" y="132" class="text">屏幕与 App 提示</text>
+  </g>
+
+  <!-- arrows between top row -->
+  <path class="arrow" d="M310 258 L350 258"/>
+  <path class="arrow" d="M580 258 L620 258"/>
+  <path class="arrow" d="M850 258 L890 258"/>
+  <path class="arrow" d="M1120 258 L1160 258"/>
+
+  <!-- arrow to return row -->
+  <path class="arrow" d="M1275 330 C1275 380 930 380 850 420"/>
+
+  <!-- bottom row flow -->
+  <path class="arrow" d="M580 492 L620 492"/>
+  <path class="arrow" d="M850 492 L890 492"/>
+
+  <!-- feedback arrow -->
+  <path class="arrow2" d="M620 492 C480 492 480 360 465 330"/>
+  <path class="arrow2" d="M890 492 C1030 492 1030 360 1045 330"/>
+
+  <!-- notes -->
+  <text x="80" y="650" class="noteText">当前流程要点：</text>
+  <text x="80" y="685" class="noteText">1. 树莓派触摸屏网页可上传全身照，云端生成上身效果预览。</text>
+  <text x="80" y="716" class="noteText">2. 主板2 只执行明确动作，不参与识别和联网。</text>
+  <text x="80" y="747" class="noteText">3. B区毛刷、C区热风/负离子/风扇属于护理流程，需要独立状态。</text>
+  <text x="80" y="778" class="noteText">4. 挂位限位只证明有衣，归还 / 移位仍需与衣物记录闭环。</text>
+
+  <rect x="860" y="638" width="550" height="150" rx="18" class="note"/>
+  <text x="1135" y="675" class="label" style="font-size:22px;">主线一句话</text>
+  <text x="1135" y="712" class="text">用户在树莓派触摸屏网页发起操作，云端生成任务，</text>
+  <text x="1135" y="740" class="text">主板1 串起流程，主板2 驱动夹爪、毛刷和护理机构。</text>
+  <text x="1135" y="768" class="text">限位开关为取衣定位提供“有衣”依据。</text>
+</svg>

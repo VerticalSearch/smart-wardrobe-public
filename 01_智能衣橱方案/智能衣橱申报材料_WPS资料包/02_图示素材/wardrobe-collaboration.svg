@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" width="1600" height="960" role="img" aria-label="智能衣橱单元协作图">
+  <defs>
+    <style>
+      .bg{fill:#f7fafc}
+      .title{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:36px;font-weight:700;fill:#0f172a}
+      .subtitle{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:18px;fill:#475569}
+      .panel{fill:#fff;stroke:#dbe4ee;stroke-width:1.5}
+      .hub{fill:#ecfdf5;stroke:#22c55e;stroke-width:3}
+      .box{stroke-width:2}
+      .vision{fill:#ecfeff;stroke:#67e8f9}
+      .screen{fill:#f0fdfa;stroke:#5eead4}
+      .cloud{fill:#f5f3ff;stroke:#c4b5fd}
+      .board2{fill:#fff7ed;stroke:#fdba74}
+      .app{fill:#eff6ff;stroke:#93c5fd}
+      .mechanic{fill:#f8fafc;stroke:#cbd5e1}
+      .label{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:23px;font-weight:700;fill:#0f172a;text-anchor:middle}
+      .text{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:16px;fill:#334155;text-anchor:middle}
+      .small{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:14px;fill:#475569;text-anchor:middle}
+      .num{font-family:Arial,sans-serif;font-size:19px;font-weight:700;fill:#fff;text-anchor:middle;dominant-baseline:central}
+      .arrow{stroke:#475569;stroke-width:2.4;fill:none;marker-end:url(#arrowhead)}
+      .arrowDash{stroke:#64748b;stroke-width:2.2;fill:none;marker-end:url(#arrowhead2);stroke-dasharray:8 7}
+      .note{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:16px;fill:#334155}
+      .legend{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;font-size:15px;fill:#475569}
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#475569"/>
+    </marker>
+    <marker id="arrowhead2" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1600" height="960"/>
+  <text x="70" y="64" class="title">智能衣橱单元协作图</text>
+  <text x="70" y="100" class="subtitle">强调各单元职责边界，以及它们之间的通信和数据流向</text>
+
+  <rect x="60" y="135" width="1480" height="760" rx="24" class="panel"/>
+
+  <!-- center hub -->
+  <g transform="translate(670 330)">
+    <rect width="260" height="180" rx="28" class="hub"/>
+    <circle cx="48" cy="48" r="24" fill="#059669"/>
+    <text x="48" y="48" class="num">A</text>
+    <text x="130" y="86" class="label">主板1</text>
+    <text x="130" y="122" class="text">协调用</text>
+    <text x="130" y="150" class="text">事件接收 / 命令转发</text>
+  </g>
+
+  <!-- surrounding nodes -->
+  <g transform="translate(110 180)">
+    <rect width="235" height="150" rx="18" class="box app"/>
+    <circle cx="40" cy="40" r="22" fill="#2563eb"/>
+    <text x="40" y="40" class="num">B</text>
+    <text x="117" y="66" class="label">树莓派触摸屏</text>
+    <text x="117" y="102" class="text">网页点击 / 全身照上传</text>
+    <text x="117" y="130" class="text">现场主 HMI</text>
+  </g>
+
+  <g transform="translate(110 390)">
+    <rect width="235" height="150" rx="18" class="box cloud"/>
+    <circle cx="40" cy="40" r="22" fill="#7c3aed"/>
+    <text x="40" y="40" class="num">C</text>
+    <text x="117" y="66" class="label">云端后端</text>
+    <text x="117" y="102" class="text">衣物数据 / 上身预览</text>
+    <text x="117" y="130" class="text">任务与接口契约</text>
+  </g>
+
+  <g transform="translate(110 600)">
+    <rect width="235" height="150" rx="18" class="box vision"/>
+    <circle cx="40" cy="40" r="22" fill="#0891b2"/>
+    <text x="40" y="40" class="num">D</text>
+    <text x="117" y="66" class="label">K230</text>
+    <text x="117" y="102" class="text">可摆动拍照 / 上传</text>
+    <text x="117" y="130" class="text">视觉与联网节点</text>
+  </g>
+
+  <g transform="translate(1265 180)">
+    <rect width="235" height="150" rx="18" class="box screen"/>
+    <circle cx="40" cy="40" r="22" fill="#0f766e"/>
+    <text x="40" y="40" class="num">E</text>
+    <text x="117" y="66" class="label">串口屏</text>
+    <text x="117" y="102" class="text">调试 / 备用显示</text>
+    <text x="117" y="130" class="text">辅助 HMI</text>
+  </g>
+
+  <g transform="translate(1265 390)">
+    <rect width="235" height="150" rx="18" class="box board2"/>
+    <circle cx="40" cy="40" r="22" fill="#d97706"/>
+    <text x="40" y="40" class="num">F</text>
+    <text x="117" y="66" class="label">主板2</text>
+    <text x="117" y="102" class="text">电机 / 舵机 / 毛刷</text>
+    <text x="117" y="130" class="text">执行单元</text>
+  </g>
+
+  <g transform="translate(1265 600)">
+    <rect width="235" height="150" rx="18" class="box mechanic"/>
+    <circle cx="40" cy="40" r="22" fill="#64748b"/>
+    <text x="40" y="40" class="num">G</text>
+    <text x="117" y="66" class="label">机械机构</text>
+    <text x="117" y="102" class="text">B区清理 / C区护理</text>
+    <text x="117" y="130" class="text">挂位限位检测</text>
+  </g>
+
+  <!-- arrows -->
+  <path class="arrow" d="M345 255 C490 255 540 255 670 390"/>
+  <path class="arrow" d="M345 465 C500 465 540 430 670 430"/>
+  <path class="arrow" d="M345 675 C500 675 540 620 670 470"/>
+
+  <path class="arrow" d="M930 420 C1090 420 1130 255 1265 255"/>
+  <path class="arrow" d="M930 420 C1090 420 1130 465 1265 465"/>
+  <path class="arrow" d="M930 420 C1090 420 1130 675 1265 675"/>
+
+  <path class="arrowDash" d="M1265 255 C1190 255 1140 300 930 380"/>
+  <path class="arrowDash" d="M1265 465 C1190 465 1140 450 930 430"/>
+  <path class="arrowDash" d="M1265 675 C1180 675 1110 615 930 470"/>
+
+  <!-- legend -->
+  <rect x="110" y="810" width="1380" height="60" rx="16" fill="#eef2ff" stroke="#c7d2fe"/>
+  <text x="150" y="847" class="legend">实线箭头：主要业务流 / 数据流   虚线箭头：状态回传 / 反馈   中心主板1：流程编排与消息转发枢纽</text>
+
+  <text x="90" y="610" class="note">写文档时的重点：</text>
+  <text x="90" y="642" class="note">树莓派网页与云端只走 API，不碰电机。</text>
+  <text x="90" y="672" class="note">K230 是视觉与联网主节点，摆动舵机由执行链路调度。</text>
+  <text x="90" y="702" class="note">主板2 不做识别、不做联网，只执行动作和反馈。</text>
+  <text x="90" y="732" class="note">限位开关只判断挂位有衣，身份仍需记录绑定。</text>
+</svg>

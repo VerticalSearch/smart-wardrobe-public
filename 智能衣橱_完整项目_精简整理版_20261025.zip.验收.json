@@ -1,0 +1,78 @@
+{
+  "time": "2026-10-25T19:32:07.899028+08:00",
+  "folder": "D:\\Desktop\\家居\\智能衣橱_完整项目_精简整理版_20261025",
+  "archive": "D:\\Desktop\\家居\\智能衣橱_完整项目_精简整理版_20261025.zip",
+  "files": 436,
+  "folder_bytes": 56112800,
+  "zip_bytes": 42121330,
+  "zip_sha256": "3d856d39108ef9dc26af8a00409033a4769b326b22c17dab97dfcc8eaa3bbebd",
+  "zip_crc": "passed",
+  "zip_unique_paths": "passed",
+  "zip_content_sha256": "passed",
+  "source_files_preserved": true,
+  "validation": {
+    "time": "2026-10-25T19:32:06.050821+08:00",
+    "copy_count": 411,
+    "copy_hash_errors": [],
+    "keil_projects": [
+      {
+        "project": "03_STM32双主板/主板1/USER/MPU9250.uvprojx",
+        "file_references": 40,
+        "missing_files": [],
+        "missing_include_dirs": []
+      },
+      {
+        "project": "03_STM32双主板/主板2/USER/MPU9250.uvprojx",
+        "file_references": 35,
+        "missing_files": [],
+        "missing_include_dirs": []
+      }
+    ],
+    "gateway_python_ast_count": 23,
+    "pages_identical": true,
+    "offline_tests": {
+      "passed": 79,
+      "log": "本轮网关测试.txt"
+    },
+    "javascript_syntax": {
+      "date": "2026-10-25",
+      "executed": false,
+      "results": [
+        {
+          "file": "02_树莓派网关与网页/raspberry_pi_gateway/static/cloud_display.html",
+          "inline_scripts": 1,
+          "status": "passed"
+        },
+        {
+          "file": "02_树莓派网关与网页/raspberry_pi_gateway/static/debug.html",
+          "inline_scripts": 1,
+          "status": "passed"
+        },
+        {
+          "file": "02_树莓派网关与网页/raspberry_pi_gateway/static/display.html",
+          "inline_scripts": 1,
+          "status": "passed"
+        },
+        {
+          "file": "07_安卓客户端/安装包内网页/www/index.html",
+          "inline_scripts": 1,
+          "status": "passed"
+        }
+      ]
+    },
+    "missing_navigation_targets": [],
+    "forbidden_cache_or_key_files": [],
+    "long_windows_paths": [],
+    "not_performed": [
+      "Keil重新编译",
+      "现场部署",
+      "真实云端请求",
+      "串口或DAP连接",
+      "烧录",
+      "复位",
+      "机械动作"
+    ],
+    "ok": true
+  },
+  "ok": true
+}

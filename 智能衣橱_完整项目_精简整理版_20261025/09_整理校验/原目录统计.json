@@ -1,0 +1,406 @@
+{
+  "source_files": 35936,
+  "source_bytes": 11048775723,
+  "groups": {
+    "AGENTS.md": {
+      "files": 1,
+      "bytes": 1243,
+      "included_sources": 1
+    },
+    "build_application_book.py": {
+      "files": 1,
+      "bytes": 27730,
+      "included_sources": 1
+    },
+    "build_control_arch_image.py": {
+      "files": 1,
+      "bytes": 4946,
+      "included_sources": 1
+    },
+    "build_doubao_compact_feed_docx.py": {
+      "files": 1,
+      "bytes": 2796,
+      "included_sources": 1
+    },
+    "build_doubao_control_overlay_docx.py": {
+      "files": 1,
+      "bytes": 2804,
+      "included_sources": 1
+    },
+    "build_doubao_control_prompt_docx.py": {
+      "files": 1,
+      "bytes": 4022,
+      "included_sources": 1
+    },
+    "build_doubao_final_feed_docx.py": {
+      "files": 1,
+      "bytes": 2772,
+      "included_sources": 1
+    },
+    "build_doubao_overlay_feed_docx.py": {
+      "files": 1,
+      "bytes": 2787,
+      "included_sources": 1
+    },
+    "build_electrical_section_doc.py": {
+      "files": 1,
+      "bytes": 17549,
+      "included_sources": 1
+    },
+    "build_electrical_section_docx_from_md.py": {
+      "files": 1,
+      "bytes": 7010,
+      "included_sources": 1
+    },
+    "build_reference_style_electrical_application.py": {
+      "files": 1,
+      "bytes": 22769,
+      "included_sources": 1
+    },
+    "build_wps_ai_prompt_docx.py": {
+      "files": 1,
+      "bytes": 4050,
+      "included_sources": 1
+    },
+    "deck.json": {
+      "files": 1,
+      "bytes": 91838,
+      "included_sources": 1
+    },
+    "generate_deck.py": {
+      "files": 1,
+      "bytes": 45349,
+      "included_sources": 1
+    },
+    "generate_diagrams_for_doc.py": {
+      "files": 1,
+      "bytes": 7488,
+      "included_sources": 1
+    },
+    "generate_docx.py": {
+      "files": 1,
+      "bytes": 12564,
+      "included_sources": 1
+    },
+    "generate_ppt.py": {
+      "files": 1,
+      "bytes": 18989,
+      "included_sources": 1
+    },
+    "generate_ppt_diagrams.py": {
+      "files": 1,
+      "bytes": 19054,
+      "included_sources": 1
+    },
+    "generate_ppt_v2.py": {
+      "files": 1,
+      "bytes": 28174,
+      "included_sources": 1
+    },
+    "generate_正式版.py": {
+      "files": 1,
+      "bytes": 19043,
+      "included_sources": 1
+    },
+    "H594B5CF3__20260518193729.apk.1": {
+      "files": 1,
+      "bytes": 4559326,
+      "included_sources": 0
+    },
+    "H594B5CF3__20260531101514.apk.1": {
+      "files": 1,
+      "bytes": 4563422,
+      "included_sources": 0
+    },
+    "open_pi_stream_display.cmd": {
+      "files": 1,
+      "bytes": 757,
+      "included_sources": 0
+    },
+    "云端任务与硬件执行_后端排查交付包_20261023.zip": {
+      "files": 1,
+      "bytes": 1805037,
+      "included_sources": 0
+    },
+    "云端任务与硬件执行_后端排查交付包_20261023.zip.sha256.txt": {
+      "files": 1,
+      "bytes": 130,
+      "included_sources": 0
+    },
+    "基于AI Agent的智能管理衣橱系统-专利核心思想 (1)..docx": {
+      "files": 1,
+      "bytes": 18025,
+      "included_sources": 1
+    },
+    "基于AI Agent的智能管理衣橱系统-专利核心思想_技术细化.docx": {
+      "files": 1,
+      "bytes": 18393,
+      "included_sources": 1
+    },
+    "智能衣橱_cloud界面继续开发包_20260904.zip": {
+      "files": 1,
+      "bytes": 223112,
+      "included_sources": 0
+    },
+    "智能衣橱技术文档.md": {
+      "files": 1,
+      "bytes": 9705,
+      "included_sources": 1
+    },
+    "智能衣橱答辩PPT.pptx": {
+      "files": 1,
+      "bytes": 1260066,
+      "included_sources": 1
+    },
+    "智能衣橱答辩PPT_v2.pptx": {
+      "files": 1,
+      "bytes": 704670,
+      "included_sources": 1
+    },
+    "智能衣橱答辩PPT_手绘版.pptx": {
+      "files": 1,
+      "bytes": 815356,
+      "included_sources": 1
+    },
+    "智能衣橱答辩PPT_清晰版.pptx": {
+      "files": 1,
+      "bytes": 2111346,
+      "included_sources": 1
+    },
+    "豆包_PPT提示词_当前方案.docx": {
+      "files": 1,
+      "bytes": 40870,
+      "included_sources": 1
+    },
+    "豆包_PPT提示词_当前方案.md": {
+      "files": 1,
+      "bytes": 8880,
+      "included_sources": 1
+    },
+    "豆包_套现有背景版_当前方案.docx": {
+      "files": 1,
+      "bytes": 39296,
+      "included_sources": 1
+    },
+    "豆包_套现有背景版_当前方案.md": {
+      "files": 1,
+      "bytes": 5083,
+      "included_sources": 1
+    },
+    "豆包_最终投喂版_当前方案.docx": {
+      "files": 1,
+      "bytes": 39838,
+      "included_sources": 1
+    },
+    "豆包_最终投喂版_当前方案.md": {
+      "files": 1,
+      "bytes": 6471,
+      "included_sources": 1
+    },
+    "豆包_电控PPT提示词_当前方案.docx": {
+      "files": 1,
+      "bytes": 39307,
+      "included_sources": 1
+    },
+    "豆包_电控PPT提示词_当前方案.md": {
+      "files": 1,
+      "bytes": 5164,
+      "included_sources": 1
+    },
+    "豆包_电控_套现有背景版_当前方案.docx": {
+      "files": 1,
+      "bytes": 38806,
+      "included_sources": 1
+    },
+    "豆包_电控_套现有背景版_当前方案.md": {
+      "files": 1,
+      "bytes": 4004,
+      "included_sources": 1
+    },
+    "豆包_精简投喂版_当前方案.docx": {
+      "files": 1,
+      "bytes": 39169,
+      "included_sources": 1
+    },
+    "豆包_精简投喂版_当前方案.md": {
+      "files": 1,
+      "bytes": 4645,
+      "included_sources": 1
+    },
+    "项目资料.zip": {
+      "files": 1,
+      "bytes": 1789152947,
+      "included_sources": 0
+    },
+    ".git": {
+      "files": 18777,
+      "bytes": 4193957164,
+      "included_sources": 0
+    },
+    ".obsidian": {
+      "files": 4,
+      "bytes": 6961,
+      "included_sources": 0
+    },
+    ".opencode": {
+      "files": 8,
+      "bytes": 92912,
+      "included_sources": 0
+    },
+    ".playwright-cli": {
+      "files": 14,
+      "bytes": 3272399,
+      "included_sources": 0
+    },
+    ".pytest_cache": {
+      "files": 5,
+      "bytes": 9222,
+      "included_sources": 0
+    },
+    "00_项目导航": {
+      "files": 4,
+      "bytes": 253054,
+      "included_sources": 4
+    },
+    "01_智能衣橱方案": {
+      "files": 48,
+      "bytes": 2605595,
+      "included_sources": 13
+    },
+    "02_界面原型": {
+      "files": 133,
+      "bytes": 197231776,
+      "included_sources": 1
+    },
+    "03_开发工具_ESP_IDF": {
+      "files": 4,
+      "bytes": 112871,
+      "included_sources": 0
+    },
+    "04_安装包与素材": {
+      "files": 2,
+      "bytes": 6905092,
+      "included_sources": 0
+    },
+    "98_个人笔记": {
+      "files": 2,
+      "bytes": 9814,
+      "included_sources": 0
+    },
+    "99_项目资料_纯净版": {
+      "files": 1687,
+      "bytes": 1928148807,
+      "included_sources": 0
+    },
+    "AI": {
+      "files": 4,
+      "bytes": 52843,
+      "included_sources": 0
+    },
+    "artifacts": {
+      "files": 1260,
+      "bytes": 337441613,
+      "included_sources": 4
+    },
+    "hello_world": {
+      "files": 40,
+      "bytes": 473530,
+      "included_sources": 0
+    },
+    "outputs": {
+      "files": 4025,
+      "bytes": 332339549,
+      "included_sources": 9
+    },
+    "PCB": {
+      "files": 15,
+      "bytes": 27490606,
+      "included_sources": 2
+    },
+    "ppt-skills-main": {
+      "files": 9,
+      "bytes": 96869,
+      "included_sources": 0
+    },
+    "ppt_diagrams": {
+      "files": 7,
+      "bytes": 1313575,
+      "included_sources": 7
+    },
+    "raspberry_pi_gateway": {
+      "files": 38,
+      "bytes": 477085,
+      "included_sources": 32
+    },
+    "slides_tmp": {
+      "files": 36,
+      "bytes": 2123119,
+      "included_sources": 0
+    },
+    "smart_wardrobe": {
+      "files": 23,
+      "bytes": 308909,
+      "included_sources": 0
+    },
+    "tmp": {
+      "files": 3215,
+      "bytes": 55816082,
+      "included_sources": 0
+    },
+    "tools": {
+      "files": 10,
+      "bytes": 125808,
+      "included_sources": 1
+    },
+    "_inspect_ppt_v1_media": {
+      "files": 84,
+      "bytes": 2772845,
+      "included_sources": 0
+    },
+    "_inspect_ppt_v2_media": {
+      "files": 79,
+      "bytes": 1753965,
+      "included_sources": 0
+    },
+    "云端任务与硬件执行_后端排查交付包_20261023": {
+      "files": 308,
+      "bytes": 9253635,
+      "included_sources": 10
+    },
+    "代码": {
+      "files": 911,
+      "bytes": 340236866,
+      "included_sources": 248
+    },
+    "器件": {
+      "files": 2,
+      "bytes": 867628,
+      "included_sources": 2
+    },
+    "护衣系统": {
+      "files": 307,
+      "bytes": 46233456,
+      "included_sources": 7
+    },
+    "文书": {
+      "files": 175,
+      "bytes": 1555895466,
+      "included_sources": 5
+    },
+    "智能衣橱_cloud界面继续开发包_20260904": {
+      "files": 39,
+      "bytes": 909242,
+      "included_sources": 0
+    },
+    "申报书_电控": {
+      "files": 25,
+      "bytes": 9024070,
+      "included_sources": 25
+    },
+    "飞哥 家居": {
+      "files": 4590,
+      "bytes": 185306493,
+      "included_sources": 0
+    }
+  }
+}

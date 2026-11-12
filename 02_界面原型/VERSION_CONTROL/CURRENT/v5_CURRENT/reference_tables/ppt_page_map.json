@@ -1,0 +1,92 @@
+[
+  {
+    "slide_no": 1,
+    "page_name": "boot",
+    "title": "启动页",
+    "note": "更大气的启动页"
+  },
+  {
+    "slide_no": 2,
+    "page_name": "home",
+    "title": "主页",
+    "note": "大入口用户主页"
+  },
+  {
+    "slide_no": 3,
+    "page_name": "retrieve_select",
+    "title": "选择衣物",
+    "note": "衣物选择列表"
+  },
+  {
+    "slide_no": 4,
+    "page_name": "retrieve_progress",
+    "title": "取衣中",
+    "note": "取衣进度"
+  },
+  {
+    "slide_no": 5,
+    "page_name": "retrieve_done",
+    "title": "取衣完成",
+    "note": "完成页"
+  },
+  {
+    "slide_no": 6,
+    "page_name": "return_prepare",
+    "title": "归还准备",
+    "note": "归还提示"
+  },
+  {
+    "slide_no": 7,
+    "page_name": "return_progress",
+    "title": "归还中",
+    "note": "归还进度"
+  },
+  {
+    "slide_no": 8,
+    "page_name": "return_done",
+    "title": "归还完成",
+    "note": "归还完成页"
+  },
+  {
+    "slide_no": 9,
+    "page_name": "treat_select",
+    "title": "护理选择",
+    "note": "护理选择页"
+  },
+  {
+    "slide_no": 10,
+    "page_name": "treat_progress",
+    "title": "护理中",
+    "note": "护理进度"
+  },
+  {
+    "slide_no": 11,
+    "page_name": "treat_done",
+    "title": "护理完成",
+    "note": "护理完成页"
+  },
+  {
+    "slide_no": 12,
+    "page_name": "browse",
+    "title": "衣物浏览",
+    "note": "浏览列表"
+  },
+  {
+    "slide_no": 13,
+    "page_name": "network",
+    "title": "网络设置",
+    "note": "网络列表"
+  },
+  {
+    "slide_no": 14,
+    "page_name": "wifi_password",
+    "title": "输入密码",
+    "note": "密码输入"
+  },
+  {
+    "slide_no": 15,
+    "page_name": "error",
+    "title": "提示页",
+    "note": "统一提示页"
+  }
+]

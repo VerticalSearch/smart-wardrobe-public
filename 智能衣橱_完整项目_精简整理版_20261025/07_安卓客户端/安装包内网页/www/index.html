@@ -1,0 +1,3122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>智能衣橱 - Smart Wardrobe</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8a9a5b;
+            --bg-color: #f7f8fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-sub: #888888;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        img {
+            -webkit-user-drag: none;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding-bottom: 90px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        header {
+            padding: 20px;
+            background: var(--card-bg);
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        #toast-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(2px);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #toast-container.active {
+            display: flex;
+            animation: fadeInOverlay 0.2s ease forwards;
+        }
+
+        #hint-toast {
+            position: fixed;
+            left: 50%;
+            bottom: 86px;
+            transform: translateX(-50%);
+            z-index: 120;
+            background: rgba(51, 51, 51, 0.92);
+            color: #fff;
+            border-radius: 999px;
+            padding: 9px 15px;
+            font-size: 13px;
+            font-weight: bold;
+            display: none;
+            pointer-events: none;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+        }
+
+        #hint-toast.show {
+            display: block;
+            animation: fadeIn 0.18s ease;
+        }
+
+        .custom-toast {
+            background: #ffffff;
+            color: var(--text-main);
+            padding: 25px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 80%;
+            text-align: center;
+            animation: toastPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .custom-toast i {
+            font-size: 40px;
+        }
+
+        .custom-toast.success i {
+            color: var(--primary);
+        }
+
+        .custom-toast.error i {
+            color: #d32f2f;
+        }
+
+        .custom-toast.warning i {
+            color: #f57c00;
+        }
+
+        .custom-toast.info i {
+            color: #2196f3;
+        }
+
+        .custom-toast.fade-out {
+            animation: toastFadeOut 0.3s ease forwards;
+        }
+
+        #toast-container.fade-out {
+            animation: fadeOutOverlay 0.3s ease forwards;
+        }
+
+        @keyframes toastPop {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes toastFadeOut {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInOverlay {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOutOverlay {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .page {
+            display: none;
+            padding: 15px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #init-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .modal-content label {
+            display: block;
+            text-align: left;
+            color: var(--text-sub);
+            font-size: 12px;
+            font-weight: bold;
+            margin: 12px 0 6px;
+        }
+
+        .modal-content select,
+        .modal-content input,
+        .modal-content button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            font-size: 16px;
+        }
+
+        .modal-content input {
+            outline: none;
+            background: #fafafa;
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .modal-grid select,
+        .modal-grid input {
+            margin-bottom: 0;
+        }
+
+        .modal-hint {
+            color: var(--text-sub);
+            font-size: 12px;
+            line-height: 1.45;
+            text-align: left;
+            margin: 6px 0 4px;
+        }
+
+        .modal-content button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-weight: bold;
+        }
+
+        .wardrobe-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding-bottom: 60px;
+        }
+
+        .clothes-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            position: relative;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            cursor: pointer;
+            animation: slideIn 0.4s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .clothes-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .generation-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 12;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px;
+            background:
+                linear-gradient(120deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.18)),
+                rgba(247, 248, 250, 0.82);
+            background-size: 220% 100%;
+            animation: imageSweep 1.45s linear infinite;
+            color: var(--text-main);
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            backdrop-filter: blur(1px);
+        }
+
+        .generation-overlay.done {
+            background: rgba(138, 154, 91, 0.88);
+            color: #fff;
+            animation: donePop 0.46s ease forwards;
+        }
+
+        .generation-ring {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 3px solid rgba(138, 154, 91, 0.22);
+            border-top-color: var(--primary);
+            animation: spin 0.9s linear infinite;
+        }
+
+        .generation-overlay.done .generation-ring {
+            border: none;
+            animation: none;
+        }
+
+        .generation-overlay.done .generation-ring::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 28px;
+        }
+
+        @keyframes imageSweep {
+            from {
+                background-position: 120% 0;
+            }
+
+            to {
+                background-position: -120% 0;
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes donePop {
+            0% {
+                opacity: 0.2;
+                transform: scale(0.98);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .clothes-card .info {
+            padding: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .clothes-card.selected {
+            border-color: var(--primary);
+            transform: scale(0.97);
+        }
+
+        .clothes-card.selected::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .clothes-card.in-use {
+            opacity: 0.6;
+            filter: grayscale(30%);
+            transform: scale(0.96);
+            border: 1px dashed #ccc;
+        }
+
+        .clothes-card.in-use .info::before {
+            content: '不在柜';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            z-index: 10;
+        }
+
+        .clothes-card.in-use::after {
+            content: '长按以移除衣柜';
+            position: absolute;
+            top: 38px;
+            left: 10px;
+            color: var(--text-sub);
+            font-size: 10px;
+            opacity: 0.8;
+            z-index: 10;
+        }
+
+        .progress-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.1s;
+            z-index: 20;
+        }
+
+        .clothes-card.pressing .progress-overlay {
+            opacity: 1;
+        }
+
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring__circle {
+            stroke-dasharray: 164;
+            stroke-dashoffset: 164;
+            transition: none;
+        }
+
+        .trash-icon {
+            position: absolute;
+            color: white;
+            font-size: 20px;
+        }
+
+        .fetch-btn-container {
+            display: none;
+            position: fixed;
+            bottom: 85px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            z-index: 90;
+        }
+
+        .fetch-btn-container.active {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translate(-50%, 20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+
+        .fetch-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(138, 154, 91, 0.4);
+        }
+
+        .ai-chat-box {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            background: #f0f2f5;
+            border-radius: 25px;
+            padding: 5px 15px;
+        }
+
+        .input-group input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 10px 0;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .icon-btn {
+            border: none;
+            background: transparent;
+            color: var(--text-sub);
+            font-size: 18px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .icon-btn.active {
+            color: var(--primary);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        #generate-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 15px;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        .ai-photo-box {
+            margin-top: 12px;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            background: #fafafa;
+            padding: 12px;
+        }
+
+        .ai-photo-box p {
+            color: var(--text-sub);
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .ai-photo-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .ai-photo-actions button {
+            border: none;
+            border-radius: 12px;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .ai-photo-actions button:first-child {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .ai-photo-actions button:last-child {
+            background: #f0f2f5;
+            color: var(--text-main);
+        }
+
+        #ai-photo-name {
+            display: block;
+            color: var(--text-sub);
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .ai-photo-history {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-top: 10px;
+        }
+
+        .ai-photo-chip {
+            border: 1px solid #e5e8ec;
+            background: #fff;
+            color: var(--text-main);
+            border-radius: 999px;
+            padding: 7px 11px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .ai-photo-chip.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        .ai-presets {
+            margin-top: 12px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .preset-label {
+            color: var(--text-sub);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .preset-row {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            scrollbar-width: none;
+        }
+
+        .preset-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .preset-chip {
+            border: 1px solid #e5e8ec;
+            background: #f0f2f5;
+            color: var(--text-sub);
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+            flex: 0 0 auto;
+        }
+
+        .preset-chip.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        #ai-result {
+            display: none;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            margin-top: 15px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .ai-preview-img {
+            width: 100%;
+            height: 350px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin-top: 12px;
+            border: 1px solid #eee;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+
+        .ai-selected-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(78px, 1fr));
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .ai-mini-item {
+            min-width: 0;
+            border: 1px solid #edf0f3;
+            border-radius: 12px;
+            background: #fafafa;
+            padding: 7px;
+            text-align: center;
+        }
+
+        .ai-mini-item img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 9px;
+            background: #eef1f4;
+        }
+
+        .ai-mini-item span {
+            display: block;
+            margin-top: 5px;
+            color: var(--text-sub);
+            font-size: 11px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .ai-preview-stage {
+            position: relative;
+            min-height: 350px;
+        }
+
+        .ai-preview-stage .generation-overlay {
+            border-radius: 12px;
+            margin-top: 12px;
+        }
+
+        .ai-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .ai-actions button {
+            flex: 1;
+            padding: 10px 0;
+            border-radius: 10px;
+            border: none;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .ai-actions button i {
+            font-size: 16px;
+        }
+
+        .btn-redo {
+            background: #f0f2f5;
+            color: var(--text-main);
+        }
+
+        .btn-confirm {
+            background: var(--primary);
+            color: white;
+            flex: 1.5;
+            box-shadow: 0 2px 8px rgba(138, 154, 91, 0.3);
+        }
+
+        .btn-close {
+            background: #fff0f0;
+            color: #d32f2f;
+        }
+
+        .daily-pick-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            display: flex;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .daily-pick-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .daily-pick-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .daily-pick-info h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .daily-pick-info p {
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+
+        .nav-item {
+            text-align: center;
+            color: var(--text-sub);
+            font-size: 12px;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item.hidden {
+            display: none;
+        }
+
+        .nav-item.debug-nav {
+            color: #f57c00;
+        }
+
+        .nav-item.debug-nav.active {
+            color: #f57c00;
+        }
+
+        .debug-banner {
+            background: linear-gradient(135deg, #fff6e5, #ffffff);
+            border: 1px solid #ffe0a8;
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .debug-banner h3 {
+            margin-bottom: 6px;
+        }
+
+        .debug-banner p {
+            color: var(--text-sub);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .debug-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .debug-stat {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 14px 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .debug-stat span {
+            display: block;
+            color: var(--text-sub);
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .debug-stat b {
+            font-size: 22px;
+            color: var(--text-main);
+        }
+
+        .debug-action-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .debug-action-grid button {
+            border: none;
+            border-radius: 14px;
+            padding: 12px 6px;
+            background: var(--card-bg);
+            color: var(--text-main);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .debug-action-grid button.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .debug-action-grid button.warn {
+            background: #fff2df;
+            color: #d5791c;
+        }
+
+        .debug-action-grid button.danger {
+            background: #fff0f0;
+            color: #d32f2f;
+        }
+
+        .debug-bulk-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .debug-bulk-grid button {
+            border: none;
+            border-radius: 12px;
+            padding: 10px 4px;
+            background: var(--card-bg);
+            color: var(--text-main);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .debug-bulk-grid button.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .debug-bulk-grid button.warn {
+            background: #fff2df;
+            color: #d5791c;
+        }
+
+        .debug-bulk-grid button.danger {
+            background: #fff0f0;
+            color: #d32f2f;
+        }
+
+        .debug-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-bottom: 20px;
+        }
+
+        .debug-row {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: 22px 54px 1fr auto;
+            gap: 10px;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .debug-check {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        .debug-row img,
+        .debug-thumb {
+            width: 54px;
+            height: 54px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: #eef1f4;
+        }
+
+        .debug-title {
+            font-weight: bold;
+            font-size: 15px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .debug-meta {
+            margin-top: 4px;
+            color: var(--text-sub);
+            font-size: 11px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .debug-side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
+        .debug-status {
+            padding: 5px 9px;
+            border-radius: 999px;
+            background: #edf2df;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .debug-status.out {
+            background: #eef0f3;
+            color: #7b8490;
+        }
+
+        .debug-status-btn {
+            border: none;
+            border-radius: 10px;
+            padding: 7px 9px;
+            background: var(--primary);
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .debug-status-btn.out {
+            background: #f57c00;
+        }
+
+        .debug-task-section {
+            margin-top: 16px;
+        }
+
+        .debug-task-section h3 {
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-bottom: 20px;
+        }
+
+        .task-row {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .task-title {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .task-meta {
+            color: var(--text-sub);
+            font-size: 11px;
+            line-height: 1.5;
+            margin-top: 4px;
+            word-break: break-all;
+        }
+
+        .task-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            min-width: 142px;
+        }
+
+        .task-actions button,
+        .task-actions select {
+            border: none;
+            border-radius: 10px;
+            padding: 8px 7px;
+            background: #f0f2f5;
+            color: var(--text-main);
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .task-actions .danger {
+            background: #fff0f0;
+            color: #d32f2f;
+        }
+
+        .care-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            margin-bottom: 15px;
+        }
+
+        .care-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .care-head h3 {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        .care-head p {
+            color: var(--text-sub);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .care-value {
+            min-width: 88px;
+            text-align: right;
+            color: var(--primary);
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .care-value span {
+            display: block;
+            color: var(--text-sub);
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+
+        .care-chart-box {
+            height: 230px;
+            border: 1px solid #edf0f3;
+            border-radius: 16px;
+            background: linear-gradient(180deg, #fbfcfd, #f3f6f1);
+            padding: 10px;
+        }
+
+        #care-pressure-chart {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .care-kpis {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .care-kpi {
+            background: #f8fafb;
+            border: 1px solid #edf0f3;
+            border-radius: 14px;
+            padding: 12px 8px;
+            text-align: center;
+        }
+
+        .care-kpi span {
+            display: block;
+            color: var(--text-sub);
+            font-size: 11px;
+            margin-bottom: 6px;
+        }
+
+        .care-kpi b {
+            font-size: 17px;
+            color: var(--text-main);
+        }
+
+        .care-schedule-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            margin-bottom: 15px;
+        }
+
+        .care-schedule-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .care-schedule-title h3 {
+            font-size: 18px;
+        }
+
+        .care-schedule-title span {
+            color: var(--text-sub);
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .care-gateway-row {
+            display: grid;
+            grid-template-columns: 1fr 76px;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .care-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .care-form-row,
+        .care-form-full {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .care-form-full {
+            grid-column: 1 / -1;
+        }
+
+        .care-form-row label,
+        .care-form-full label {
+            color: var(--text-sub);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .care-form-row input,
+        .care-form-row select,
+        .care-form-full input,
+        .care-gateway-row input {
+            width: 100%;
+            height: 44px;
+            border: 1px solid #e6ebef;
+            border-radius: 13px;
+            background: #fbfcfd;
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: bold;
+            padding: 0 12px;
+        }
+
+        .care-form-row input[type="time"]::-webkit-calendar-picker-indicator,
+        .care-time-chip input[type="time"]::-webkit-calendar-picker-indicator {
+            width: 30px;
+            height: 30px;
+            padding: 5px;
+            margin-right: -4px;
+        }
+
+        .care-time-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .care-time-chip {
+            height: 44px;
+            border: 1px solid #e6ebef;
+            border-radius: 13px;
+            background: #fbfcfd;
+            display: grid;
+            grid-template-columns: 1fr 34px;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .care-time-chip input {
+            height: 42px;
+            border: 0;
+            background: transparent;
+            padding: 0 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .care-time-chip button {
+            height: 42px;
+            border: 0;
+            background: transparent;
+            color: var(--text-sub);
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .care-add-time,
+        .care-schedule-actions button,
+        .care-gateway-row button {
+            height: 44px;
+            border: 0;
+            border-radius: 14px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .care-add-time {
+            background: #edf1e8;
+            color: var(--primary);
+        }
+
+        .care-schedule-actions button.secondary,
+        .care-gateway-row button.secondary {
+            background: #eef1f4;
+            color: var(--text-main);
+        }
+
+        .care-chip-grid,
+        .care-week-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 2px;
+        }
+
+        .care-week-grid {
+            grid-template-columns: repeat(7, 1fr);
+        }
+
+        .care-chip-grid label,
+        .care-week-grid label {
+            min-height: 38px;
+            border: 1px solid #e6ebef;
+            border-radius: 12px;
+            background: #fbfcfd;
+            color: var(--text-main);
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            text-align: center;
+        }
+
+        .care-chip-grid input,
+        .care-week-grid input {
+            width: 15px;
+            height: 15px;
+        }
+
+        .care-schedule-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .care-schedule-list {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .care-schedule-item {
+            border: 1px solid #e6ebef;
+            border-radius: 14px;
+            background: #f8fafb;
+            padding: 11px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .care-schedule-item strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .care-schedule-item span {
+            display: block;
+            color: var(--text-sub);
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .care-schedule-item-actions {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 6px;
+        }
+
+        .care-schedule-item-actions button {
+            min-width: 42px;
+            height: 32px;
+            border: 0;
+            border-radius: 10px;
+            background: #edf1e8;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .care-schedule-item-actions button.danger {
+            background: #fff0f0;
+            color: #d32f2f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="toast-container"></div>
+    <div id="hint-toast"></div>
+
+    <div id="init-modal">
+        <div class="modal-content">
+            <h2>完善基本信息</h2>
+            <p style="margin-bottom: 15px; color: #888; font-size: 14px;">这些信息会作为 AI 推荐的默认风格，不会限制你后续输入具体需求。</p>
+            <div class="modal-grid">
+                <div>
+                    <label for="user-gender">穿着倾向</label>
+                    <select id="user-gender">
+                        <option value="male">男装倾向</option>
+                        <option value="female">女装倾向</option>
+                        <option value="neutral">中性/不限</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="user-season">体感偏好</label>
+                    <select id="user-season">
+                        <option value="normal">正常</option>
+                        <option value="warm">怕冷，偏保暖</option>
+                        <option value="cool">怕热，偏清爽</option>
+                    </select>
+                </div>
+            </div>
+            <label for="user-style">默认穿衣风格</label>
+            <select id="user-style">
+                <option value="casual">休闲日常</option>
+                <option value="business">商务通勤</option>
+                <option value="street">街头潮流</option>
+                <option value="vintage">复古文艺</option>
+                <option value="sporty">运动机能</option>
+                <option value="minimal">简约干净</option>
+                <option value="custom">完全自定义</option>
+            </select>
+            <input id="user-style-custom" type="text" placeholder="可补充或覆盖：例如极简通勤、甜酷、户外机能">
+            <div class="modal-hint">选择预设后也可以继续写细节；选择“完全自定义”时会优先使用你输入的风格。</div>
+            <label for="user-notes">搭配偏好补充</label>
+            <input id="user-notes" type="text" placeholder="例如不喜欢太亮颜色、偏爱宽松、尽量显高">
+            <button onclick="saveUserInfo()">保存并进入</button>
+        </div>
+    </div>
+
+    <header id="header-title">我的衣橱</header>
+
+    <div id="page-wardrobe" class="page active">
+        <div class="wardrobe-grid" id="wardrobe-container"></div>
+
+        <div class="fetch-btn-container" id="fetch-btn-container">
+            <button class="fetch-btn" id="fetch-btn" onclick="fetchSelectedClothes()">一键取衣</button>
+        </div>
+
+        <input type="file" id="camera-input" accept="image/*" capture="camera" style="display: none;"
+            onchange="handleSimulateCameraUpload(event)">
+    </div>
+
+    <div id="page-ai" class="page">
+        <div class="ai-chat-box">
+            <h3>告诉AI你的需求</h3>
+            <p style="font-size: 12px; color: var(--text-sub); margin-top: 5px;">例如："明天去常州出差，帮我搭配一套商务装"</p>
+            <div class="input-group">
+                <input type="text" id="ai-input" placeholder="输入文字或点击右侧语音...">
+                <button class="icon-btn" id="voice-btn" onclick="toggleVoice()"><i
+                        class="fas fa-microphone"></i></button>
+            </div>
+            <div class="ai-photo-box">
+                <p>上传全身照后，AI 预览会优先生成模拟真实上身效果；不上传则保持普通搭配图。</p>
+                <span id="ai-photo-name">未上传全身照</span>
+                <div class="ai-photo-actions">
+                    <button onclick="document.getElementById('ai-photo-input').click()">上传全身照</button>
+                    <button onclick="clearAiUserPhoto()">清除照片</button>
+                </div>
+                <div class="ai-photo-history" id="ai-photo-history"></div>
+            </div>
+            <div class="ai-presets">
+                <div class="preset-label">预设场景</div>
+                <div class="preset-row" id="scene-presets">
+                    <button class="preset-chip active" data-scene-preset="">默认</button>
+                    <button class="preset-chip"
+                        data-scene-preset="daily commute, clean and practical outfit">通勤</button>
+                    <button class="preset-chip"
+                        data-scene-preset="business meeting, polished professional outfit">会议</button>
+                    <button class="preset-chip" data-scene-preset="relaxed date, refined and soft outfit">约会</button>
+                    <button class="preset-chip"
+                        data-scene-preset="weekend travel, comfortable layered outfit">旅行</button>
+                    <button class="preset-chip" data-scene-preset="campus casual, youthful and neat outfit">校园</button>
+                </div>
+                <div class="preset-label">预设背景</div>
+                <div class="preset-row" id="background-presets">
+                    <button class="preset-chip active" data-background-preset="">默认</button>
+                    <button class="preset-chip"
+                        data-background-preset="a bright bedroom mirror full-body photo background">卧室镜前</button>
+                    <button class="preset-chip" data-background-preset="a modern office lobby background">办公室</button>
+                    <button class="preset-chip"
+                        data-background-preset="a clean city street background in daylight">街景</button>
+                    <button class="preset-chip"
+                        data-background-preset="a shopping mall fitting room background">试衣间</button>
+                    <button class="preset-chip" data-background-preset="a minimal fashion studio background">影棚</button>
+                </div>
+            </div>
+            <input type="file" id="ai-photo-input" accept="image/*" style="display:none"
+                onchange="handleAiUserPhoto(event)">
+            <button id="generate-btn" onclick="generateOutfit()">开始智能搭配</button>
+        </div>
+
+        <div id="ai-result">
+            <h3 id="ai-result-title" style="margin-bottom: 5px;">
+                <i class="fas fa-magic" style="color: var(--primary);"></i> 最新搭配方案
+            </h3>
+            <p id="ai-text" style="font-size: 14px; line-height: 1.6; color: #555;"></p>
+            <div class="ai-selected-strip" id="ai-selected-strip"></div>
+            <div class="ai-preview-stage">
+                <img class="ai-preview-img" id="ai-preview-image" src="" alt="穿搭预览效果">
+                <div class="generation-overlay" id="ai-generation-overlay" style="display:none;">
+                    <div class="generation-ring"></div>
+                    <span>正在生成最终搭配图</span>
+                </div>
+            </div>
+            <div class="ai-actions">
+                <button class="btn-redo" onclick="generateOutfit()"><i class="fas fa-redo-alt"></i> 换一套</button>
+                <button class="btn-confirm" onclick="confirmAIFetch()"><i class="fas fa-check-circle"></i> 确认出库</button>
+                <button class="btn-close" onclick="closeAIResult()"><i class="fas fa-times"></i> 关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-daily" class="page">
+        <h3 style="margin-bottom: 15px;">全网精选穿搭灵感</h3>
+        <div id="daily-container">
+            <a href="https://www.taobao.com" target="_blank" class="daily-pick-card">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="穿搭1">
+                <div class="daily-pick-info">
+                    <h4>早春通勤风衣套装</h4>
+                    <p>点击跳转至淘宝 >> </p>
+                </div>
+            </a>
+            <a href="https://www.taobao.com" target="_blank" class="daily-pick-card">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="穿搭2">
+                <div class="daily-pick-info">
+                    <h4>日系简约潮流穿搭</h4>
+                    <p>点击跳转至淘宝 >> </p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div id="page-care" class="page">
+        <div class="care-card">
+            <div class="care-head">
+                <div>
+                    <h3>衣橱养护</h3>
+                    <p>干燥袋压力传感器实时曲线</p>
+                </div>
+                <div class="care-value" id="care-pressure-value">--<span>压力 kPa</span></div>
+            </div>
+            <div class="care-chart-box">
+                <canvas id="care-pressure-chart" width="640" height="320"></canvas>
+            </div>
+            <div class="care-kpis">
+                <div class="care-kpi"><span>干燥袋</span><b id="care-bag-state">正常</b></div>
+                <div class="care-kpi"><span>峰值</span><b id="care-peak-value">--</b></div>
+                <div class="care-kpi"><span>刷新</span><b>2s</b></div>
+            </div>
+        </div>
+
+        <div class="care-schedule-card">
+            <div class="care-schedule-title">
+                <h3>自动养护计划</h3>
+                <span id="care-schedule-status">未连接网关</span>
+            </div>
+            <div class="care-gateway-row">
+                <input id="care-gateway-url" type="url" placeholder="树莓派网关，如 http://192.168.3.32:8000">
+                <button class="secondary" onclick="saveCareGatewayUrl()">保存</button>
+            </div>
+            <div class="care-form-grid">
+                <div class="care-form-row">
+                    <label for="care-schedule-name">计划名称</label>
+                    <input id="care-schedule-name" value="每日养护">
+                </div>
+                <div class="care-form-row">
+                    <label for="care-schedule-enabled">状态</label>
+                    <select id="care-schedule-enabled">
+                        <option value="1">启用</option>
+                        <option value="0">暂停</option>
+                    </select>
+                </div>
+                <div class="care-form-full">
+                    <label>执行时间</label>
+                    <div class="care-time-list" id="care-schedule-times"></div>
+                    <button class="care-add-time" onclick="addCareScheduleTime()">+ 添加时间</button>
+                </div>
+                <div class="care-form-row">
+                    <label for="care-schedule-duration">持续分钟</label>
+                    <input id="care-schedule-duration" type="number" min="1" max="180" value="15">
+                </div>
+                <div class="care-form-row">
+                    <label for="care-schedule-stagger">启动间隔(秒)</label>
+                    <input id="care-schedule-stagger" type="number" min="0" max="300" value="0">
+                </div>
+                <div class="care-form-row">
+                    <label for="care-schedule-min-interval">重复间隔(分)</label>
+                    <input id="care-schedule-min-interval" type="number" min="0" max="1440" value="0">
+                </div>
+                <div class="care-form-row">
+                    <label for="care-schedule-quiet-start">免打扰开始</label>
+                    <input id="care-schedule-quiet-start" type="time">
+                </div>
+                <div class="care-form-row">
+                    <label for="care-schedule-quiet-end">免打扰结束</label>
+                    <input id="care-schedule-quiet-end" type="time">
+                </div>
+                <div class="care-form-full">
+                    <label>养护设备</label>
+                    <div class="care-chip-grid">
+                        <label><input type="checkbox" data-care-device="hot_air" checked>热风除湿</label>
+                        <label><input type="checkbox" data-care-device="uv" checked>紫外杀菌</label>
+                        <label><input type="checkbox" data-care-device="vent" checked>通风风扇</label>
+                        <label><input type="checkbox" data-care-device="ionizer">负离子预留</label>
+                    </div>
+                </div>
+                <div class="care-form-full">
+                    <label>执行星期</label>
+                    <div class="care-week-grid">
+                        <label><input type="checkbox" data-care-weekday="0" checked>一</label>
+                        <label><input type="checkbox" data-care-weekday="1" checked>二</label>
+                        <label><input type="checkbox" data-care-weekday="2" checked>三</label>
+                        <label><input type="checkbox" data-care-weekday="3" checked>四</label>
+                        <label><input type="checkbox" data-care-weekday="4" checked>五</label>
+                        <label><input type="checkbox" data-care-weekday="5" checked>六</label>
+                        <label><input type="checkbox" data-care-weekday="6" checked>日</label>
+                    </div>
+                </div>
+            </div>
+            <div class="care-schedule-actions">
+                <button onclick="saveCareSchedule()">保存计划</button>
+                <button class="secondary" onclick="runCareScheduleNow()">试运行</button>
+            </div>
+            <div class="care-schedule-list" id="care-schedule-list"></div>
+        </div>
+    </div>
+
+    <div id="page-debug" class="page">
+        <div class="debug-banner">
+            <h3><i class="fas fa-bug" style="color:#f57c00;"></i> 调试中心</h3>
+            <p>仅用于开发调试：查看后台衣柜数据、刷新同步、模拟硬件入库。正式入库仍由硬件端完成。</p>
+        </div>
+        <div class="debug-summary">
+            <div class="debug-stat"><span>总数</span><b id="debug-total-count">0</b></div>
+            <div class="debug-stat"><span>在柜</span><b id="debug-in-count">0</b></div>
+            <div class="debug-stat"><span>已取出</span><b id="debug-out-count">0</b></div>
+        </div>
+        <div class="debug-action-grid">
+            <button class="primary" onclick="fetchAndRenderWardrobe()">刷新衣柜</button>
+            <button class="warn" onclick="simulateDebugStore()">模拟入库</button>
+            <button onclick="document.getElementById('camera-input').click()">拍照入库</button>
+        </div>
+        <div class="debug-bulk-grid">
+            <button onclick="toggleDebugSelectAll()">全选/清空</button>
+            <button class="primary" onclick="updateDebugBatch('in-wardrobe')">批量入库</button>
+            <button class="warn" onclick="updateDebugBatch('in-use')">批量出库</button>
+            <button class="danger" onclick="updateDebugBatch('deleted')">批量删除</button>
+        </div>
+        <div class="debug-list" id="debug-list"></div>
+        <div class="debug-task-section">
+            <h3>任务流</h3>
+            <div class="debug-action-grid">
+                <button class="primary" onclick="loadTaskFlow()">刷新任务</button>
+                <button onclick="createDebugTask('store-new')">新入库任务</button>
+                <button onclick="createDebugTask('store-return')">归还任务</button>
+                <button class="danger" onclick="createDebugTask('fetch')">取衣任务</button>
+            </div>
+            <div class="task-list" id="task-list"></div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="switchTab('wardrobe', this, '我的衣橱')">
+            <i class="fas fa-tshirt"></i><span>衣橱</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('ai', this, 'AI 造型师'); registerAiDebugTap();">
+            <i class="fas fa-magic"></i><span>AI推荐</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('daily', this, '灵感精选')">
+            <i class="fas fa-fire"></i><span>精选</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('care', this, '衣橱养护')">
+            <i class="fas fa-chart-line"></i><span>养护</span>
+        </div>
+        <div class="nav-item debug-nav hidden" id="debug-nav-item" onclick="switchTab('debug', this, '调试中心')">
+            <i class="fas fa-bug"></i><span>调试</span>
+        </div>
+    </div>
+
+    <script>
+        // ================= 后端接口配置 =================
+        const API_BASE = 'http://119.45.230.229:8000';
+        const DEFAULT_CARE_GATEWAY = 'http://119.45.230.229:8000';
+        let careGatewayBase = (localStorage.getItem('careGatewayBase') || DEFAULT_CARE_GATEWAY).replace(/\/$/, '');
+        let careSchedules = [];
+        let editCareScheduleId = 'daily-care';
+        let currentAIRecommendationIds = [];
+        let wardrobeSnapshot = [];
+        let taskSnapshot = [];
+        const selectedDebugItems = new Set();
+        let aiUserPhotoBase64 = '';
+        let aiUserPhotoUrl = '';
+        let aiPhotoHistory = [];
+        let aiScenePreset = '';
+        let aiBackgroundPreset = '';
+        let debugUnlocked = false;
+        let aiDebugTapCount = 0;
+        let aiDebugTapTimer = null;
+        let carePressurePoints = Array.from({ length: 42 }, (_, index) => 28 + Math.sin(index / 4) * 3);
+        let careChartTimer = null;
+        let wardrobeSyncTimer = null;
+        let aiSyncTimer = null;
+        let wardrobeRenderSignature = '';
+        let aiRenderSignature = '';
+        const seenFlatImageDoneIds = new Set(JSON.parse(localStorage.getItem('seenFlatImageDoneIds') || '[]'));
+        const seenAiPreviewDoneIds = new Set(JSON.parse(localStorage.getItem('seenAiPreviewDoneIds') || '[]'));
+        const flatImageProcessingIds = new Set();
+
+        function rememberFlatImageDone(itemId) {
+            seenFlatImageDoneIds.add(itemId);
+            localStorage.setItem('seenFlatImageDoneIds', JSON.stringify(Array.from(seenFlatImageDoneIds).slice(-300)));
+        }
+
+        function rememberAiPreviewDone(taskId) {
+            seenAiPreviewDoneIds.add(taskId);
+            localStorage.setItem('seenAiPreviewDoneIds', JSON.stringify(Array.from(seenAiPreviewDoneIds).slice(-100)));
+        }
+
+        function stableSignature(value) {
+            return JSON.stringify(value);
+        }
+
+        function wardrobeSignature(items) {
+            return stableSignature((items || []).map(item => ({
+                id: item.id,
+                img: item.img || '',
+                original_img: item.original_img || '',
+                clean_img: item.clean_img || '',
+                image_status: item.image_status || '',
+                image_updated_at: item.image_updated_at || 0,
+                name: item.name || '',
+                desc: item.desc || '',
+                status: item.status || '',
+                position: item.position || ''
+            })));
+        }
+
+        function aiSignature(data) {
+            if (!data || !Array.isArray(data.recommend_ids) || !data.recommend_ids.length) return 'empty';
+            return stableSignature({
+                id: data.id || '',
+                text: data.text || '',
+                recommend_ids: data.recommend_ids || [],
+                selected_items: (data.selected_items || []).map(item => ({
+                    id: item.id,
+                    img: item.img || '',
+                    original_img: item.original_img || '',
+                    clean_img: item.clean_img || '',
+                    image_status: item.image_status || '',
+                    image_updated_at: item.image_updated_at || 0,
+                    name: item.name || ''
+                })),
+                preview_img: data.preview_img || '',
+                preview_status: data.preview_status || '',
+                preview_mode: data.preview_mode || '',
+                updated_at: data.updated_at || 0
+            });
+        }
+
+        function versionedImageUrl(url, version) {
+            if (!url || url.startsWith('data:') || url.startsWith('blob:')) return url || '';
+            const joiner = url.includes('?') ? '&' : '?';
+            return `${url}${joiner}v=${encodeURIComponent(version || '')}`;
+        }
+
+        function itemImageVersion(item) {
+            return item.image_updated_at || item.updated_at || item.clean_img || item.img || item.original_img || item.id || '';
+        }
+
+        function itemImageUrl(item) {
+            return versionedImageUrl(item.img || item.original_img || '', itemImageVersion(item));
+        }
+
+        function itemFallbackImageUrl(item) {
+            const fallback = item.original_img && item.original_img !== item.img ? item.original_img : '';
+            return fallback ? versionedImageUrl(fallback, item.original_img || item.id || '') : '';
+        }
+
+        function imageWithFallback(src, alt, className = '', fallback = '') {
+            const classAttr = className ? ` class="${escapeHtml(className)}"` : '';
+            if (!src) return `<span${classAttr}></span>`;
+            const fallbackAttr = fallback ? ` data-fallback-src="${escapeHtml(fallback)}"` : '';
+            return `<img${classAttr} src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" data-retry-src="${escapeHtml(src)}" data-retry-count="0"${fallbackAttr} onerror="handleImageLoadError(this)">`;
+        }
+
+        function handleImageLoadError(img) {
+            const retrySrc = img.dataset.retrySrc || '';
+            const retryCount = Number(img.dataset.retryCount || 0);
+            if (retrySrc && retryCount < 3) {
+                img.dataset.retryCount = String(retryCount + 1);
+                const joiner = retrySrc.includes('?') ? '&' : '?';
+                setTimeout(() => {
+                    img.style.visibility = 'visible';
+                    img.src = `${retrySrc}${joiner}retry=${Date.now()}`;
+                }, 450 + retryCount * 550);
+                return;
+            }
+            const fallback = img.dataset.fallbackSrc || '';
+            if (fallback && img.src !== fallback) {
+                img.removeAttribute('data-fallback-src');
+                img.dataset.retrySrc = fallback;
+                img.dataset.retryCount = '0';
+                img.style.visibility = 'visible';
+                img.src = fallback;
+                return;
+            }
+            img.style.visibility = 'hidden';
+        }
+
+        function escapeHtml(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function showToast(message, type = 'info', duration = 2000) {
+            const container = document.getElementById('toast-container');
+            container.innerHTML = '';
+            container.classList.remove('fade-out');
+            const toast = document.createElement('div');
+            toast.className = `custom-toast ${type}`;
+            let iconClass = 'fa-info-circle';
+            if (type === 'success') iconClass = 'fa-check-circle';
+            if (type === 'warning') iconClass = 'fa-exclamation-triangle';
+            if (type === 'error') iconClass = 'fa-times-circle';
+            if (type === 'loading') { iconClass = 'fa-spinner fa-spin'; toast.className = 'custom-toast info'; }
+            toast.innerHTML = `<i class="fas ${iconClass}"></i> <span>${message}</span>`;
+            container.appendChild(toast);
+            container.classList.add('active');
+            if (duration > 0) { setTimeout(() => { closeToast(); }, duration); }
+        }
+
+        function closeToast() {
+            const container = document.getElementById('toast-container');
+            if (container.querySelector('.custom-toast')) { container.querySelector('.custom-toast').classList.add('fade-out'); }
+            container.classList.add('fade-out');
+            setTimeout(() => { container.classList.remove('active'); container.innerHTML = ''; }, 300);
+        }
+
+        function showHint(message, duration = 1100) {
+            const hint = document.getElementById('hint-toast');
+            hint.innerText = message;
+            hint.classList.add('show');
+            clearTimeout(showHint.timer);
+            showHint.timer = setTimeout(() => hint.classList.remove('show'), duration);
+        }
+
+        function setupAiPresets() {
+            document.querySelectorAll('[data-scene-preset]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('[data-scene-preset]').forEach((node) => node.classList.remove('active'));
+                    button.classList.add('active');
+                    aiScenePreset = button.dataset.scenePreset || '';
+                });
+            });
+            document.querySelectorAll('[data-background-preset]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('[data-background-preset]').forEach((node) => node.classList.remove('active'));
+                    button.classList.add('active');
+                    aiBackgroundPreset = button.dataset.backgroundPreset || '';
+                });
+            });
+        }
+
+        const STYLE_LABELS = {
+            casual: '休闲日常',
+            business: '商务通勤',
+            street: '街头潮流',
+            vintage: '复古文艺',
+            sporty: '运动机能',
+            minimal: '简约干净',
+            custom: '自定义风格'
+        };
+
+        function resolveUserStyle(userInfo) {
+            const preset = userInfo.style || 'casual';
+            const custom = (userInfo.styleCustom || '').trim();
+            if (preset === 'custom') return custom || 'casual everyday style';
+            const label = STYLE_LABELS[preset] || preset;
+            return custom ? `${label}; user detail: ${custom}` : label;
+        }
+
+        function defaultScenePreset(userInfo) {
+            const style = resolveUserStyle(userInfo);
+            const season = userInfo.season ? `; comfort preference: ${userInfo.season}` : '';
+            const notes = userInfo.notes ? `; extra preference: ${userInfo.notes}` : '';
+            return `default personal style: ${style}${season}${notes}`;
+        }
+
+        async function createHardwareTask(type, itemIds = [], payload = {}) {
+            const response = await fetch(`${API_BASE}/api/tasks`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type, item_ids: itemIds, payload })
+            });
+            if (!response.ok) throw new Error('Task queue failed');
+            return response.json();
+        }
+
+        async function loadTaskFlow() {
+            const list = document.getElementById('task-list');
+            if (!list) return;
+            try {
+                const response = await fetch(`${API_BASE}/api/tasks`, { cache: 'no-store' });
+                if (!response.ok) throw new Error('Task fetch failed');
+                taskSnapshot = await response.json();
+                renderTaskFlow();
+            } catch (error) {
+                list.innerHTML = '<div class="debug-banner"><p>任务流读取失败</p></div>';
+            }
+        }
+
+        function renderTaskFlow() {
+            const list = document.getElementById('task-list');
+            if (!list) return;
+            if (!taskSnapshot.length) {
+                list.innerHTML = '<div class="debug-banner"><p>暂无云端任务</p></div>';
+                return;
+            }
+            list.innerHTML = taskSnapshot.map((task) => {
+                const ids = (task.item_ids || []).join(', ') || '-';
+                return `
+                    <div class="task-row">
+                        <div>
+                            <div class="task-title">${escapeHtml(task.type)} · ${escapeHtml(task.status || 'pending')}</div>
+                            <div class="task-meta">ID: ${escapeHtml(task.id)}<br>衣物: ${escapeHtml(ids)}<br>${escapeHtml(JSON.stringify(task.payload || {}))}</div>
+                        </div>
+                        <div class="task-actions">
+                            <select data-task-type="${escapeHtml(task.id)}">
+                                <option value="fetch" ${task.type === 'fetch' ? 'selected' : ''}>取衣</option>
+                                <option value="store-new" ${task.type === 'store-new' ? 'selected' : ''}>新入库</option>
+                                <option value="store-return" ${task.type === 'store-return' ? 'selected' : ''}>归还</option>
+                            </select>
+                            <button data-task-status="${escapeHtml(task.id)}">${task.status === 'paused' ? '恢复' : '暂停'}</button>
+                            <button class="danger" data-task-delete="${escapeHtml(task.id)}">删除</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            list.querySelectorAll('[data-task-type]').forEach((select) => {
+                select.addEventListener('change', () => updateTaskFlow(select.dataset.taskType, { type: select.value }));
+            });
+            list.querySelectorAll('[data-task-status]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const task = taskSnapshot.find((item) => item.id === button.dataset.taskStatus);
+                    updateTaskFlow(button.dataset.taskStatus, { status: task && task.status === 'paused' ? 'pending' : 'paused' });
+                });
+            });
+            list.querySelectorAll('[data-task-delete]').forEach((button) => {
+                button.addEventListener('click', () => deleteTaskFlow(button.dataset.taskDelete));
+            });
+        }
+
+        async function updateTaskFlow(taskId, patch) {
+            try {
+                const current = taskSnapshot.find((task) => task.id === taskId) || {};
+                const response = await fetch(`${API_BASE}/api/tasks/${encodeURIComponent(taskId)}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: patch.type || current.type,
+                        status: patch.status || current.status || 'pending',
+                        item_ids: current.item_ids || [],
+                        payload: current.payload || {}
+                    })
+                });
+                if (!response.ok) throw new Error('Task update failed');
+                await loadTaskFlow();
+                showHint('任务已更新');
+            } catch (error) {
+                showToast('任务修改失败', 'error');
+            }
+        }
+
+        async function deleteTaskFlow(taskId) {
+            try {
+                const response = await fetch(`${API_BASE}/api/tasks/${encodeURIComponent(taskId)}`, { method: 'DELETE' });
+                if (!response.ok) throw new Error('Task delete failed');
+                await loadTaskFlow();
+                showHint('任务已删除');
+            } catch (error) {
+                showToast('任务删除失败', 'error');
+            }
+        }
+
+        async function createDebugTask(type) {
+            let itemIds = [];
+            if (type === 'fetch') {
+                const availableIds = new Set(
+                    wardrobeSnapshot
+                        .filter(item => item.status === 'in-wardrobe')
+                        .map(item => item.id)
+                );
+                itemIds = Array.from(selectedDebugItems).filter(id => availableIds.has(id));
+                if (!itemIds.length) {
+                    showToast('请先在调试列表选择在柜衣物', 'warning');
+                    return;
+                }
+            }
+            try {
+                await createHardwareTask(type, itemIds, { source: 'app-debug' });
+                if (type === 'fetch') selectedDebugItems.clear();
+                await loadTaskFlow();
+                renderDebugData();
+                showHint('任务已创建');
+            } catch (error) {
+                showToast('任务创建失败', 'error');
+            }
+        }
+
+        function careApiUrl(path) {
+            const base = (careGatewayBase || API_BASE).replace(/\/$/, '');
+            return `${base}${path}`;
+        }
+
+        function clampNumber(value, fallback, min, max) {
+            const number = Number(value);
+            if (!Number.isFinite(number)) return fallback;
+            return Math.max(min, Math.min(max, Math.round(number)));
+        }
+
+        function normalizeCareTimeValue(value) {
+            const parts = String(value || '').split(':');
+            const hour = Math.max(0, Math.min(23, Number(parts[0] || 9)));
+            const minute = Math.max(0, Math.min(59, Number(parts[1] || 0)));
+            const safeHour = Number.isFinite(hour) ? hour : 9;
+            const safeMinute = Number.isFinite(minute) ? minute : 0;
+            return `${String(safeHour).padStart(2, '0')}:${String(safeMinute).padStart(2, '0')}`;
+        }
+
+        function optionalCareTimeValue(value) {
+            const text = String(value || '').trim();
+            return text ? normalizeCareTimeValue(text) : '';
+        }
+
+        function careScheduleTimes(schedule) {
+            const raw = Array.isArray(schedule && schedule.times) && schedule.times.length ? schedule.times : [schedule && schedule.time || '09:00'];
+            const times = [];
+            raw.forEach((time) => {
+                const value = normalizeCareTimeValue(time);
+                if (!times.includes(value)) times.push(value);
+            });
+            return times.length ? times : ['09:00'];
+        }
+
+        function readCareTimes() {
+            const times = [];
+            document.querySelectorAll('[data-care-time]').forEach((input) => {
+                const value = normalizeCareTimeValue(input.value);
+                if (!times.includes(value)) times.push(value);
+            });
+            return times.length ? times : ['09:00'];
+        }
+
+        function renderCareTimeInputs(times) {
+            const list = document.getElementById('care-schedule-times');
+            if (!list) return;
+            const values = (times && times.length ? times : ['09:00']).map(normalizeCareTimeValue);
+            list.innerHTML = values.map((time, index) => `
+                <div class="care-time-chip">
+                    <input type="time" data-care-time value="${escapeHtml(time)}">
+                    <button data-care-time-delete="${index}">×</button>
+                </div>
+            `).join('');
+            list.querySelectorAll('[data-care-time-delete]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const current = readCareTimes();
+                    if (current.length <= 1) return renderCareTimeInputs(['09:00']);
+                    current.splice(Number(button.dataset.careTimeDelete), 1);
+                    renderCareTimeInputs(current);
+                });
+            });
+        }
+
+        function addCareScheduleTime() {
+            const current = readCareTimes();
+            const presets = ['09:00', '12:00', '18:00', '21:00'];
+            const next = presets.find((time) => !current.includes(time)) || current[current.length - 1] || '09:00';
+            if (!current.includes(next)) current.push(next);
+            renderCareTimeInputs(current);
+        }
+
+        function deviceText(devices) {
+            const map = { hot_air: '热风', uv: '紫外', vent: '通风', ionizer: '负离子预留' };
+            return (devices || []).map((item) => map[item] || item).join('、') || '未选择';
+        }
+
+        function weekdayText(weekdays) {
+            const names = ['一', '二', '三', '四', '五', '六', '日'];
+            if (!weekdays || !weekdays.length || weekdays.length >= 7) return '每天';
+            return weekdays.map((day) => names[day] || '').filter(Boolean).join('、');
+        }
+
+        function skipReasonText(reason) {
+            const map = { quiet_window: '免打扰跳过', min_interval: '重复间隔跳过', already_running: '运行中跳过' };
+            return map[reason] || '已跳过';
+        }
+
+        function scheduleRunText(schedule) {
+            if (Number(schedule && schedule.running_until || 0) * 1000 > Date.now()) return '运行中';
+            if (schedule && schedule.last_result === 'skipped') return skipReasonText(schedule.last_skip_reason);
+            if (schedule && schedule.last_result === 'running') return '已启动';
+            if (schedule && schedule.last_result === 'stopped') return '已停止';
+            return schedule && schedule.enabled === false ? '暂停' : '待执行';
+        }
+
+        function readCareScheduleForm() {
+            const devices = Array.from(document.querySelectorAll('[data-care-device]'))
+                .filter((input) => input.checked)
+                .map((input) => input.dataset.careDevice);
+            const weekdays = Array.from(document.querySelectorAll('[data-care-weekday]'))
+                .filter((input) => input.checked)
+                .map((input) => Number(input.dataset.careWeekday));
+            const times = readCareTimes();
+            return {
+                id: editCareScheduleId || 'daily-care',
+                name: document.getElementById('care-schedule-name').value.trim() || '每日养护',
+                enabled: document.getElementById('care-schedule-enabled').value === '1',
+                time: times[0],
+                times,
+                duration_minutes: clampNumber(document.getElementById('care-schedule-duration').value, 15, 1, 180),
+                stagger_seconds: clampNumber(document.getElementById('care-schedule-stagger').value, 0, 0, 300),
+                min_interval_minutes: clampNumber(document.getElementById('care-schedule-min-interval').value, 0, 0, 1440),
+                quiet_start: optionalCareTimeValue(document.getElementById('care-schedule-quiet-start').value),
+                quiet_end: optionalCareTimeValue(document.getElementById('care-schedule-quiet-end').value),
+                devices,
+                weekdays,
+            };
+        }
+
+        function fillCareScheduleForm(schedule) {
+            editCareScheduleId = schedule.id || 'daily-care';
+            document.getElementById('care-schedule-name').value = schedule.name || '每日养护';
+            document.getElementById('care-schedule-enabled').value = schedule.enabled === false ? '0' : '1';
+            renderCareTimeInputs(careScheduleTimes(schedule));
+            document.getElementById('care-schedule-duration').value = schedule.duration_minutes || 15;
+            document.getElementById('care-schedule-stagger').value = schedule.stagger_seconds || 0;
+            document.getElementById('care-schedule-min-interval').value = schedule.min_interval_minutes || 0;
+            document.getElementById('care-schedule-quiet-start').value = schedule.quiet_start || '';
+            document.getElementById('care-schedule-quiet-end').value = schedule.quiet_end || '';
+            const devices = new Set(schedule.devices || []);
+            document.querySelectorAll('[data-care-device]').forEach((input) => { input.checked = devices.has(input.dataset.careDevice); });
+            const weekdays = new Set(schedule.weekdays || []);
+            document.querySelectorAll('[data-care-weekday]').forEach((input) => { input.checked = weekdays.has(Number(input.dataset.careWeekday)); });
+        }
+
+        function renderCareSchedules() {
+            const list = document.getElementById('care-schedule-list');
+            if (!list) return;
+            if (!careSchedules.length) {
+                list.innerHTML = '<div class="care-schedule-item"><div><strong>暂无计划</strong><span>保存后会在树莓派网关生效</span></div></div>';
+                return;
+            }
+            list.innerHTML = careSchedules.map((schedule) => {
+                const status = schedule.enabled ? '启用' : '暂停';
+                const times = careScheduleTimes(schedule).join('、');
+                const advanced = [];
+                if (Number(schedule.stagger_seconds || 0) > 0) advanced.push(`启动间隔${schedule.stagger_seconds}秒`);
+                if (Number(schedule.min_interval_minutes || 0) > 0) advanced.push(`重复间隔${schedule.min_interval_minutes}分`);
+                if (schedule.quiet_start && schedule.quiet_end) advanced.push(`免打扰${schedule.quiet_start}-${schedule.quiet_end}`);
+                const tail = [status, scheduleRunText(schedule), ...advanced].filter(Boolean).join(' · ');
+                return `
+                    <div class="care-schedule-item">
+                        <div>
+                            <strong>${escapeHtml(schedule.name || '自动养护')}</strong>
+                            <span>${escapeHtml(times)} · ${schedule.duration_minutes || 0}分钟 · ${escapeHtml(weekdayText(schedule.weekdays))}<br>${escapeHtml(deviceText(schedule.devices))} · ${escapeHtml(tail)}</span>
+                        </div>
+                        <div class="care-schedule-item-actions">
+                            <button data-care-schedule-edit="${escapeHtml(schedule.id)}">编辑</button>
+                            <button class="danger" data-care-schedule-delete="${escapeHtml(schedule.id)}">删除</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            list.querySelectorAll('[data-care-schedule-edit]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const schedule = careSchedules.find((item) => item.id === button.dataset.careScheduleEdit);
+                    if (schedule) fillCareScheduleForm(schedule);
+                });
+            });
+            list.querySelectorAll('[data-care-schedule-delete]').forEach((button) => {
+                button.addEventListener('click', () => deleteCareSchedule(button.dataset.careScheduleDelete));
+            });
+        }
+
+        function initCareSchedules() {
+            const input = document.getElementById('care-gateway-url');
+            if (input) input.value = careGatewayBase;
+            renderCareTimeInputs(['09:00']);
+            loadCareSchedules();
+        }
+
+        function saveCareGatewayUrl() {
+            const input = document.getElementById('care-gateway-url');
+            const value = String(input.value || '').trim().replace(/\/$/, '');
+            if (!/^https?:\/\//.test(value)) return showToast('请输入 http:// 开头的网关地址', 'warning');
+            careGatewayBase = value;
+            localStorage.setItem('careGatewayBase', careGatewayBase);
+            showHint('网关地址已保存');
+            loadCareSchedules();
+        }
+
+        async function loadCareSchedules() {
+            const status = document.getElementById('care-schedule-status');
+            try {
+                const response = await fetch(careApiUrl('/api/care/schedules'), { cache: 'no-store' });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                careSchedules = Array.isArray(data.schedules) ? data.schedules : [];
+                if (status) status.innerText = '已连接网关';
+                if (careSchedules.length) fillCareScheduleForm(careSchedules[0]);
+            } catch (error) {
+                careSchedules = [];
+                if (status) status.innerText = '请检查网关地址';
+            }
+            renderCareSchedules();
+        }
+
+        async function saveCareSchedule() {
+            const schedule = readCareScheduleForm();
+            if (!schedule.devices.length) return showToast('至少选择一个养护设备', 'warning');
+            try {
+                const response = await fetch(careApiUrl('/api/care/schedules'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(schedule),
+                });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                const saved = data.schedule || schedule;
+                careSchedules = [saved, ...careSchedules.filter((item) => item.id !== saved.id)];
+                fillCareScheduleForm(saved);
+                renderCareSchedules();
+                showToast('自动养护计划已保存', 'success');
+            } catch (error) {
+                showToast('计划保存失败，请检查网关地址', 'error');
+            }
+        }
+
+        async function runCareScheduleNow() {
+            const schedule = readCareScheduleForm();
+            if (!schedule.devices.length) return showToast('至少选择一个养护设备', 'warning');
+            try {
+                const response = await fetch(careApiUrl('/api/care/schedules/run'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(schedule),
+                });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                await loadCareSchedules();
+                showToast('试运行已下发', 'success');
+            } catch (error) {
+                showToast('试运行失败，请检查网关地址', 'error');
+            }
+        }
+
+        async function deleteCareSchedule(scheduleId) {
+            if (!scheduleId) return;
+            try {
+                const response = await fetch(careApiUrl(`/api/care/schedules/${encodeURIComponent(scheduleId)}`), { method: 'DELETE' });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                careSchedules = careSchedules.filter((item) => item.id !== scheduleId);
+                renderCareSchedules();
+                showHint('计划已删除');
+            } catch (error) {
+                showToast('计划删除失败', 'error');
+            }
+        }
+
+        function drawCareChart() {
+            const canvas = document.getElementById('care-pressure-chart');
+            if (!canvas) return;
+            const rect = canvas.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            const width = Math.max(320, Math.floor(rect.width || canvas.clientWidth || 640));
+            const height = Math.max(180, Math.floor(rect.height || canvas.clientHeight || 320));
+            if (canvas.width !== Math.floor(width * dpr) || canvas.height !== Math.floor(height * dpr)) {
+                canvas.width = Math.floor(width * dpr);
+                canvas.height = Math.floor(height * dpr);
+            }
+            const ctx = canvas.getContext('2d');
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.clearRect(0, 0, width, height);
+            ctx.strokeStyle = '#dfe5ea';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < 5; i += 1) {
+                const y = 18 + (height - 36) * (i / 4);
+                ctx.beginPath();
+                ctx.moveTo(12, y);
+                ctx.lineTo(width - 12, y);
+                ctx.stroke();
+            }
+            const min = 18;
+            const max = 42;
+            const step = (width - 24) / Math.max(1, carePressurePoints.length - 1);
+            ctx.beginPath();
+            carePressurePoints.forEach((value, index) => {
+                const x = 12 + index * step;
+                const y = height - 18 - ((value - min) / (max - min)) * (height - 36);
+                if (index === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.strokeStyle = '#8a9a5b';
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.stroke();
+
+            const latest = carePressurePoints[carePressurePoints.length - 1];
+            const peak = Math.max(...carePressurePoints);
+            document.getElementById('care-pressure-value').innerHTML = `${latest.toFixed(1)}<span>压力 kPa</span>`;
+            document.getElementById('care-peak-value').innerText = peak.toFixed(1);
+            document.getElementById('care-bag-state').innerText = latest > 37 ? '偏紧' : latest < 22 ? '偏松' : '正常';
+        }
+
+        function startCareChart() {
+            drawCareChart();
+            if (careChartTimer) return;
+            loadCarePressure();
+            careChartTimer = setInterval(loadCarePressure, 2000);
+        }
+
+        async function loadCarePressure() {
+            try {
+                const response = await fetch(careApiUrl('/api/care/pressure'), { cache: 'no-store' });
+                if (!response.ok) throw new Error('care pressure failed');
+                const data = await response.json();
+                if (Array.isArray(data.points) && data.points.length) {
+                    carePressurePoints = data.points.map(Number).filter(value => Number.isFinite(value));
+                }
+            } catch (error) {
+                const last = carePressurePoints[carePressurePoints.length - 1] || 28;
+                const next = Math.max(19, Math.min(41, last + (Math.random() - 0.45) * 3 + Math.sin(Date.now() / 2400)));
+                carePressurePoints.push(next);
+                if (carePressurePoints.length > 42) carePressurePoints.shift();
+            }
+            drawCareChart();
+        }
+
+        window.onload = () => {
+            if (localStorage.getItem('userInfo')) {
+                document.getElementById('init-modal').style.display = 'none';
+            }
+            document.getElementById('user-style').addEventListener('change', () => {
+                const input = document.getElementById('user-style-custom');
+                if (document.getElementById('user-style').value === 'custom') input.focus();
+            });
+            setupAiPresets();
+            initCareSchedules();
+            startCareChart();
+            loadAiPhotos();
+            loadLastAiResult();
+            fetchAndRenderWardrobe();
+            wardrobeSyncTimer = setInterval(fetchAndRenderWardrobe, 5000);
+            aiSyncTimer = setInterval(loadLastAiResult, 3000);
+        }
+
+        async function fetchAndRenderWardrobe() {
+            try {
+                const response = await fetch(`${API_BASE}/api/wardrobe`, { cache: 'no-store' });
+                if (!response.ok) throw new Error('网络请求失败');
+                const data = await response.json();
+                wardrobeSnapshot = data;
+                const signature = wardrobeSignature(data);
+                if (signature === wardrobeRenderSignature) {
+                    renderDebugData();
+                    return;
+                }
+                wardrobeRenderSignature = signature;
+
+                const container = document.getElementById('wardrobe-container');
+                container.innerHTML = '';
+
+                data.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'clothes-card';
+                    card.id = item.id;
+                    if (item.status === 'in-use') {
+                        card.classList.add('in-use');
+                    }
+                    const imageStatus = item.image_status || 'done';
+                    const processing = imageStatus === 'processing';
+                    const justDone = imageStatus === 'done' && item.clean_img && flatImageProcessingIds.has(item.id) && !seenFlatImageDoneIds.has(item.id);
+                    const overlay = processing || justDone ? `
+                        <div class="generation-overlay ${justDone ? 'done' : ''}">
+                            <div class="generation-ring"></div>
+                            <span>${justDone ? '平整图已生成' : '正在生成平整图'}</span>
+                        </div>
+                    ` : '';
+                    card.innerHTML = `
+                        ${imageWithFallback(itemImageUrl(item), item.name, '', itemFallbackImageUrl(item))}
+                        ${overlay}
+                        <div class="info">${escapeHtml(item.name)}</div>
+                    `;
+                    if (processing) {
+                        flatImageProcessingIds.add(item.id);
+                    } else if (justDone) {
+                        flatImageProcessingIds.delete(item.id);
+                        rememberFlatImageDone(item.id);
+                        setTimeout(() => {
+                            const doneOverlay = card.querySelector('.generation-overlay.done');
+                            if (doneOverlay) doneOverlay.remove();
+                        }, 1300);
+                    } else if (imageStatus === 'done' || imageStatus === 'failed') {
+                        flatImageProcessingIds.delete(item.id);
+                    }
+                    card.onclick = function () { toggleSelect(this); };
+                    container.appendChild(card);
+                    setupSingleCardInteraction(card);
+                });
+                updateFetchButtonState();
+                renderDebugData();
+            } catch (error) {
+                console.error("加载失败:", error);
+                showToast("连接后端失败，请确认后端已启动", "error");
+            }
+        }
+
+        // --- 修复了嵌套双引号的提示语 ---
+        function handleSimulateCameraUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // 使用模板字符串反引号，避免引号冲突
+            showToast(`衣橱入口摄像头正在分析新衣物...<br><span style="font-size:12px;font-weight:normal;">(正在调用 Gemini 视觉模型)</span>`, "loading", 0);
+
+            const reader = new FileReader();
+            reader.onload = async function (e) {
+                const base64Str = e.target.result;
+
+                try {
+                    const response = await fetch(`${API_BASE}/api/wardrobe/add`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ image_base64: base64Str })
+                    });
+
+                    if (!response.ok) throw new Error('视觉识别失败');
+                    const data = await response.json();
+
+                    await fetchAndRenderWardrobe();
+
+                    showToast(`✅ 自动入库成功！<br><span style="font-size:12px;font-weight:normal;">识别结果: ${data.item.name}</span>`, "success", 2500);
+
+                } catch (error) {
+                    console.error("上传失败:", error);
+                    showToast("识别失败，请检查后端或 API Key", "error");
+                }
+            };
+            reader.readAsDataURL(file);
+            event.target.value = '';
+        }
+
+        function renderDebugData() {
+            const list = document.getElementById('debug-list');
+            if (!list) return;
+
+            const items = wardrobeSnapshot.filter(item => item.status !== 'deleted');
+            const inItems = items.filter(item => item.status === 'in-wardrobe');
+            const outItems = items.filter(item => item.status === 'in-use');
+            const validIds = new Set(items.map(item => item.id));
+            selectedDebugItems.forEach(id => {
+                if (!validIds.has(id)) selectedDebugItems.delete(id);
+            });
+
+            document.getElementById('debug-total-count').innerText = `${selectedDebugItems.size}/${items.length}`;
+            document.getElementById('debug-in-count').innerText = inItems.length;
+            document.getElementById('debug-out-count').innerText = outItems.length;
+
+            if (!items.length) {
+                list.innerHTML = '<div class="debug-banner"><p>后台暂无衣柜数据</p></div>';
+                return;
+            }
+
+            list.innerHTML = items.map((item, index) => {
+                const inWardrobe = item.status === 'in-wardrobe';
+                const nextStatus = inWardrobe ? 'in-use' : 'in-wardrobe';
+                const actionText = inWardrobe ? '设为出库' : '设为入库';
+                const checked = selectedDebugItems.has(item.id) ? 'checked' : '';
+                const img = item.img || item.original_img
+                    ? imageWithFallback(itemImageUrl(item), item.name, 'debug-thumb', itemFallbackImageUrl(item))
+                    : '<span class="debug-thumb"></span>';
+                return `
+                    <div class="debug-row">
+                        <input class="debug-check" type="checkbox" data-debug-check="${escapeHtml(item.id)}" ${checked}>
+                        ${img}
+                        <div>
+                            <div class="debug-title">${escapeHtml(item.name || `未命名衣物${index + 1}`)}</div>
+                            <div class="debug-meta">ID: ${escapeHtml(item.id)} / 位置: ${escapeHtml(item.position || index + 1)}号仓<br>${escapeHtml(item.desc || item.details || '暂无描述')}</div>
+                        </div>
+                        <div class="debug-side">
+                            <span class="debug-status ${inWardrobe ? '' : 'out'}">${inWardrobe ? '在柜' : '已取出'}</span>
+                            <button class="debug-status-btn ${inWardrobe ? 'out' : ''}" data-debug-status="${escapeHtml(item.id)}" data-status="${nextStatus}">${actionText}</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            list.querySelectorAll('[data-debug-status]').forEach(button => {
+                button.addEventListener('click', () => updateDebugItemStatus(button.dataset.debugStatus, button.dataset.status));
+            });
+            list.querySelectorAll('[data-debug-check]').forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    if (checkbox.checked) selectedDebugItems.add(checkbox.dataset.debugCheck);
+                    else selectedDebugItems.delete(checkbox.dataset.debugCheck);
+                    renderDebugData();
+                });
+            });
+        }
+
+        async function simulateDebugStore() {
+            const stamp = new Date().toLocaleTimeString('zh-CN', { hour12: false }).replaceAll(':', '');
+            showToast('正在模拟硬件端入库...', 'loading', 0);
+            try {
+                const response = await fetch(`${API_BASE}/api/hardware/store`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        mode: 'new',
+                        name: `调试衣物${stamp}`,
+                        desc: 'App 调试中心模拟入库记录',
+                        img: ''
+                    })
+                });
+                if (!response.ok) throw new Error('模拟入库失败');
+                await fetchAndRenderWardrobe();
+                showToast('模拟入库成功', 'success');
+            } catch (error) {
+                console.error(error);
+                showToast('模拟入库失败，请检查后端', 'error');
+            }
+        }
+
+        async function updateDebugItemStatus(itemId, status) {
+            showToast('正在调整衣物状态...', 'loading', 0);
+            try {
+                await updateStatusApi(itemId, status);
+                await fetchAndRenderWardrobe();
+                showToast(status === 'in-wardrobe' ? '已设为入库' : '已设为出库', 'success');
+            } catch (error) {
+                console.error(error);
+                showToast('状态调整失败，请检查后端', 'error');
+            }
+        }
+
+        function toggleDebugSelectAll() {
+            const items = wardrobeSnapshot.filter(item => item.status !== 'deleted');
+            if (selectedDebugItems.size === items.length) selectedDebugItems.clear();
+            else items.forEach(item => selectedDebugItems.add(item.id));
+            renderDebugData();
+        }
+
+        async function updateDebugBatch(status) {
+            const ids = Array.from(selectedDebugItems);
+            if (!ids.length) return showToast('请先选择调试衣物', 'warning');
+            showToast('正在执行批量操作...', 'loading', 0);
+            try {
+                await Promise.all(ids.map(id => updateStatusApi(id, status)));
+                selectedDebugItems.clear();
+                await fetchAndRenderWardrobe();
+                const text = status === 'deleted' ? '批量删除完成' : status === 'in-wardrobe' ? '批量入库完成' : '批量出库完成';
+                showToast(text, 'success');
+            } catch (error) {
+                console.error(error);
+                showToast('批量操作失败，请检查后端', 'error');
+            }
+        }
+
+        async function updateStatusApi(itemId, status) {
+            try {
+                const response = await fetch(`${API_BASE}/api/wardrobe/${itemId}/status`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: status })
+                });
+                if (!response.ok) throw new Error('更新失败');
+            } catch (error) {
+                showToast("状态同步失败", "error");
+                throw error;
+            }
+        }
+
+        const CIRCLE_CIRCUMFERENCE = 164;
+        const ACCEL_FWD = 2 / (1500 * 1500);
+        const ACCEL_BWD = 2 / (800 * 800);
+
+        function setupSingleCardInteraction(card) {
+            const overlay = document.createElement('div');
+            overlay.className = 'progress-overlay';
+            overlay.innerHTML = `
+                <svg class="progress-ring" width="60" height="60">
+                    <circle stroke="rgba(255,255,255,0.2)" stroke-width="4" fill="transparent" r="26" cx="30" cy="30"/>
+                    <circle class="progress-ring__circle" stroke="#ff4d4f" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" stroke-linecap="round"/>
+                </svg>
+                <i class="fas fa-trash-alt trash-icon"></i>
+            `;
+            card.appendChild(overlay);
+
+            card.ringCircle = overlay.querySelector('.progress-ring__circle');
+            card.pressProgress = 0; card.velocity = 0; card.animState = 'idle';
+
+            card.addEventListener('touchstart', handlePressStart, { passive: true });
+            card.addEventListener('mousedown', handlePressStart);
+            card.addEventListener('touchend', handlePressEnd);
+            card.addEventListener('touchcancel', handlePressEnd);
+            card.addEventListener('mouseup', handlePressEnd);
+            card.addEventListener('mouseleave', handlePressEnd);
+            card.addEventListener('contextmenu', e => { if (card.classList.contains('in-use')) e.preventDefault(); });
+        }
+
+        function updateRingDOM(card, progress) {
+            const offset = CIRCLE_CIRCUMFERENCE - (progress * CIRCLE_CIRCUMFERENCE);
+            card.ringCircle.style.strokeDashoffset = offset;
+        }
+
+        function animateRing(card, currentTime) {
+            if (card.animState === 'idle') { updateRingDOM(card, 0); return; }
+            const deltaTime = currentTime - card.lastAnimTime;
+            card.lastAnimTime = currentTime;
+
+            if (card.animState === 'pressing') {
+                card.velocity += ACCEL_FWD * deltaTime;
+                card.pressProgress += card.velocity * deltaTime;
+                if (card.pressProgress >= 1) {
+                    card.pressProgress = 1; card.animState = 'idle'; card.classList.remove('pressing');
+                    updateRingDOM(card, 1);
+                    removeClothesItem(card);
+                    return;
+                }
+            } else if (card.animState === 'releasing') {
+                card.velocity -= ACCEL_BWD * deltaTime;
+                card.pressProgress += card.velocity * deltaTime;
+                if (card.pressProgress <= 0) {
+                    card.pressProgress = 0; card.animState = 'idle'; card.classList.remove('pressing');
+                    updateRingDOM(card, 0);
+                    return;
+                }
+            }
+            updateRingDOM(card, card.pressProgress);
+            requestAnimationFrame((timestamp) => animateRing(card, timestamp));
+        }
+
+        function handlePressStart(e) {
+            const card = e.currentTarget;
+            if (!card.classList.contains('in-use')) return;
+            card.classList.add('pressing'); card.animState = 'pressing'; card.velocity = 0; card.lastAnimTime = performance.now();
+            requestAnimationFrame((timestamp) => animateRing(card, timestamp));
+        }
+
+        function handlePressEnd(e) {
+            const card = e.currentTarget;
+            if (!card.classList.contains('in-use')) return;
+            if (card.animState === 'pressing') {
+                card.animState = 'releasing'; card.velocity = 0; card.lastAnimTime = performance.now();
+            }
+        }
+
+        async function removeClothesItem(element) {
+            try {
+                await updateStatusApi(element.id, 'deleted');
+                element.remove();
+                showToast('衣物已彻底移出衣柜', 'success');
+                updateFetchButtonState();
+            } catch (e) { }
+        }
+
+        function getUserStyleInfo() {
+            const fallback = { style: 'casual', gender: 'male', season: 'normal', styleCustom: '', notes: '' };
+            try {
+                return { ...fallback, ...(JSON.parse(localStorage.getItem('userInfo') || '{}')) };
+            } catch (error) {
+                return fallback;
+            }
+        }
+
+        function saveUserInfo() {
+            const styleSelect = document.getElementById('user-style').value;
+            const styleCustom = document.getElementById('user-style-custom').value.trim();
+            const notes = document.getElementById('user-notes').value.trim();
+            const info = {
+                gender: document.getElementById('user-gender').value,
+                season: document.getElementById('user-season').value,
+                style: styleSelect,
+                styleCustom,
+                notes
+            };
+            localStorage.setItem('userInfo', JSON.stringify(info));
+            document.getElementById('init-modal').style.display = 'none';
+            showToast('设置保存成功', 'success');
+        }
+
+        function switchTab(pageId, element, title) {
+            if (pageId === 'debug' && !debugUnlocked) return;
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('page-' + pageId).classList.add('active');
+            element.classList.add('active');
+            document.getElementById('header-title').innerText = title;
+            if (pageId === 'debug') {
+                renderDebugData();
+                loadTaskFlow();
+            }
+            if (pageId === 'care') {
+                drawCareChart();
+                loadCareSchedules();
+            }
+        }
+
+        function registerAiDebugTap() {
+            if (debugUnlocked) return;
+            aiDebugTapCount += 1;
+            clearTimeout(aiDebugTapTimer);
+            aiDebugTapTimer = setTimeout(() => { aiDebugTapCount = 0; }, 2600);
+            if (aiDebugTapCount >= 10) {
+                aiDebugTapCount = 0;
+                debugUnlocked = true;
+                document.getElementById('debug-nav-item').classList.remove('hidden');
+                showToast('调试入口已开启', 'success');
+            } else if (aiDebugTapCount >= 5) {
+                showHint(`继续点击 AI推荐 ${10 - aiDebugTapCount} 次开启调试`);
+            }
+        }
+
+        async function toggleSelect(element) {
+            if (element.animState && element.animState !== 'idle') return;
+            if (!document.body.contains(element)) return;
+
+            if (element.classList.contains('in-use')) {
+                try {
+                    await createHardwareTask('store-return', [element.id], { source: 'app-card-return' });
+                    showToast('归还任务已加入云端队列', 'success');
+                } catch (e) {
+                    showToast('归还任务创建失败', 'error');
+                }
+                return;
+                try {
+                    await updateStatusApi(element.id, 'in-wardrobe');
+                    element.classList.remove('in-use');
+                    showToast('衣物已归还入库', 'success');
+                } catch (e) { }
+                return;
+            }
+
+            element.classList.toggle('selected');
+            updateFetchButtonState();
+        }
+
+        function updateFetchButtonState() {
+            const selectedCount = document.querySelectorAll('.clothes-card.selected').length;
+            const btnContainer = document.getElementById('fetch-btn-container');
+            const fetchBtn = document.getElementById('fetch-btn');
+            if (selectedCount > 0) { btnContainer.classList.add('active'); fetchBtn.innerText = `一键取衣 (${selectedCount}件)`; }
+            else { btnContainer.classList.remove('active'); }
+        }
+
+        async function fetchSelectedClothes() {
+            const selectedCards = document.querySelectorAll('.clothes-card.selected');
+            const itemIds = Array.from(selectedCards).map(card => card.id);
+            document.getElementById('fetch-btn-container').classList.remove('active');
+            showToast(`取衣任务创建中...<br><span style="font-size:12px;font-weight:normal;">正在写入云端队列。</span>`, 'loading', 0);
+            try {
+                await createHardwareTask('fetch', itemIds, { source: 'app' });
+                selectedCards.forEach(el => { el.classList.remove('selected'); });
+                showToast(`取衣任务已加入云端<br><span style="font-size:12px;font-weight:normal;">硬件端会轮询执行，断电断网恢复后继续。</span>`, 'success');
+            } catch (error) {
+                showToast("取衣任务创建失败", "error");
+            }
+            return;
+
+            document.getElementById('fetch-btn-container').classList.remove('active');
+            showToast(`指令已下发<br><span style="font-size:12px;font-weight:normal;">等待硬件响应...</span>`, 'loading', 0);
+
+            try {
+                const response = await fetch(`${API_BASE}/api/hardware/fetch`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ item_ids: itemIds })
+                });
+                if (!response.ok) throw new Error('请求失败');
+                selectedCards.forEach(el => { el.classList.remove('selected'); el.classList.add('in-use'); });
+                showToast(`✅ 出库成功！<br><span style="font-size:12px;font-weight:normal;">请从取衣口拿走衣物。</span>`, 'success');
+            } catch (error) { showToast("出库指令发送失败", "error"); }
+        }
+
+        let recognizing = false; let recognition = null; let finalTranscript = '';
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = true; recognition.interimResults = true; recognition.lang = 'zh-CN';
+            recognition.onstart = () => { recognizing = true; finalTranscript = ''; document.getElementById('ai-input').value = ''; document.getElementById('voice-btn').classList.add('active'); document.getElementById('ai-input').placeholder = "正在聆听，请说话..."; };
+            recognition.onresult = (event) => {
+                let interimTranscript = '';
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) finalTranscript += event.results[i][0].transcript;
+                    else interimTranscript += event.results[i][0].transcript;
+                }
+                document.getElementById('ai-input').value = finalTranscript + interimTranscript;
+            };
+            recognition.onerror = () => { showToast("语音识别错误或无权限", 'error'); recognizing = false; document.getElementById('voice-btn').classList.remove('active'); };
+            recognition.onend = () => { recognizing = false; document.getElementById('voice-btn').classList.remove('active'); document.getElementById('ai-input').placeholder = "输入文字或点击右侧语音..."; document.getElementById('ai-input').value = finalTranscript; };
+        }
+        function toggleVoice() { if (!recognition) return showToast("您的浏览器不支持语音识别", 'warning'); if (recognizing) { recognition.stop(); return; } recognition.start(); }
+
+        function renderAiPhotoHistory() {
+            const box = document.getElementById('ai-photo-history');
+            if (!box) return;
+            if (!aiPhotoHistory.length) {
+                box.innerHTML = '<span style="font-size:12px;color:var(--text-sub);">暂无历史全身照</span>';
+                return;
+            }
+            box.innerHTML = aiPhotoHistory.map(photo => `
+                <button class="ai-photo-chip ${photo.url === aiUserPhotoUrl ? 'active' : ''}" data-ai-photo-url="${escapeHtml(photo.url)}">
+                    ${escapeHtml(photo.name || '全身照')}
+                </button>
+            `).join('');
+            box.querySelectorAll('[data-ai-photo-url]').forEach(button => {
+                button.addEventListener('click', () => selectAiPhotoUrl(button.dataset.aiPhotoUrl, button.innerText.trim()));
+            });
+        }
+
+        async function loadAiPhotos() {
+            try {
+                const response = await fetch(`${API_BASE}/api/ai/photos`, { cache: 'no-store' });
+                if (!response.ok) throw new Error('photo list failed');
+                aiPhotoHistory = await response.json();
+                renderAiPhotoHistory();
+            } catch (error) {
+                aiPhotoHistory = [];
+                renderAiPhotoHistory();
+            }
+        }
+
+        function selectAiPhotoUrl(url, name) {
+            aiUserPhotoUrl = url || '';
+            aiUserPhotoBase64 = '';
+            document.getElementById('ai-photo-input').value = '';
+            document.getElementById('ai-photo-name').innerText = aiUserPhotoUrl ? `已选择：${name || '历史全身照'}` : '未上传全身照';
+            renderAiPhotoHistory();
+            if (aiUserPhotoUrl) showHint('已选择历史全身照');
+        }
+
+        async function handleAiUserPhoto(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = async function (e) {
+                aiUserPhotoBase64 = e.target.result || '';
+                aiUserPhotoUrl = '';
+                document.getElementById('ai-photo-name').innerText = aiUserPhotoBase64 ? `已上传：${file.name}` : '未上传全身照';
+                try {
+                    const response = await fetch(`${API_BASE}/api/ai/photos`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ image_base64: aiUserPhotoBase64, name: file.name || '全身照' })
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        aiUserPhotoUrl = data.photo && data.photo.url ? data.photo.url : '';
+                        aiUserPhotoBase64 = '';
+                        document.getElementById('ai-photo-name').innerText = aiUserPhotoUrl ? `已保存：${file.name}` : `已上传：${file.name}`;
+                        await loadAiPhotos();
+                    }
+                    showHint('全身照已保存，将生成试穿预览');
+                } catch (error) {
+                    showHint('全身照已载入，本次临时使用');
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearAiUserPhoto() {
+            aiUserPhotoBase64 = '';
+            aiUserPhotoUrl = '';
+            document.getElementById('ai-photo-input').value = '';
+            document.getElementById('ai-photo-name').innerText = '未上传全身照';
+            renderAiPhotoHistory();
+            showHint('已清除全身照');
+        }
+
+        function renderAiResult(data) {
+            if (!data || !Array.isArray(data.recommend_ids) || !data.recommend_ids.length) return false;
+            const signature = aiSignature(data);
+            if (signature === aiRenderSignature) return true;
+            aiRenderSignature = signature;
+            document.getElementById('ai-result').style.display = 'block';
+            document.getElementById('ai-text').innerText = data.text || '已生成搭配方案。';
+            const strip = document.getElementById('ai-selected-strip');
+            const items = Array.isArray(data.selected_items) ? data.selected_items : [];
+            strip.innerHTML = items.map(item => `
+                <div class="ai-mini-item">
+                    ${imageWithFallback(itemImageUrl(item), item.name || '', '', itemFallbackImageUrl(item))}
+                    <span>${escapeHtml(item.name || '衣物')}</span>
+                </div>
+            `).join('');
+            const img = document.getElementById('ai-preview-image');
+            const overlay = document.getElementById('ai-generation-overlay');
+            img.onerror = () => handleImageLoadError(img);
+            const previewSrc = versionedImageUrl(data.preview_img || '', data.updated_at || data.id || data.preview_img || '');
+            img.dataset.retrySrc = previewSrc;
+            img.dataset.retryCount = '0';
+            img.src = previewSrc;
+            const taskId = data.id || (data.recommend_ids || []).join(',');
+            const failed = data.preview_status === 'failed';
+            const processing = data.preview_status === 'processing';
+            const justDone = Boolean(data.preview_img) && data.preview_status === 'done' && taskId && !seenAiPreviewDoneIds.has(taskId);
+            overlay.style.display = processing || justDone ? 'flex' : 'none';
+            overlay.classList.toggle('done', justDone);
+            overlay.querySelector('span').innerText = justDone ? '最终搭配图已生成' : '正在生成最终搭配图';
+            if (failed && !data.preview_img) {
+                img.removeAttribute('src');
+                showHint('AI 生成图失败，请重试');
+            }
+            if (justDone) {
+                rememberAiPreviewDone(taskId);
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    overlay.classList.remove('done');
+                }, 1300);
+            }
+            currentAIRecommendationIds = data.recommend_ids || [];
+            return true;
+        }
+
+        async function loadLastAiResult() {
+            try {
+                const response = await fetch(`${API_BASE}/api/ai/last`, { cache: 'no-store' });
+                if (!response.ok) throw new Error('last ai failed');
+                const data = await response.json();
+                if (!data || !Array.isArray(data.recommend_ids) || !data.recommend_ids.length) {
+                    if (aiRenderSignature !== 'empty') {
+                        aiRenderSignature = 'empty';
+                        currentAIRecommendationIds = [];
+                        document.getElementById('ai-result').style.display = 'none';
+                        document.getElementById('ai-selected-strip').innerHTML = '';
+                        document.getElementById('ai-preview-image').src = '';
+                        const overlay = document.getElementById('ai-generation-overlay');
+                        overlay.style.display = 'none';
+                        overlay.classList.remove('done');
+                    }
+                    return;
+                }
+                renderAiResult(data);
+                if (data.preview_status === 'processing') {
+                    setTimeout(loadLastAiResult, 1200);
+                }
+            } catch (error) {
+                currentAIRecommendationIds = [];
+            }
+        }
+
+        async function generateOutfit() {
+            const reqText = document.getElementById('ai-input').value.trim();
+            const btn = document.getElementById('generate-btn');
+            const userInfo = getUserStyleInfo();
+            const resolvedStyle = resolveUserStyle(userInfo);
+            const resolvedScenePreset = aiScenePreset || defaultScenePreset(userInfo);
+            const requestText = reqText || '根据我的默认风格推荐一套';
+            const userStylePayload = [
+                `style: ${resolvedStyle}`,
+                `gender preference: ${userInfo.gender}`,
+                `comfort preference: ${userInfo.season || 'normal'}`,
+                userInfo.notes ? `extra preference: ${userInfo.notes}` : ''
+            ].filter(Boolean).join('; ');
+
+            document.getElementById('ai-result').style.display = 'block';
+            document.getElementById('ai-text').innerText = 'AI 正在选择衣柜内的衣服，稍后会先展示已选衣物。';
+            document.getElementById('ai-selected-strip').innerHTML = '';
+            document.getElementById('ai-preview-image').src = '';
+            const overlay = document.getElementById('ai-generation-overlay');
+            overlay.style.display = 'flex';
+            overlay.classList.remove('done');
+            overlay.querySelector('span').innerText = '正在生成最终搭配图';
+            btn.innerText = "AI 正在搭配思考中...";
+
+            try {
+                const response = await fetch(`${API_BASE}/api/ai/generate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_request: requestText,
+                        user_style: userStylePayload,
+                        user_photo_base64: aiUserPhotoBase64 || undefined,
+                        user_photo_url: aiUserPhotoUrl || undefined,
+                        scene_preset: resolvedScenePreset || undefined,
+                        background_preset: aiBackgroundPreset || undefined
+                    })
+                });
+                if (!response.ok) throw new Error('API错误');
+                const data = await response.json();
+
+                renderAiResult(data);
+                if (data.preview_status === 'processing') {
+                    setTimeout(loadLastAiResult, 1200);
+                }
+                btn.innerText = "开始智能搭配";
+            } catch (error) { showToast("获取搭配失败", "error"); btn.innerText = "开始智能搭配"; }
+        }
+
+        async function confirmAIFetch() {
+            if (currentAIRecommendationIds.length === 0) return showToast("没有可供出库的衣物", "warning");
+            closeAIResult();
+            try {
+                await createHardwareTask('fetch', currentAIRecommendationIds, { source: 'app-ai' });
+                showToast(`AI 搭配取衣任务已加入云端队列<br><span style="font-size:12px;font-weight:normal;">硬件端完成后会回写衣物状态。</span>`, 'success');
+            } catch (error) {
+                showToast("AI 取衣任务创建失败", "error");
+            }
+            return;
+            showToast(`搭配指令已下发<br><span style="font-size:12px;font-weight:normal;">等待硬件响应...</span>`, 'loading', 0);
+            try {
+                const response = await fetch(`${API_BASE}/api/hardware/fetch`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ item_ids: currentAIRecommendationIds })
+                });
+                if (!response.ok) throw new Error('请求失败');
+                currentAIRecommendationIds.forEach(id => {
+                    const card = document.getElementById(id);
+                    if (card) card.classList.add('in-use');
+                });
+                showToast(`✅ 搭配出库完成！<br><span style="font-size:12px;font-weight:normal;">成功移出衣物。</span>`, 'success');
+            } catch (error) { showToast("硬件执行出库失败", "error"); }
+        }
+
+        function closeAIResult() { document.getElementById('ai-result').style.display = 'none'; document.getElementById('ai-input').value = ''; }
+    </script>
+</body>
+
+</html>

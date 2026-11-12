@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>树莓派网关运动与任务直控台</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <section class="topbar">
+      <div>
+        <p class="eyebrow">Raspberry Pi Direct Control</p>
+        <h1>树莓派网关运动与任务直控台</h1>
+        <p class="subtitle">本页通过 MQTT 直达树莓派网关，再由树莓派转成串口命令控制主控1；触控屏的 /cloud 页面是云端任务页，不等同于本页直控。</p>
+      </div>
+      <div class="status-pill" id="connectionState">未连接</div>
+    </section>
+
+    <section class="panel connection-panel">
+      <div class="panel-title">
+        <h2>云端连接</h2>
+        <span>MQTT over WebSocket · 直控通道</span>
+      </div>
+      <div class="form-grid">
+        <label>
+          <span>Broker</span>
+          <input id="brokerUrl" value="wss://broker.emqx.io:8084/mqtt" autocomplete="off">
+        </label>
+        <label>
+          <span>命令主题</span>
+          <input id="commandTopic" value="smart_wardrobe/raspberry-pi-wardrobe-001/cmd" autocomplete="off">
+        </label>
+        <label>
+          <span>状态主题</span>
+          <input id="statusTopic" value="smart_wardrobe/raspberry-pi-wardrobe-001/status" autocomplete="off">
+        </label>
+        <label>
+          <span>Token</span>
+          <input id="token" placeholder="调试可留空" autocomplete="off">
+        </label>
+      </div>
+      <div class="actions">
+        <button class="primary" id="connectBtn" type="button">连接云端</button>
+        <button id="disconnectBtn" type="button">断开</button>
+        <button id="pingBtn" type="button">查询树莓派网关状态</button>
+      </div>
+    </section>
+
+    <section class="panel debug-panel">
+      <div class="panel-title">
+        <h2>调试快照</h2>
+        <span>连接状态主题后自动更新最近链路状态</span>
+      </div>
+      <div class="debug-grid">
+        <div class="debug-item">
+          <span>树莓派网关</span>
+          <strong id="debugGatewayStatus">等待状态</strong>
+        </div>
+        <div class="debug-item">
+          <span>主板1</span>
+          <strong id="debugBoard1Status">等待 @DBG1</strong>
+        </div>
+        <div class="debug-item">
+          <span>主板2</span>
+          <strong id="debugBoard2Status">等待 @DBG2</strong>
+        </div>
+        <div class="debug-item">
+          <span>链路</span>
+          <strong id="debugTraceStatus">等待 trace</strong>
+        </div>
+        <div class="debug-item">
+          <span>最近状态</span>
+          <strong id="debugLastStatus">暂无</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <section class="panel">
+        <div class="panel-title">
+          <h2>累计位置目标</h2>
+          <span>主板2按当前累计值自动计算差值</span>
+        </div>
+        <div class="target-grid">
+          <label>
+            <span>X 轴目标累计角度</span>
+            <input id="targetX" type="number" step="10" value="0">
+          </label>
+          <label>
+            <span>Y 轴目标累计角度</span>
+            <input id="targetY" type="number" step="10" value="0">
+          </label>
+          <label>
+            <span>Z 轴目标累计角度</span>
+            <input id="targetZ" type="number" step="1" value="0">
+          </label>
+          <label>
+            <span>伸缩轴目标累计角度</span>
+            <input id="targetTelescope" type="number" step="10" value="0">
+          </label>
+          <label>
+            <span>刷毛电机目标累计角度</span>
+            <input id="targetBrush" type="number" step="10" value="0">
+          </label>
+          <label>
+            <span>热风机移动目标累计角度</span>
+            <input id="targetHotAir" type="number" step="10" value="0">
+          </label>
+        </div>
+        <label class="inline-check">
+          <input id="enableBeforeMove" type="checkbox" checked>
+          <span>下发目标前自动使能相关电机</span>
+        </label>
+        <div class="button-grid">
+          <button class="primary" id="sendAxisTargetsBtn" type="button">发送电机目标</button>
+          <button id="zeroTargetsBtn" type="button">目标清零</button>
+          <button id="enableBtn" type="button">全部使能</button>
+          <button id="disableBtn" type="button">全部失能</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <h2>舵机与快捷动作</h2>
+          <span>舵机通道 1-4，舵机3=PWME，舵机4=PWMF</span>
+        </div>
+        <div class="target-grid two-col">
+          <label>
+            <span>舵机 1 角度</span>
+            <input id="servo1Angle" type="number" min="0" max="270" step="1" value="135">
+          </label>
+          <label>
+            <span>舵机 2 角度</span>
+            <input id="servo2Angle" type="number" min="0" max="270" step="1" value="135">
+          </label>
+          <label>
+            <span>舵机 3 角度（PWME）</span>
+            <input id="servo3Angle" type="number" min="0" max="270" step="1" value="135">
+          </label>
+          <label>
+            <span>舵机 4 角度（PWMF）</span>
+            <input id="servo4Angle" type="number" min="0" max="270" step="1" value="135">
+          </label>
+        </div>
+        <div class="button-grid">
+          <button class="primary" id="sendAllTargetsBtn" type="button">同时发送目标</button>
+          <button id="sendServoTargetsBtn" type="button">只发舵机目标</button>
+          <button id="centerServosBtn" type="button">舵机回中</button>
+          <button id="telescopeBtn" type="button">伸缩轴单步</button>
+          <button class="danger wide" id="emergencyBtn" type="button">急停</button>
+        </div>
+        <div class="button-grid servo-direct-grid">
+          <button id="sendServo1Btn" type="button">单发舵机1</button>
+          <button id="sendServo2Btn" type="button">单发舵机2</button>
+          <button id="sendServo3Btn" type="button">单发舵机3</button>
+          <button id="sendServo4Btn" type="button">单发舵机4</button>
+        </div>
+      </section>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h2>步进电机单独调试</h2>
+        <span>相对运动，树莓派网关转成 @MCMD 下发</span>
+      </div>
+      <div class="target-grid">
+        <label>
+          <span>伸缩杆单步角度（通道4 / 主板2 UART5 地址2）</span>
+          <input id="telescopeStepAngle" type="number" min="0" step="10" value="1000">
+        </label>
+        <label>
+          <span>刷毛单步角度（通道5 / 主板2 UART5 地址1）</span>
+          <input id="brushStepAngle" type="number" min="0" step="10" value="1000">
+        </label>
+        <label>
+          <span>热风机移动单步角度（通道6 / 主板1 UART4）</span>
+          <input id="hotAirStepAngle" type="number" min="0" step="10" value="1000">
+        </label>
+      </div>
+      <div class="button-grid three-col">
+        <button id="telescopeForwardBtn" type="button">伸缩杆正向</button>
+        <button id="telescopeReverseBtn" type="button">伸缩杆反向</button>
+        <button id="brushForwardBtn" type="button">刷毛正向</button>
+        <button id="brushReverseBtn" type="button">刷毛反向</button>
+        <button id="hotAirForwardBtn" type="button">热风机正向</button>
+        <button id="hotAirReverseBtn" type="button">热风机反向</button>
+      </div>
+    </section>
+
+    <section class="panel task-panel">
+      <div class="panel-title">
+        <h2>任务码直接控制</h2>
+        <span>网页发 JSON，树莓派网关转为 @ACMD|任务码|id</span>
+      </div>
+      <div class="task-layout">
+        <div class="task-grid">
+          <article class="task-card">
+            <span class="task-code">6</span>
+            <h3>自动放衣流程</h3>
+            <p>等价于主板2收到 USART6 数字 6，启动当前默认动作队列。</p>
+            <button class="primary" id="actionBtn" type="button">发送数字 6</button>
+          </article>
+          <article class="task-card">
+            <span class="task-code">7</span>
+            <h3>自动取衣流程</h3>
+            <p>等价于主板2收到 USART6 数字 7，启动取衣动作流程。</p>
+            <button class="primary" id="takeClothesBtn" type="button">发送数字 7</button>
+          </article>
+          <article class="task-card">
+            <span class="task-code">8</span>
+            <h3>风机移动启动</h3>
+            <p>网页下发任务码 8，主板1打开风机风扇、保持加热关闭，并通过串口4驱动风机移动电机。</p>
+            <button class="primary" id="fanMoveBtn" type="button">发送数字 8</button>
+          </article>
+          <article class="task-card">
+            <span class="task-code">9</span>
+            <h3>风机移动停止</h3>
+            <p>网页下发任务码 9，主板1停止串口4风机移动电机，并关闭风机风扇与加热输出。</p>
+            <button class="primary" id="fanStopBtn" type="button">发送数字 9</button>
+          </article>
+          <article class="task-card">
+            <span class="task-code">10</span>
+            <h3>刷毛清理动作</h3>
+            <p>发送任务码 10：舵机4到80度，刷毛电机到-18000，再回0，最后舵机4回150度。</p>
+            <button class="primary" id="brushCleanBtn" type="button">发送数字 10</button>
+          </article>
+          <article class="task-card output-card">
+            <span class="task-code">UV</span>
+            <h3>紫外灯</h3>
+            <p>主板1 DIRC 输出控制紫外灯：拉高亮灯，拉低关灯。</p>
+            <div class="button-grid compact-output-grid">
+              <button class="primary" id="uvLampOnBtn" type="button">打开紫外灯</button>
+              <button id="uvLampOffBtn" type="button">关闭紫外灯</button>
+            </div>
+          </article>
+          <article class="task-card output-card">
+            <span class="task-code">FAN</span>
+            <h3>换气风扇</h3>
+            <p>主板1 PWMB 输出控制换气风扇：拉高转动，拉低停止。</p>
+            <div class="button-grid compact-output-grid">
+              <button class="primary" id="ventFanOnBtn" type="button">打开换气风扇</button>
+              <button id="ventFanOffBtn" type="button">关闭换气风扇</button>
+            </div>
+          </article>
+          <article class="task-card muted-card">
+            <span class="task-code">0</span>
+            <h3>停止任务</h3>
+            <p>发送急停动作，树莓派网关会同时下发急停和动作码 0。</p>
+            <button class="danger" id="taskStopBtn" type="button">发送数字 0</button>
+          </article>
+        </div>
+
+        <div class="custom-task">
+          <label>
+            <span>自定义动作码</span>
+            <input id="customActionId" type="number" min="0" max="255" step="1" value="6">
+          </label>
+          <label>
+            <span>备注</span>
+            <input id="customActionNote" value="任务码触发" autocomplete="off">
+          </label>
+          <div class="actions compact-actions">
+            <button class="primary" id="sendCustomActionBtn" type="button">发送自定义任务</button>
+            <button id="previewCustomActionBtn" type="button">只预览</button>
+          </div>
+          <div class="route">
+            <div><strong>网页</strong><span>JSON/MQTT</span></div>
+            <div><strong>树莓派网关</strong><span>@ACMD</span></div>
+            <div><strong>主板1</strong><span>解析并执行 8/9</span></div>
+            <div><strong>主板2</strong><span>执行 6/7 流程</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h2>当前指令</h2>
+        <span>网页发给树莓派网关的 JSON</span>
+      </div>
+      <pre id="payloadPreview"></pre>
+      <div class="actions">
+        <button id="copyPayloadBtn" type="button">复制 JSON</button>
+        <button id="clearLogBtn" type="button">清空日志</button>
+      </div>
+    </section>
+
+    <section class="panel log-panel">
+      <div class="panel-title">
+        <h2>通信日志</h2>
+        <span>发送记录和状态回传</span>
+      </div>
+      <div class="log" id="log"></div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

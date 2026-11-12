@@ -1,0 +1,16 @@
+{
+  "task": {
+    "type": "store-new",
+    "item_ids": [],
+    "payload": {
+      "source": "backend-review",
+      "capture_required": true,
+      "capture_mode": "single-front"
+    }
+  },
+  "command": {
+    "action": "todo",
+    "action_id": 11,
+    "id": "store-demo-001"
+  }
+}

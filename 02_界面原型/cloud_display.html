@@ -1,0 +1,4535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>智能衣橱控制屏</title>
+    <style>
+        :root {
+            --olive: #87975a;
+            --olive-dark: #6f7f45;
+            --olive-soft: #edf2df;
+            --orange: #d86a3c;
+            --blue: #5879bd;
+            --ink: #2f3338;
+            --muted: #77828f;
+            --soft: #f4f6f8;
+            --line: #dbe1e7;
+            --card: #ffffff;
+            --danger: #c75b5b;
+            --dark: #66717d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #e9edf2;
+            color: var(--ink);
+        }
+
+        body {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            border: 0;
+        }
+
+        .screen {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            min-width: 800px;
+            min-height: 480px;
+            padding: 10px;
+            background: var(--soft);
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .topbar {
+            height: 50px;
+            flex: 0 0 50px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 14px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-mark {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--olive), #b6c47e);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .title {
+            font-size: 21px;
+            line-height: 1;
+            font-weight: 900;
+        }
+
+        .subtitle {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .top-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .pill {
+            height: 24px;
+            min-width: 54px;
+            padding: 0 11px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--olive-soft);
+            color: var(--olive-dark);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .pill.strong {
+            color: #fff;
+            background: var(--olive);
+        }
+
+        .pill.warn {
+            color: #fff;
+            background: var(--danger);
+        }
+
+        .main {
+            flex: 1 1 auto;
+            height: auto;
+            min-height: 0;
+            display: grid;
+            grid-template-columns: 132px 1fr;
+            gap: 9px;
+        }
+
+        .nav {
+            min-height: 0;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 10px;
+            display: grid;
+            grid-auto-rows: minmax(0, 1fr);
+            gap: 8px;
+        }
+
+        .nav-btn {
+            border-radius: 8px;
+            background: #f0f3f6;
+            color: var(--muted);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-weight: 800;
+        }
+
+        .nav-btn.hidden {
+            display: none;
+        }
+
+        .nav-btn.debug-entry {
+            background: #fff5df;
+            color: var(--orange);
+        }
+
+        .nav-btn.debug-entry.active {
+            background: var(--orange);
+            color: #fff;
+        }
+
+        .nav-btn .icon {
+            width: 27px;
+            height: 27px;
+            color: var(--muted);
+        }
+
+        .nav-btn.active {
+            background: var(--olive);
+            color: #fff;
+        }
+
+        .nav-btn.active .icon {
+            color: #fff;
+        }
+
+        .nav-btn svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.25;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .content {
+            min-height: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            min-height: 0;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(14px) scale(0.992);
+            transition:
+                opacity 220ms ease,
+                transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+            z-index: 1;
+        }
+
+        .page.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0) scale(1);
+            z-index: 2;
+        }
+
+        .grid-home {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 230px 1fr;
+            grid-template-rows: 88px 1fr 76px;
+            gap: 9px;
+        }
+
+        .panel {
+            min-height: 0;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 13px;
+            overflow: hidden;
+        }
+
+        .panel-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 9px;
+            font-size: 15px;
+            font-weight: 900;
+        }
+
+        .hero {
+            grid-row: 1 / 3;
+            position: relative;
+            background: radial-gradient(circle at 86% 16%, rgba(216, 106, 60, 0.14), transparent 30%), #fff;
+        }
+
+        .hero-label {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .hero-number {
+            display: flex;
+            align-items: baseline;
+            gap: 7px;
+        }
+
+        .hero-number strong {
+            color: var(--olive-dark);
+            font-size: 50px;
+            line-height: 0.95;
+        }
+
+        .hero-number span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .mini-grid {
+            position: absolute;
+            left: 13px;
+            right: 13px;
+            bottom: 13px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .mini-stat {
+            height: 42px;
+            border-radius: 7px;
+            background: #f0f3f6;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 11px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .mini-stat b {
+            color: var(--ink);
+            font-size: 22px;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 9px;
+        }
+
+        .metric {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 11px;
+        }
+
+        .metric-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .metric-dot {
+            width: 13px;
+            height: 13px;
+            border-radius: 4px;
+            background: var(--olive);
+        }
+
+        .metric:nth-child(2) .metric-dot,
+        .metric.orange .metric-dot {
+            background: var(--orange);
+        }
+
+        .metric:nth-child(3) .metric-dot,
+        .metric.blue .metric-dot {
+            background: var(--blue);
+        }
+
+        .metric:nth-child(4) .metric-dot,
+        .metric.gray .metric-dot {
+            background: var(--dark);
+        }
+
+        .metric-value {
+            margin-top: 8px;
+            font-size: 27px;
+            line-height: 1;
+            font-weight: 900;
+        }
+
+        .metric-value small {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .card-grid {
+            min-height: 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-auto-rows: 70px;
+            gap: 8px;
+            overflow: hidden;
+        }
+
+        .list-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .list-panel > .card-grid {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            padding-right: 3px;
+            overscroll-behavior: contain;
+        }
+
+        #home-grid {
+            height: calc(100% - 33px);
+            overflow-y: auto;
+            padding-right: 3px;
+            overscroll-behavior: contain;
+        }
+
+        .item-card {
+            min-width: 0;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            display: grid;
+            grid-template-columns: 50px 1fr auto;
+            align-items: center;
+            gap: 9px;
+            padding: 9px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item-card.selectable {
+            cursor: pointer;
+        }
+
+        .item-card.selected {
+            border-color: var(--olive);
+            box-shadow: inset 0 0 0 2px rgba(135, 151, 90, 0.3);
+        }
+
+        .thumb {
+            width: 46px;
+            height: 46px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #eef1f4;
+            display: grid;
+            place-items: center;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumb span {
+            width: 25px;
+            height: 25px;
+            border-radius: 7px;
+            background: var(--olive);
+        }
+
+        .generation-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background:
+                linear-gradient(120deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.18)),
+                rgba(247, 248, 250, 0.78);
+            background-size: 220% 100%;
+            animation: imageSweep 1.4s linear infinite;
+            color: var(--ink);
+            font-size: 12px;
+            font-weight: 900;
+            backdrop-filter: blur(1px);
+        }
+
+        .generation-overlay.done {
+            background: rgba(135, 151, 90, 0.88);
+            color: #fff;
+            animation: donePop 0.44s ease forwards;
+        }
+
+        .generation-ring {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 3px solid rgba(135, 151, 90, 0.22);
+            border-top-color: var(--olive);
+            animation: spin 0.9s linear infinite;
+        }
+
+        .generation-overlay.done .generation-ring {
+            border: none;
+            animation: none;
+            width: 22px;
+            height: 22px;
+        }
+
+        .generation-overlay.done .generation-ring::before {
+            content: "✓";
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        @keyframes imageSweep {
+            from { background-position: 120% 0; }
+            to { background-position: -120% 0; }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes donePop {
+            from { opacity: 0.2; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .item-info {
+            min-width: 0;
+        }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: 900;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .item-desc {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 11px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .status-tag {
+            align-self: start;
+            min-width: 48px;
+            height: 22px;
+            padding: 0 8px;
+            border-radius: 999px;
+            background: var(--olive);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+
+        .status-tag.out {
+            background: #c3c9d1;
+        }
+
+        .status-tag.sel {
+            background: var(--blue);
+        }
+
+        .status-tag.pending {
+            background: var(--orange);
+        }
+
+        .status-tag.error {
+            background: #b84c4c;
+        }
+
+        .empty {
+            grid-column: 1 / -1;
+            height: 100%;
+            border: 1px dashed #ccd5df;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            font-size: 14px;
+            background: #fbfcfd;
+        }
+
+        .action-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 9px;
+        }
+
+        .home-actions {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        .action-btn {
+            height: 48px;
+            border-radius: 8px;
+            background: var(--olive);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 900;
+        }
+
+        .action-btn.secondary {
+            background: #e8edf2;
+            color: var(--muted);
+        }
+
+        .action-btn.orange {
+            background: var(--orange);
+        }
+
+        .action-btn.blue {
+            background: var(--blue);
+        }
+
+        .action-btn.danger {
+            background: var(--danger);
+        }
+
+        .two-col {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 64px;
+            gap: 9px;
+        }
+
+        .single-col {
+            height: 100%;
+            min-height: 0;
+            display: grid;
+            grid-template-rows: auto minmax(0, 1fr) 58px;
+            gap: 9px;
+        }
+
+        #page-ai .panel {
+            min-height: 0;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 150px;
+            gap: 9px;
+        }
+
+        .input-row input {
+            min-width: 0;
+            height: 42px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 0 12px;
+            outline: 0;
+            background: #fff;
+            color: var(--ink);
+            font-size: 15px;
+        }
+
+        .store-card {
+            height: 100%;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            gap: 11px;
+        }
+
+        .big-choice {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .choice-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            background: var(--olive);
+            margin-bottom: 18px;
+        }
+
+        .big-choice.orange .choice-icon {
+            background: var(--orange);
+        }
+
+        .choice-title {
+            font-size: 25px;
+            font-weight: 900;
+            margin-bottom: 9px;
+        }
+
+        .choice-text {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        .note {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .ai-result {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 150px minmax(0, 1fr);
+            gap: 12px;
+            min-height: 0;
+        }
+
+        .ai-image {
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: #f0f3f6;
+            overflow: hidden;
+            height: 100%;
+            min-height: 0;
+        }
+
+        .ai-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ai-text {
+            color: var(--ink);
+            font-size: 15px;
+            line-height: 1.55;
+            max-height: 74px;
+            overflow: auto;
+        }
+
+        .ai-selected-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(92px, 108px));
+            gap: 6px;
+            margin-top: 8px;
+            max-height: 142px;
+            overflow: auto;
+            align-content: start;
+            justify-content: start;
+        }
+
+        .ai-outfit-board {
+            width: 100%;
+            height: 100%;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            align-items: stretch;
+        }
+
+        .ai-outfit-slot {
+            min-width: 0;
+            border-radius: 8px;
+            background: #fff;
+            border: 1px solid #e3e6e9;
+            display: grid;
+            grid-template-rows: 1fr auto;
+            overflow: hidden;
+        }
+
+        .ai-outfit-slot img {
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            object-fit: cover;
+        }
+
+        .ai-outfit-slot span {
+            padding: 6px 8px;
+            font-size: 12px;
+            color: var(--muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ai-outfit-empty {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            font-size: 14px;
+            background: #f8fafb;
+        }
+
+        .ai-mini-item {
+            min-width: 0;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #f9fafb;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .ai-mini-item img {
+            width: 100%;
+            height: 74px;
+            object-fit: cover;
+            border-radius: 6px;
+            background: #eef1f4;
+        }
+
+        .ai-mini-item span {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .ai-photo-row {
+            display: grid;
+            grid-template-columns: 1fr 120px 120px;
+            gap: 9px;
+            margin-top: 9px;
+            align-items: center;
+        }
+
+        .ai-photo-name {
+            height: 38px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #f8fafb;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            padding: 0 11px;
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .ai-photo-row .action-btn {
+            height: 38px;
+            font-size: 13px;
+        }
+
+        .ai-weather-row {
+            min-height: 34px;
+            margin-top: 8px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fbfcfd;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 8px;
+            padding: 0 11px;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .ai-weather-row strong {
+            color: var(--ink);
+        }
+
+        .ai-photo-history {
+            display: flex;
+            gap: 7px;
+            overflow-x: auto;
+            margin-top: 8px;
+            min-height: 34px;
+        }
+
+        .ai-photo-chip {
+            border: 1px solid var(--line);
+            background: #fff;
+            color: var(--muted);
+            border-radius: 999px;
+            padding: 0 12px;
+            height: 32px;
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .ai-photo-chip.active {
+            background: var(--olive);
+            border-color: var(--olive);
+            color: #fff;
+        }
+
+        .ai-presets {
+            margin-top: 10px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .preset-line {
+            display: grid;
+            grid-template-columns: 64px 1fr;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .preset-title {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .preset-scroll {
+            display: flex;
+            gap: 7px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .preset-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .preset-chip {
+            height: 32px;
+            padding: 0 11px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: #edf1f5;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+            white-space: nowrap;
+            flex: 0 0 auto;
+        }
+
+        .preset-chip.active {
+            background: var(--olive);
+            border-color: var(--olive);
+            color: #fff;
+        }
+
+        .featured-grid {
+            min-height: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 9px;
+        }
+
+        .featured-card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-width: 0;
+        }
+
+        .featured-card img {
+            width: 100%;
+            height: 105px;
+            object-fit: cover;
+            background: #eef1f4;
+        }
+
+        .featured-body {
+            padding: 12px;
+            min-height: 132px;
+        }
+
+        .featured-title {
+            font-size: 19px;
+            font-weight: 900;
+        }
+
+        .featured-desc {
+            margin-top: 9px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .tag {
+            height: 22px;
+            padding: 0 9px;
+            border-radius: 999px;
+            background: var(--olive-soft);
+            color: var(--olive-dark);
+            display: inline-flex;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .featured-card .action-btn {
+            width: calc(100% - 24px);
+            margin: 0 12px 12px;
+        }
+
+        .care-layout {
+            height: 100%;
+            min-height: 0;
+            display: grid;
+            grid-template-columns: 148px 64px minmax(760px, 1fr);
+            grid-template-rows: 1fr 64px;
+            gap: 9px;
+            transition: grid-template-columns 280ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .care-layout.care-chart-expanded {
+            grid-template-columns: 148px minmax(520px, 0.52fr) minmax(520px, 0.48fr);
+        }
+
+        .care-layout > .action-row {
+            grid-column: 1 / -1;
+        }
+
+        .care-side {
+            display: grid;
+            grid-template-rows: repeat(3, 116px);
+            align-content: start;
+            gap: 8px;
+        }
+
+        .care-stat {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            padding: 10px;
+        }
+
+        .care-stat span {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .care-stat b {
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .care-chart-panel {
+            min-height: 0;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 9px;
+            cursor: pointer;
+            overflow: hidden;
+            touch-action: manipulation;
+            user-select: none;
+            transition: padding 260ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease, border-color 260ms ease;
+        }
+
+        .care-chart-panel:focus-visible {
+            outline: 3px solid rgba(93, 127, 189, 0.35);
+            outline-offset: 2px;
+        }
+
+        .care-layout:not(.care-chart-expanded) .care-chart-panel {
+            grid-template-rows: 1fr;
+            place-items: center;
+            padding: 0;
+        }
+
+        .care-layout:not(.care-chart-expanded) .care-chart-panel .panel-title {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            writing-mode: vertical-rl;
+            transform: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .care-layout:not(.care-chart-expanded) .care-chart-panel .pill {
+            width: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        .care-layout:not(.care-chart-expanded) .care-chart-box {
+            max-height: 0;
+            padding: 0;
+            border-width: 0;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: scale(0.985);
+        }
+
+        .care-chart-box {
+            min-height: 0;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: linear-gradient(180deg, #fbfcfd, #eef4e8);
+            padding: 12px;
+            opacity: 1;
+            transform: scale(1);
+            transform-origin: center;
+            transition: opacity 220ms ease, transform 260ms cubic-bezier(0.22, 1, 0.36, 1), padding 220ms ease, border-width 220ms ease;
+        }
+
+        #care-pressure-chart {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .care-control-panel {
+            min-height: 0;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 9px;
+            overflow: hidden;
+        }
+
+        .care-control-grid {
+            min-height: 0;
+            display: grid;
+            grid-template-columns: minmax(430px, 1fr) repeat(2, minmax(150px, 210px));
+            grid-template-rows: 138px 138px minmax(0, 1fr);
+            align-content: start;
+            gap: 8px;
+        }
+
+        .care-layout.care-chart-expanded .care-control-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-rows: minmax(218px, auto) repeat(2, 86px) minmax(0, 1fr);
+        }
+
+        .care-control-card {
+            min-height: 0;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            padding: 9px;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 6px;
+            overflow: hidden;
+        }
+
+        .care-control-title {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--ink);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .care-control-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 7px;
+            align-items: end;
+        }
+
+        .care-control-buttons.single {
+            grid-template-columns: 1fr;
+        }
+
+        .care-control-buttons button {
+            height: 38px;
+            border-radius: 7px;
+            background: #e8edf2;
+            color: var(--ink);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .care-control-buttons button.primary {
+            background: var(--olive);
+            color: #fff;
+        }
+
+        .care-control-buttons button.blue {
+            background: var(--blue);
+            color: #fff;
+        }
+
+        .care-control-buttons button.warn {
+            background: var(--orange);
+            color: #fff;
+        }
+
+        .care-control-buttons button.active {
+            background: #2f3338;
+            color: #fff;
+        }
+
+        .care-schedule-card {
+            grid-column: 1;
+            grid-row: 1 / -1;
+            min-height: 0;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            padding: 10px;
+            display: grid;
+            grid-template-rows: auto auto auto auto auto auto auto minmax(34px, 1fr) auto;
+            gap: 8px;
+            overflow: hidden;
+        }
+
+        .care-layout.care-chart-expanded .care-schedule-card {
+            grid-column: 1 / -1;
+            grid-row: auto;
+            min-height: 218px;
+        }
+
+        .care-schedule-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 76px;
+            gap: 7px;
+        }
+
+        .care-duration-row {
+            grid-template-columns: minmax(0, 1fr) 86px;
+        }
+
+        .care-advanced-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 6px;
+        }
+
+        .care-advanced-grid label {
+            min-width: 0;
+            height: 40px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            background: #fbfcfd;
+            display: grid;
+            grid-template-columns: 86px minmax(0, 1fr);
+            align-items: center;
+            overflow: hidden;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .care-advanced-grid span {
+            padding-left: 7px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 900;
+            white-space: nowrap;
+        }
+
+        .care-advanced-grid input {
+            min-width: 0;
+            height: 38px;
+            border: 0;
+            padding: 0 8px;
+            background: transparent;
+            font: inherit;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--ink);
+            cursor: pointer;
+        }
+
+        .care-advanced-grid input[type="time"] {
+            padding-right: 12px;
+        }
+
+        .care-advanced-grid input[type="time"]::-webkit-calendar-picker-indicator,
+        .care-time-item input[type="time"]::-webkit-calendar-picker-indicator {
+            width: 28px;
+            height: 28px;
+            padding: 5px;
+            margin-right: -4px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .care-advanced-grid input[type="time"]::-webkit-calendar-picker-indicator:hover,
+        .care-time-item input[type="time"]::-webkit-calendar-picker-indicator:hover {
+            background: #e8edf2;
+        }
+
+        .care-duration-label {
+            min-width: 0;
+            height: 32px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 0 9px;
+            display: flex;
+            align-items: center;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+            background: #fbfcfd;
+        }
+
+        .care-schedule-row input,
+        .care-schedule-card select {
+            min-width: 0;
+            height: 32px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 0 9px;
+            font: inherit;
+            font-size: 12px;
+            font-weight: 800;
+            background: #fbfcfd;
+            color: var(--ink);
+        }
+
+        .care-time-panel {
+            min-height: 0;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 82px;
+            gap: 7px;
+            align-items: start;
+        }
+
+        .care-time-list {
+            min-height: 32px;
+            max-height: 76px;
+            overflow: auto;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 6px;
+        }
+
+        .care-time-item {
+            min-width: 0;
+            height: 40px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            background: #fbfcfd;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 34px;
+            align-items: center;
+            overflow: hidden;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .care-time-item input {
+            border: 0;
+            height: 38px;
+            background: transparent;
+            padding: 0 8px;
+            cursor: pointer;
+        }
+
+        .care-time-remove,
+        .care-time-add {
+            height: 32px;
+            border-radius: 7px;
+            background: #e8edf2;
+            color: var(--ink);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .care-time-remove {
+            width: 34px;
+            height: 38px;
+            background: transparent;
+            color: var(--muted);
+        }
+
+        .care-check-grid,
+        .care-week-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 6px;
+        }
+
+        .care-week-grid {
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+        }
+
+        .care-check-grid label,
+        .care-week-grid label {
+            min-width: 0;
+            height: 28px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 0 7px;
+            font-size: 11px;
+            font-weight: 900;
+            color: var(--ink);
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .care-week-grid label {
+            justify-content: center;
+            padding: 0;
+        }
+
+        .care-check-grid input,
+        .care-week-grid input {
+            width: 13px;
+            height: 13px;
+            margin: 0;
+            flex: 0 0 auto;
+        }
+
+        .care-schedule-list {
+            min-height: 34px;
+            overflow: auto;
+            display: grid;
+            gap: 6px;
+            align-content: start;
+        }
+
+        .care-schedule-item {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 7px;
+            background: #f8fafc;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 72px;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .care-schedule-item strong {
+            display: block;
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .care-schedule-item span {
+            display: block;
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .care-schedule-item button {
+            width: 34px;
+            height: 30px;
+            border-radius: 7px;
+            background: #e8edf2;
+            font-weight: 900;
+        }
+
+        .care-schedule-item-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+        }
+
+        .care-schedule-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 18px;
+            transform: translateX(-50%);
+            min-width: 260px;
+            max-width: 620px;
+            min-height: 44px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: rgba(47, 51, 56, 0.94);
+            color: #fff;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            z-index: 50;
+            text-align: center;
+        }
+
+        .toast.show {
+            display: flex;
+        }
+
+        .debug-layout {
+            height: 100%;
+            min-height: 0;
+            display: grid;
+            grid-template-rows: 78px 1fr 58px;
+            gap: 9px;
+        }
+
+        .debug-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 9px;
+        }
+
+        .debug-metric {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            padding: 9px 11px;
+        }
+
+        .debug-metric span {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .debug-metric b {
+            display: block;
+            margin-top: 6px;
+            color: var(--ink);
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .debug-main {
+            min-height: 0;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 300px;
+            gap: 9px;
+        }
+
+        .debug-table {
+            height: calc(100% - 74px);
+            min-height: 0;
+            overflow-y: auto;
+            padding-right: 3px;
+            display: grid;
+            gap: 7px;
+            align-content: start;
+        }
+
+        .debug-row {
+            min-height: 58px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            padding: 8px;
+            display: grid;
+            grid-template-columns: 24px 44px 1fr auto auto;
+            gap: 9px;
+            align-items: center;
+        }
+
+        .debug-check {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--olive);
+        }
+
+        .debug-bulk {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .debug-bulk button {
+            height: 32px;
+            border-radius: 7px;
+            background: #e8edf2;
+            color: var(--ink);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .debug-bulk button.primary {
+            background: var(--olive);
+            color: #fff;
+        }
+
+        .debug-bulk button.warn {
+            background: var(--orange);
+            color: #fff;
+        }
+
+        .debug-bulk button.danger {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .debug-status-btn {
+            height: 28px;
+            min-width: 64px;
+            padding: 0 9px;
+            border-radius: 7px;
+            background: #e8edf2;
+            color: var(--ink);
+            font-size: 12px;
+            font-weight: 900;
+            white-space: nowrap;
+        }
+
+        .debug-status-btn.in {
+            background: var(--olive);
+            color: #fff;
+        }
+
+        .debug-status-btn.out {
+            background: var(--orange);
+            color: #fff;
+        }
+
+        .task-panel {
+            margin-top: 9px;
+            min-height: 0;
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+            gap: 7px;
+        }
+
+        .task-table {
+            height: auto;
+            min-height: 0;
+            overflow-y: auto;
+            display: grid;
+            gap: 7px;
+            padding-right: 3px;
+            align-content: start;
+        }
+
+        .task-row {
+            min-height: 46px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            padding: 6px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 76px 48px 48px;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .task-title {
+            font-size: 13px;
+            font-weight: 900;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .task-meta {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .task-row select,
+        .task-row button {
+            height: 28px;
+            border: 0;
+            border-radius: 7px;
+            background: #e8edf2;
+            color: var(--ink);
+            font-size: 10px;
+            font-weight: 900;
+        }
+
+        .task-row button.danger {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .debug-row img,
+        .debug-row .debug-thumb {
+            width: 44px;
+            height: 44px;
+            border-radius: 7px;
+            object-fit: cover;
+            background: #eef1f4;
+        }
+
+        .debug-row .debug-thumb {
+            display: block;
+        }
+
+        .debug-row-title {
+            min-width: 0;
+            font-size: 14px;
+            font-weight: 900;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .debug-row-meta {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 11px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .debug-tools {
+            display: grid;
+            grid-template-rows: auto 74px 36px minmax(0, 1fr);
+            gap: 9px;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .debug-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .debug-title {
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .debug-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+            min-height: 0;
+        }
+
+        .debug-drop,
+        .debug-preview {
+            min-height: 0;
+            height: 74px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #f8fafb;
+        }
+
+        .debug-drop {
+            display: grid;
+            place-items: center;
+            padding: 15px;
+            color: var(--muted);
+            text-align: center;
+            border-style: dashed;
+            font-weight: 800;
+            line-height: 1.55;
+            font-size: 12px;
+        }
+
+        .debug-preview {
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .debug-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .debug-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+
+        .debug-tools .debug-title {
+            font-size: 17px;
+        }
+
+        .debug-tools .note {
+            font-size: 11px;
+        }
+
+        .debug-tools .action-btn {
+            height: 36px;
+            font-size: 12px;
+        }
+
+        .hidden-file {
+            display: none;
+        }
+
+        @media (max-width: 799px), (max-height: 479px) {
+            .screen {
+                min-width: 0;
+                min-height: 0;
+            }
+        }
+
+        @media (max-height: 720px) {
+            .screen {
+                padding: 6px;
+                gap: 6px;
+            }
+
+            .topbar {
+                height: 44px;
+                flex-basis: 44px;
+            }
+
+            .main {
+                grid-template-columns: 122px 1fr;
+                gap: 6px;
+            }
+
+            .nav {
+                padding: 6px;
+                gap: 6px;
+            }
+
+            .single-col {
+                grid-template-rows: auto minmax(0, 1fr) 52px;
+                gap: 6px;
+            }
+
+            #page-ai .panel {
+                padding: 10px;
+            }
+
+            .ai-photo-row {
+                margin-top: 7px;
+            }
+
+            .ai-presets {
+                margin-top: 8px;
+                gap: 6px;
+            }
+
+            .action-btn {
+                height: 44px;
+            }
+
+            .care-layout {
+                grid-template-columns: 148px 60px minmax(720px, 1fr);
+                grid-template-rows: minmax(0, 1fr) 58px;
+                gap: 7px;
+            }
+
+            .care-control-panel,
+            .care-chart-panel {
+                gap: 7px;
+            }
+
+            .care-control-grid {
+                grid-template-columns: minmax(390px, 1fr) repeat(2, minmax(140px, 200px));
+                grid-template-rows: 124px 124px minmax(0, 1fr);
+                gap: 7px;
+            }
+
+            .care-control-card,
+            .care-schedule-card {
+                padding: 8px;
+                gap: 6px;
+            }
+
+            .care-schedule-row {
+                gap: 6px;
+            }
+
+            .care-schedule-row input,
+            .care-schedule-card select,
+            .care-duration-label {
+                height: 30px;
+            }
+
+            .care-time-list {
+                max-height: 70px;
+            }
+
+            .care-time-item,
+            .care-advanced-grid label {
+                height: 36px;
+            }
+
+            .care-time-item input,
+            .care-advanced-grid input {
+                height: 34px;
+            }
+
+            .care-advanced-grid {
+                gap: 5px;
+            }
+
+            .care-advanced-grid label {
+                grid-template-columns: 82px minmax(0, 1fr);
+            }
+
+            .care-check-grid,
+            .care-week-grid {
+                gap: 5px;
+            }
+
+            .care-check-grid label,
+            .care-week-grid label {
+                height: 26px;
+            }
+
+            .care-control-buttons button {
+                height: 34px;
+            }
+
+            .care-schedule-actions .action-btn {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="screen">
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-mark">衣</div>
+                <div>
+                    <div class="title">智能衣橱控制屏</div>
+                    <div class="subtitle">Raspberry Pi HMI · 取衣 / 存衣 / AI 推荐 / 精选</div>
+                </div>
+            </div>
+            <div class="top-meta">
+                <span id="net-pill" class="pill strong">联网</span>
+                <span id="weather-pill" class="pill">天气--</span>
+                <span id="mode-pill" class="pill">待机</span>
+                <span id="clock">--:--:--</span>
+                <span>P0</span>
+            </div>
+        </header>
+
+        <main class="main">
+            <nav class="nav">
+                <button class="nav-btn active" data-page="home"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span><span>主页</span></button>
+                <button class="nav-btn" data-page="fetch"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M7 7V5h10v2"/><path d="M6 7l1 13h10l1-13"/><path d="M9 12h6"/><path d="m13 10 2 2-2 2"/></svg></span><span>取衣</span></button>
+                <button class="nav-btn" data-page="store"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 8h16v12H4z"/><path d="M7 8V5h10v3"/><path d="M12 11v6"/><path d="M9 14h6"/></svg></span><span>存衣</span></button>
+                <button class="nav-btn" data-page="ai"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l1.4 4.2L18 9l-4.6 1.8L12 15l-1.4-4.2L6 9l4.6-1.8z"/><path d="M5 15l.8 2.2L8 18l-2.2.8L5 21l-.8-2.2L2 18l2.2-.8z"/><path d="M19 14l.7 1.8L22 16.5l-2.3.7L19 19l-.7-1.8-2.3-.7 2.3-.7z"/></svg></span><span>AI推荐</span></button>
+                <button class="nav-btn" data-page="care"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 3-4 3 2 4-7"/><path d="M17 6h3v3"/></svg></span><span>养护</span></button>
+                <button class="nav-btn" data-page="featured"><span class="icon"><svg viewBox="0 0 24 24"><path d="M6 3h12l2 7-8 11-8-11z"/><path d="M4 10h16"/><path d="M9 3l-2 7 5 11 5-11-2-7"/></svg></span><span>精选</span></button>
+                <button class="nav-btn debug-entry hidden" id="debug-nav-btn" data-page="debug"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></span><span>调试</span></button>
+            </nav>
+
+            <section class="content">
+                <div class="page active" id="page-home">
+                    <div class="grid-home">
+                        <div class="panel hero">
+                            <div class="hero-label">云端衣橱总量</div>
+                            <div class="hero-number"><strong id="total-count">0</strong><span>件</span></div>
+                            <div class="mini-grid">
+                                <div class="mini-stat"><span>可取</span><b id="available-count">0</b></div>
+                                <div class="mini-stat"><span>已取出</span><b id="out-count">0</b></div>
+                                <div class="mini-stat"><span>最近同步</span><b id="last-sync">--</b></div>
+                            </div>
+                        </div>
+
+                        <div class="metric-grid">
+                            <div class="metric">
+                                <div class="metric-label">在柜衣物 <span class="metric-dot"></span></div>
+                                <div class="metric-value"><span id="metric-in">0</span><small> 件</small></div>
+                            </div>
+                            <div class="metric orange">
+                                <div class="metric-label">出库状态 <span class="metric-dot"></span></div>
+                                <div class="metric-value"><span id="metric-out">0</span><small> 件</small></div>
+                            </div>
+                            <div class="metric blue">
+                                <div class="metric-label">已选取衣 <span class="metric-dot"></span></div>
+                                <div class="metric-value"><span id="selected-count">0</span><small> 件</small></div>
+                            </div>
+                            <div class="metric gray">
+                                <div class="metric-label">同步周期 <span class="metric-dot"></span></div>
+                                <div class="metric-value"><span id="refresh-sec">8</span><small> 秒</small></div>
+                            </div>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-title">云端衣物状态 <span class="pill" id="item-count-pill">0 件</span></div>
+                            <div class="card-grid" id="home-grid"></div>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-title">硬件任务状态 <span class="pill" id="task-state-pill">等待</span></div>
+                            <div class="task-table" id="local-task-events">
+                                <div class="empty">暂无主板任务回传</div>
+                            </div>
+                        </div>
+
+                        <div class="action-row home-actions">
+                            <button class="action-btn" id="quick-start-btn" title="启动存衣准备：回到 A0 并伸出挂衣杆">一键启动</button>
+                            <button class="action-btn" data-jump="fetch">选择取衣</button>
+                            <button class="action-btn orange" data-jump="store">存衣管理</button>
+                            <button class="action-btn blue" data-jump="ai">AI 推荐</button>
+                            <button class="action-btn danger" id="clear-cloud-wardrobe-btn">清除云端衣物</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page" id="page-fetch">
+                    <div class="single-col">
+                        <div class="panel">
+                            <div class="panel-title">一键取衣 <span class="pill" id="fetch-pill">已选择 0 件</span> <span class="pill" id="fetch-flow-pill">等待选择</span></div>
+                            <div class="note" id="fetch-flow-text">选择在柜衣物后点击“确认取衣”。取衣动作完成后，请先取下衣物，再点击“衣物已取下，缩回并复位”。</div>
+                        </div>
+                        <div class="panel">
+                            <div class="card-grid" id="fetch-grid"></div>
+                        </div>
+                        <div class="action-row">
+                            <button class="action-btn secondary" data-jump="home">返回主页</button>
+                            <button class="action-btn secondary" id="clear-selection-btn">清空选择</button>
+                            <button class="action-btn" id="fetch-btn">确认取衣</button>
+                            <button class="action-btn orange" id="fetch-reset-btn" hidden>衣物已取下，缩回并复位</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page" id="page-store">
+                    <div class="single-col">
+                        <div class="panel store-card">
+                            <div class="panel-title">存放 <span class="pill strong" id="store-flow-pill">等待操作</span></div>
+                            <div class="big-choice">
+                                <div class="choice-icon"></div>
+                                <div class="choice-title" id="store-flow-title">放入衣物</div>
+                                <div class="choice-text" id="store-flow-text">点击“存放”后先到 A0，再伸出伸缩杆；放好衣物后点击“缩回”，系统会先拍照上传建档，再启动后续存衣动作。</div>
+                            </div>
+                            <div class="action-row">
+                                <button class="action-btn" id="new-store-btn">存放</button>
+                                <button class="action-btn orange" id="store-retract-btn" hidden>缩回</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page" id="page-ai">
+                    <div class="single-col">
+                        <div class="panel">
+                            <div class="panel-title">AI 搭配推荐 <span class="pill" id="ai-pill">待输入</span></div>
+                            <div class="input-row">
+                                <input id="ai-input" type="text" value="帮我搭配一套日常休闲穿搭" placeholder="输入场景，例如：明天出差、日常休闲、保暖外出">
+                                <button class="action-btn blue" id="ai-generate-btn">生成推荐</button>
+                            </div>
+                            <div class="ai-photo-row">
+                                <div class="ai-photo-name" id="ai-photo-name">未上传全身照，将生成普通搭配预览</div>
+                                <button class="action-btn secondary" id="ai-photo-btn">上传全身照</button>
+                                <button class="action-btn secondary" id="ai-photo-clear-btn">清除照片</button>
+                            </div>
+                            <div class="ai-weather-row">
+                                <span id="ai-weather-text">天气读取中，将自动辅助搭配推荐</span>
+                                <strong id="ai-weather-care">养护联动</strong>
+                            </div>
+                            <div class="ai-photo-history" id="ai-photo-history"></div>
+                            <div class="ai-presets">
+                                <div class="preset-line">
+                                    <div class="preset-title">场景</div>
+                                    <div class="preset-scroll" id="ai-scene-presets">
+                                        <button class="preset-chip" data-scene-preset="daily commute, clean and practical outfit">通勤</button>
+                                        <button class="preset-chip" data-scene-preset="business meeting, polished professional outfit">会议</button>
+                                        <button class="preset-chip" data-scene-preset="relaxed date, refined and soft outfit">约会</button>
+                                        <button class="preset-chip" data-scene-preset="weekend travel, comfortable layered outfit">旅行</button>
+                                        <button class="preset-chip" data-scene-preset="campus casual, youthful and neat outfit">校园</button>
+                                    </div>
+                                </div>
+                                <div class="preset-line">
+                                    <div class="preset-title">背景</div>
+                                    <div class="preset-scroll" id="ai-background-presets">
+                                        <button class="preset-chip active" data-background-preset="">默认</button>
+                                        <button class="preset-chip" data-background-preset="a bright bedroom mirror full-body photo background">卧室镜前</button>
+                                        <button class="preset-chip" data-background-preset="a modern office lobby background">办公室</button>
+                                        <button class="preset-chip" data-background-preset="a clean city street background in daylight">街景</button>
+                                        <button class="preset-chip" data-background-preset="a shopping mall fitting room background">试衣间</button>
+                                        <button class="preset-chip" data-background-preset="a minimal fashion studio background">影棚</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <input class="hidden-file" id="ai-photo-file" type="file" accept="image/*">
+                        </div>
+                        <div class="panel">
+                            <div class="ai-result">
+                                <div class="ai-image" id="ai-image-box">
+                                    <div class="generation-overlay" id="ai-generation-overlay" style="display:none;">
+                                        <div class="generation-ring"></div>
+                                        <span>生成最终图</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="panel-title">推荐方案 <span class="pill" id="ai-count-pill">0 件</span></div>
+                                    <div class="ai-text" id="ai-text">等待生成搭配方案。</div>
+                                    <div class="ai-selected-strip" id="ai-selected-strip"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action-row">
+                            <button class="action-btn secondary" data-jump="home">返回主页</button>
+                            <button class="action-btn secondary" id="ai-redo-btn">换一套</button>
+                            <button class="action-btn" id="ai-fetch-btn">确认出库</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page" id="page-care">
+                    <div class="care-layout" id="care-layout">
+                        <div class="care-side">
+                            <div class="care-stat"><span>左路净值</span><b id="care-pressure-value">--</b></div>
+                            <div class="care-stat"><span>右路净值</span><b id="care-peak-value">未接入</b></div>
+                            <div class="care-stat"><span>双路状态</span><b id="care-bag-state">等待数据</b></div>
+                        </div>
+                        <div class="panel care-chart-panel" id="care-chart-panel" aria-expanded="false">
+                            <div class="panel-title">重力曲线 <span class="pill" id="care-chart-state-pill">展开</span></div>
+                            <div class="care-chart-box">
+                                <canvas id="care-pressure-chart" width="720" height="360"></canvas>
+                            </div>
+                        </div>
+                        <div class="panel care-control-panel">
+                            <div class="panel-title">养护控制 <span class="pill">本地下发</span></div>
+                            <div class="care-control-grid">
+                                <div class="care-schedule-card">
+                                    <div class="care-control-title">自动养护计划</div>
+                                    <div class="care-schedule-row">
+                                        <input id="care-schedule-name" value="每日养护">
+                                        <select id="care-schedule-enabled">
+                                            <option value="1">已启用</option>
+                                            <option value="0">已暂停</option>
+                                        </select>
+                                    </div>
+                                    <div class="care-time-panel">
+                                        <div class="care-time-list" id="care-schedule-times"></div>
+                                        <button class="care-time-add" id="care-time-add-btn">+时间</button>
+                                    </div>
+                                    <div class="care-schedule-row care-duration-row">
+                                        <div class="care-duration-label">持续分钟</div>
+                                        <input id="care-schedule-duration" type="number" min="1" max="180" value="15">
+                                    </div>
+                                    <div class="care-advanced-grid">
+                                        <label><span>启动间隔(秒)</span><input id="care-schedule-stagger" type="number" min="0" max="300" value="0"></label>
+                                        <label><span>重复间隔(分)</span><input id="care-schedule-min-interval" type="number" min="0" max="1440" value="0"></label>
+                                        <label><span>免打扰开始</span><input id="care-schedule-quiet-start" type="time" value=""></label>
+                                        <label><span>免打扰结束</span><input id="care-schedule-quiet-end" type="time" value=""></label>
+                                    </div>
+                                    <div class="care-check-grid">
+                                        <label><input type="checkbox" data-care-device="hot_air" checked>热风</label>
+                                        <label><input type="checkbox" data-care-device="uv" checked>紫外</label>
+                                        <label><input type="checkbox" data-care-device="vent" checked>通风</label>
+                                        <label><input type="checkbox" data-care-device="ionizer">负离子</label>
+                                    </div>
+                                    <div class="care-week-grid">
+                                        <label><input type="checkbox" data-care-weekday="0" checked>一</label>
+                                        <label><input type="checkbox" data-care-weekday="1" checked>二</label>
+                                        <label><input type="checkbox" data-care-weekday="2" checked>三</label>
+                                        <label><input type="checkbox" data-care-weekday="3" checked>四</label>
+                                        <label><input type="checkbox" data-care-weekday="4" checked>五</label>
+                                        <label><input type="checkbox" data-care-weekday="5" checked>六</label>
+                                        <label><input type="checkbox" data-care-weekday="6" checked>日</label>
+                                    </div>
+                                    <div class="care-schedule-list" id="care-schedule-list"></div>
+                                    <div class="care-schedule-actions">
+                                        <button class="action-btn secondary" id="care-schedule-save-btn">保存</button>
+                                        <button class="action-btn blue" id="care-schedule-run-btn">试运行</button>
+                                    </div>
+                                </div>
+                                <div class="care-control-card">
+                                    <div class="care-control-title">紫外线杀菌</div>
+                                    <div class="care-control-buttons" data-care-toggle="uv">
+                                        <button id="care-uv-on-btn" data-care-option="on">开启</button>
+                                        <button class="active" id="care-uv-off-btn" data-care-option="off">关闭</button>
+                                    </div>
+                                </div>
+                                <div class="care-control-card">
+                                    <div class="care-control-title">热风除湿</div>
+                                    <div class="care-control-buttons" data-care-toggle="hot-air">
+                                        <button id="care-hot-air-start-btn" data-care-option="start">启动</button>
+                                        <button class="active" id="care-hot-air-stop-btn" data-care-option="stop">停止</button>
+                                    </div>
+                                </div>
+                                <div class="care-control-card">
+                                    <div class="care-control-title">负离子发生器</div>
+                                    <div class="care-control-buttons" data-care-toggle="ionizer">
+                                        <button id="care-ionizer-btn" data-care-option="start">启动</button>
+                                        <button class="active" id="care-ionizer-stop-btn" data-care-option="stop">停止</button>
+                                    </div>
+                                </div>
+                                <div class="care-control-card">
+                                    <div class="care-control-title">通风风扇</div>
+                                    <div class="care-control-buttons" data-care-toggle="vent">
+                                        <button id="care-vent-on-btn" data-care-option="on">开启</button>
+                                        <button class="active" id="care-vent-off-btn" data-care-option="off">关闭</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action-row">
+                            <button class="action-btn secondary" data-jump="home">返回主页</button>
+                            <button class="action-btn secondary" data-jump="store">存衣管理</button>
+                            <button class="action-btn blue" data-jump="ai">AI 推荐</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page" id="page-featured">
+                    <div class="single-col">
+                        <div class="panel">
+                            <div class="panel-title">精选购买 <span class="pill" id="featured-pill">淘宝占位</span></div>
+                            <div class="note">精选页沿用 App 里的外部购买灵感逻辑，先展示淘宝跳转占位，后续再替换为真实商品推荐接口。</div>
+                        </div>
+                        <div class="featured-grid" id="featured-grid"></div>
+                        <div class="action-row">
+                            <button class="action-btn secondary" data-jump="home">返回主页</button>
+                            <button class="action-btn secondary" id="reload-featured-btn">刷新精选</button>
+                            <button class="action-btn blue" data-jump="ai">打开 AI</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="page" id="page-debug">
+                    <div class="debug-layout">
+                        <div class="debug-metrics">
+                            <div class="debug-metric"><span>调试数据</span><b id="debug-total-count">0</b></div>
+                            <div class="debug-metric"><span>在柜</span><b id="debug-in-count">0</b></div>
+                            <div class="debug-metric"><span>已取出</span><b id="debug-out-count">0</b></div>
+                            <div class="debug-metric"><span>同步时间</span><b id="debug-sync-time">--</b></div>
+                        </div>
+                        <div class="debug-main">
+                            <div class="panel">
+                                <div class="panel-title">后台衣柜数据 <span class="pill" id="debug-count-pill">0 条</span></div>
+                                <div class="debug-bulk">
+                                    <button id="debug-select-all-btn">全选/清空</button>
+                                    <button class="primary" id="debug-bulk-in-btn">批量入库</button>
+                                    <button class="warn" id="debug-bulk-out-btn">批量出库</button>
+                                    <button class="danger" id="debug-bulk-delete-btn">批量删除</button>
+                                </div>
+                                <div class="debug-table" id="debug-table"></div>
+                            </div>
+                            <div class="panel debug-tools">
+                                <div class="debug-head">
+                                    <div>
+                                        <div class="debug-title">调试工具</div>
+                                        <div class="note">仅用于开发调试，正式入库仍由硬件端完成。</div>
+                                    </div>
+                                </div>
+                                <div class="debug-body">
+                                    <label class="debug-drop" for="debug-file">
+                                        选择或拍摄衣物图片<br>
+                                        <span class="note">模拟硬件端 mode=new</span>
+                                    </label>
+                                    <div class="debug-preview" id="debug-preview">暂无图片</div>
+                                </div>
+                                <input class="hidden-file" id="debug-file" type="file" accept="image/*" capture="environment">
+                                <div class="debug-actions">
+                                    <button class="action-btn secondary" id="debug-pick-btn">选择图片</button>
+                                    <button class="action-btn" id="debug-upload-btn">图片入库</button>
+                                    <button class="action-btn orange" id="debug-simulate-btn">模拟入库</button>
+                                </div>
+                                <div class="task-panel">
+                                    <div class="panel-title">任务流 <span class="pill" id="task-count-pill">0 条</span></div>
+                                    <div class="debug-bulk">
+                                        <button id="task-refresh-btn">刷新</button>
+                                        <button class="primary" id="task-new-btn">新入库</button>
+                                        <button class="warn" id="task-return-btn">归还</button>
+                                        <button class="danger" id="task-fetch-btn">取衣</button>
+                                    </div>
+                                    <div class="task-table" id="task-table"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action-row">
+                            <button class="action-btn secondary" data-jump="home">返回主页</button>
+                            <button class="action-btn secondary" id="debug-refresh-btn">刷新衣柜</button>
+                            <button class="action-btn blue" data-jump="ai">打开 AI</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const DEFAULT_REMOTE_API = "http://119.45.230.229:8000";
+        const DEFAULT_GATEWAY_API = "http://10.85.171.211:8000";
+        const isLocalFile = window.location.protocol === "file:";
+        const sameOriginApi = window.location.protocol.startsWith("http") ? window.location.origin : "";
+        const storedApiBase = localStorage.getItem("wardrobeApiBase") || "";
+        const preferGatewayApi = sameOriginApi
+            && window.location.port === "8000"
+            && (/^(127\.0\.0\.1|localhost)$/.test(window.location.hostname) || /^10\./.test(window.location.hostname));
+        const apiParam = params.get("api");
+        const API_BASE = preferGatewayApi && !apiParam
+            ? ""
+            : (apiParam || (isLocalFile ? DEFAULT_GATEWAY_API : storedApiBase || sameOriginApi || DEFAULT_REMOTE_API)).replace(/\/$/, "");
+        const DEFAULT_WEATHER_LAT = 33.35;
+        const DEFAULT_WEATHER_LON = 120.16;
+        const DEFAULT_WEATHER_NAME = "盐城";
+        const WEATHER_LAT = Number(params.get("lat") || DEFAULT_WEATHER_LAT);
+        const WEATHER_LON = Number(params.get("lon") || DEFAULT_WEATHER_LON);
+        const WEATHER_NAME = params.get("weather_name") || DEFAULT_WEATHER_NAME;
+        const REFRESH_MS = Math.max(3000, Number(params.get("refresh") || 8000));
+        const CACHE_KEY = "wardrobeHmiSnapshot";
+        const STORE_TELESCOPE_CHANNEL = 4;
+        const STORE_TELESCOPE_EXTEND_DEG = -15500;
+        const STORE_TELESCOPE_RETRACT_DEG = 15500;
+        const STORE_PREPARE_ACTION_ID = 12;
+        const STORE_RETRACT_ACTION_ID = 13;
+        const STORE_AFTER_TELESCOPE_ACTION_ID = 11;
+        const FETCH_RESET_ACTION_ID = 14;
+        const FETCH_RESET_PENDING_KEY = "wardrobeFetchResetPending";
+
+        const state = {
+            wardrobe: [],
+            selectedFetch: new Set(),
+            selectedDebug: new Set(),
+            aiIds: [],
+            featured: [],
+            tasks: [],
+            debugImageBase64: "",
+            aiUserPhotoBase64: "",
+            aiUserPhotoUrl: "",
+            aiPhotoHistory: [],
+            aiScenePreset: "",
+            aiBackgroundPreset: "",
+            weather: null,
+            localTaskEvents: [],
+            careSchedules: [],
+            editCareScheduleId: "daily-care",
+            careGravitySeries: {
+                left: [],
+                right: [],
+            },
+            careGravityUnit: "counts",
+            debugUnlocked: false,
+            fetchFlowStep: "ready",
+            fetchReturnPage: "home",
+            storeFlowStep: "ready",
+            online: false,
+        };
+
+        try {
+            if (sessionStorage.getItem(FETCH_RESET_PENDING_KEY) === "1") {
+                state.fetchFlowStep = "await-reset";
+            }
+        } catch (error) {
+            console.warn("fetch reset state restore failed", error);
+        }
+
+        let aiDebugTapCount = 0;
+        let aiDebugTapTimer = null;
+        let careChartTimer = null;
+        let aiSyncTimer = null;
+        const seenFlatImageDoneIds = new Set(JSON.parse(localStorage.getItem("displaySeenFlatImageDoneIds") || "[]"));
+        const seenAiPreviewDoneIds = new Set(JSON.parse(localStorage.getItem("displaySeenAiPreviewDoneIds") || "[]"));
+        const flatImageProcessingIds = new Set();
+
+        function rememberFlatImageDone(itemId) {
+            seenFlatImageDoneIds.add(itemId);
+            localStorage.setItem("displaySeenFlatImageDoneIds", JSON.stringify(Array.from(seenFlatImageDoneIds).slice(-300)));
+        }
+
+        function rememberAiPreviewDone(taskId) {
+            seenAiPreviewDoneIds.add(taskId);
+            localStorage.setItem("displaySeenAiPreviewDoneIds", JSON.stringify(Array.from(seenAiPreviewDoneIds).slice(-100)));
+        }
+
+        const el = (id) => document.getElementById(id);
+
+        function pad(value) {
+            return String(value).padStart(2, "0");
+        }
+
+        function nowText() {
+            const d = new Date();
+            return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+        }
+
+        function setClock() {
+            el("clock").textContent = nowText();
+        }
+
+        function weatherCodeText(code) {
+            const map = {
+                0: "晴",
+                1: "少云",
+                2: "多云",
+                3: "阴",
+                45: "雾",
+                48: "霜雾",
+                51: "小毛毛雨",
+                53: "毛毛雨",
+                55: "大毛毛雨",
+                61: "小雨",
+                63: "中雨",
+                65: "大雨",
+                80: "阵雨",
+                81: "阵雨",
+                82: "强阵雨",
+                95: "雷雨",
+            };
+            return map[Number(code)] || "天气";
+        }
+
+        function normalizeWeatherPayload(data) {
+            if (data && data.weather) return data.weather;
+            const current = data && data.current ? data.current : {};
+            const hourly = data && data.hourly ? data.hourly : {};
+            const humidity = Number(current.relative_humidity_2m);
+            const temp = Number(current.temperature_2m);
+            const probability = Array.isArray(hourly.precipitation_probability) ? Number(hourly.precipitation_probability[0]) : NaN;
+            const precipitation = Number(current.precipitation || 0);
+            const rain = Number(current.rain || 0);
+            const code = Number(current.weather_code);
+            const humid = humidity >= 75 || probability >= 60 || precipitation > 0 || rain > 0;
+            const condition = weatherCodeText(code);
+            const parts = [WEATHER_NAME, condition];
+            if (Number.isFinite(temp)) parts.push(`${temp.toFixed(1)}C`);
+            if (Number.isFinite(humidity)) parts.push(`湿度${Math.round(humidity)}%`);
+            if (Number.isFinite(probability)) parts.push(`降水${Math.round(probability)}%`);
+            if (humid) parts.push("偏潮湿");
+            return {
+                location: WEATHER_NAME,
+                temperature_c: Number.isFinite(temp) ? temp : null,
+                humidity_percent: Number.isFinite(humidity) ? Math.round(humidity) : null,
+                precipitation_probability: Number.isFinite(probability) ? Math.round(probability) : null,
+                weather_code: Number.isFinite(code) ? code : null,
+                condition,
+                humid,
+                summary: parts.join(" · "),
+                observed_at: current.time || "",
+            };
+        }
+
+        function weatherObservedText(weather) {
+            const raw = weather && weather.observed_at ? String(weather.observed_at) : "";
+            const match = raw.match(/T(\d{2}:\d{2})/);
+            return match ? `更新${match[1]}` : "";
+        }
+
+        function renderWeather() {
+            const weather = state.weather;
+            if (!weather) {
+                el("weather-pill").textContent = "天气--";
+                el("ai-weather-text").textContent = "天气读取中，将自动辅助搭配推荐";
+                el("ai-weather-care").textContent = "养护联动";
+                return;
+            }
+            const humidity = weather.humidity_percent == null ? "--" : `${weather.humidity_percent}%`;
+            el("weather-pill").textContent = weather.humid ? `潮湿 ${humidity}` : `湿度 ${humidity}`;
+            const observedText = weatherObservedText(weather);
+            el("ai-weather-text").textContent = [weather.summary || "天气数据已读取", observedText].filter(Boolean).join(" · ");
+            el("ai-weather-care").textContent = weather.humid ? "潮湿自动除湿" : "天气正常";
+        }
+
+        async function loadWeather() {
+            try {
+                const response = await fetch(apiUrl("/api/weather"), { cache: "no-store" });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                state.weather = normalizeWeatherPayload(data);
+            } catch (error) {
+                try {
+                    const url = new URL("https://api.open-meteo.com/v1/forecast");
+                    url.searchParams.set("latitude", String(WEATHER_LAT));
+                    url.searchParams.set("longitude", String(WEATHER_LON));
+                    url.searchParams.set("current", "temperature_2m,relative_humidity_2m,precipitation,rain,weather_code");
+                    url.searchParams.set("hourly", "precipitation_probability");
+                    url.searchParams.set("forecast_days", "1");
+                    url.searchParams.set("timezone", "auto");
+                    const response = await fetch(url.toString(), { cache: "no-store" });
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    state.weather = normalizeWeatherPayload(await response.json());
+                } catch (fallbackError) {
+                    state.weather = null;
+                }
+            }
+            renderWeather();
+        }
+
+        function showToast(message, duration = 1800) {
+            const toast = el("toast");
+            toast.textContent = message;
+            toast.classList.add("show");
+            clearTimeout(showToast.timer);
+            showToast.timer = setTimeout(() => toast.classList.remove("show"), duration);
+        }
+
+        function normalizeItem(item, index) {
+            const styleId = Number(item.style_id ?? item.styleId ?? 0);
+            const styleText = item.style || item.category || item.type || (styleId ? styleLabel(styleId) : "样式待识别");
+            return {
+                id: item.id || `item-${index}`,
+                name: item.name || `未命名衣物 ${index + 1}`,
+                desc: item.desc || item.details || "云端暂无描述",
+                style: styleText,
+                style_id: Number.isFinite(styleId) ? styleId : 0,
+                category: item.category || "",
+                img: item.img || "",
+                original_img: item.original_img || "",
+                clean_img: item.clean_img || "",
+                image_status: item.image_status || "done",
+                image_updated_at: Number(item.image_updated_at || 0),
+                status: item.status || "in-wardrobe",
+                position: Number(item.position || index + 1),
+                real_position: item.real_position || "",
+                real_position_index: Number.isFinite(Number(item.real_position_index)) ? Number(item.real_position_index) : null,
+                inventory_conflict: item.inventory_conflict || null,
+                view_ids: [item.id || `item-${index}`],
+                view_count: 1,
+            };
+        }
+
+        function styleLabel(styleId) {
+            const labels = {
+                1: "T恤",
+                2: "衬衫",
+                3: "外套",
+                4: "连衣裙",
+                5: "裤装",
+                6: "半身裙",
+                7: "短裤",
+                8: "毛衣",
+                9: "卫衣",
+                10: "夹克",
+                11: "鞋",
+            };
+            return labels[Number(styleId)] || "样式待识别";
+        }
+
+        function garmentFamily(item) {
+            const text = `${item.name || ""} ${item.desc || ""} ${item.style || ""} ${item.category || ""}`.toLowerCase();
+            if (/鞋|shoe|sneaker/.test(text)) return "shoe";
+            if (/t恤|t-shirt|tshirt|tee|短袖/.test(text)) return "tshirt";
+            if (/衬衫|shirt|blouse/.test(text)) return "shirt";
+            if (/裙|skirt|dress/.test(text)) return "skirt";
+            if (/裤|pants|trousers|jeans/.test(text)) return "pants";
+            if (/外套|coat|jacket/.test(text)) return "coat";
+            return "";
+        }
+
+        function colorTags(item) {
+            const text = `${item.name || ""} ${item.desc || ""}`.toLowerCase();
+            const pairs = [
+                ["white", /白|white/],
+                ["black", /黑|black/],
+                ["gray", /灰|gray|grey/],
+                ["blue", /蓝|blue/],
+                ["red", /红|red/],
+                ["green", /绿|green/],
+                ["yellow", /黄|yellow/],
+                ["pink", /粉|pink/],
+                ["purple", /紫|purple/],
+            ];
+            return pairs.filter(([, pattern]) => pattern.test(text)).map(([tag]) => tag);
+        }
+
+        function sharedKeywordCount(a, b) {
+            const aText = `${a.name || ""} ${a.desc || ""}`.toLowerCase();
+            const bText = `${b.name || ""} ${b.desc || ""}`.toLowerCase();
+            const keywords = ["fight", "club", "logo", "荷叶边", "蕾丝", "泡泡袖", "网眼", "皮革", "印花", "图案", "多层", "棉"];
+            return keywords.filter((word) => aText.includes(word) && bText.includes(word)).length;
+        }
+
+        function isSameGarmentView(a, b) {
+            if (!a || !b || a.status !== b.status || a.status === "deleted") return false;
+            const positionsA = (a.merged_positions && a.merged_positions.length ? a.merged_positions : [a.position]).map(Number).filter(Number.isFinite);
+            const positionsB = (b.merged_positions && b.merged_positions.length ? b.merged_positions : [b.position]).map(Number).filter(Number.isFinite);
+            const nearPosition = positionsA.some((pa) => positionsB.some((pb) => Math.abs(pa - pb) <= 1));
+            if (!nearPosition) return false;
+            const aTime = Number(a.image_updated_at || 0);
+            const bTime = Number(b.image_updated_at || 0);
+            if (aTime && bTime && Math.abs(aTime - bTime) > 180) return false;
+
+            const aFamily = garmentFamily(a);
+            const bFamily = garmentFamily(b);
+            if (aFamily && bFamily && aFamily !== bFamily) return false;
+
+            const sameFamily = aFamily && bFamily && aFamily === bFamily;
+            const colorsA = colorTags(a);
+            const colorsB = colorTags(b);
+            const sameColor = colorsA.some((tag) => colorsB.includes(tag));
+            return Boolean(sameFamily && (sameColor || sharedKeywordCount(a, b) > 0));
+        }
+
+        function mergeGarmentViews(primary, extra) {
+            const merged = { ...primary };
+            merged.view_ids = Array.from(new Set([...(primary.view_ids || [primary.id]), ...(extra.view_ids || [extra.id])]));
+            merged.view_count = merged.view_ids.length;
+            merged.merged_positions = Array.from(new Set([primary.position, extra.position].filter(Boolean))).sort((a, b) => a - b);
+            if (!/[\u4e00-\u9fff]/.test(merged.name || "") && /[\u4e00-\u9fff]/.test(extra.name || "")) {
+                merged.name = extra.name;
+            }
+            if ((!merged.style || merged.style === "样式待识别") && extra.style) {
+                merged.style = extra.style;
+                merged.style_id = extra.style_id || merged.style_id;
+                merged.category = extra.category || merged.category;
+            }
+            if ((extra.image_updated_at || 0) > (primary.image_updated_at || 0) && extra.img) {
+                merged.img = extra.img;
+                merged.original_img = extra.original_img || merged.original_img;
+                merged.clean_img = extra.clean_img || merged.clean_img;
+                merged.image_status = extra.image_status || merged.image_status;
+                merged.image_updated_at = extra.image_updated_at;
+            }
+            return merged;
+        }
+
+        function dedupeGarmentViews(items) {
+            const result = [];
+            items.forEach((item) => {
+                const last = result[result.length - 1];
+                if (isSameGarmentView(last, item)) {
+                    result[result.length - 1] = mergeGarmentViews(last, item);
+                } else {
+                    result.push(item);
+                }
+            });
+            return result;
+        }
+
+        function assignDisplayPositions(items) {
+            return items.map((item) => {
+                const label = item.real_position || "未分配";
+                return { ...item, display_position_label: label };
+            });
+        }
+
+        function expandGarmentViewIds(ids) {
+            const expanded = new Set();
+            ids.forEach((id) => {
+                const item = state.wardrobe.find((entry) => entry.id === id);
+                (item && item.view_ids ? item.view_ids : [id]).forEach((viewId) => expanded.add(viewId));
+            });
+            return Array.from(expanded);
+        }
+
+        function outfitCategory(item) {
+            const family = garmentFamily(item);
+            if (family === "shoe") return "shoes";
+            if (family === "skirt" || family === "pants") return "bottom";
+            if (family === "coat") return "outer";
+            if (family === "shirt" || family === "tshirt") return "top";
+            return "other";
+        }
+
+        function pickOutfitItem(items, category, promptText, usedIds) {
+            const prompt = String(promptText || "").toLowerCase();
+            const candidates = items.filter((item) => outfitCategory(item) === category && !usedIds.has(item.id));
+            if (!candidates.length) return null;
+            const score = (item) => {
+                const text = `${item.name || ""} ${item.desc || ""}`.toLowerCase();
+                let value = 0;
+                if (/通勤|上班|office|commute/.test(prompt) && /衬衫|shirt|西装|coat|jacket/.test(text)) value += 4;
+                if (/休闲|日常|casual/.test(prompt) && /t恤|t-shirt|tee|短袖|运动/.test(text)) value += 4;
+                if (/保暖|冷|降温|winter|warm/.test(prompt) && /外套|coat|jacket|厚/.test(text)) value += 4;
+                if (/白|white/.test(text)) value += 1;
+                if (Number(item.image_updated_at || 0)) value += 1;
+                return value;
+            };
+            return candidates.slice().sort((a, b) => score(b) - score(a) || Number(a.position || 0) - Number(b.position || 0))[0];
+        }
+
+        function localOutfitRecommendation(promptText) {
+            const available = state.wardrobe.filter((item) => item.status === "in-wardrobe");
+            const usedIds = new Set();
+            const selected = [];
+            const add = (item) => {
+                if (item && !usedIds.has(item.id)) {
+                    usedIds.add(item.id);
+                    selected.push(item);
+                }
+            };
+
+            add(pickOutfitItem(available, "top", promptText, usedIds));
+            add(pickOutfitItem(available, "bottom", promptText, usedIds));
+            add(pickOutfitItem(available, "outer", promptText, usedIds));
+            add(pickOutfitItem(available, "shoes", promptText, usedIds));
+            if (selected.length < 2) {
+                available.forEach((item) => {
+                    if (selected.length < 3) add(item);
+                });
+            }
+
+            if (!selected.length) {
+                return {
+                    id: `local-outfit-empty-${Date.now()}`,
+                    recommend_ids: [],
+                    selected_items: [],
+                    text: "当前没有可用于推荐的在柜衣物。",
+                    preview_status: "done",
+                    preview_mode: "local",
+                };
+            }
+
+            const weatherText = state.weather && state.weather.summary ? `已参考天气：${state.weather.summary}。` : "";
+            const names = selected.map((item) => item.name).join("、");
+            return {
+                id: `local-outfit-${selected.map((item) => item.id).join("-")}-${Date.now()}`,
+                recommend_ids: selected.map((item) => item.id),
+                selected_items: selected.map((item) => ({
+                    id: item.id,
+                    name: item.name,
+                    img: item.img || item.original_img || "",
+                })),
+                text: `推荐套装：${names}。${weatherText}可直接确认出库。`,
+                preview_status: "done",
+                preview_mode: "local",
+            };
+        }
+
+        function escapeHtml(value) {
+            return String(value || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        function apiUrl(path) {
+            return `${API_BASE}${path}`;
+        }
+
+        async function postJson(path, body) {
+            const response = await fetch(apiUrl(path), {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body),
+            });
+            if (!response.ok) {
+                let detail = `HTTP ${response.status}`;
+                try {
+                    const errorBody = await response.json();
+                    detail = errorBody.detail || errorBody.error || detail;
+                } catch (error) {
+                    console.warn("error response parse failed", error);
+                }
+                throw new Error(detail);
+            }
+            return response.json();
+        }
+
+        async function getJson(path) {
+            const response = await fetch(apiUrl(path), { cache: "no-store" });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+        }
+
+        async function waitForTaskTerminal(commandId, timeoutMs = 600000) {
+            const startedAt = Date.now();
+            while (Date.now() - startedAt < timeoutMs) {
+                const snapshot = await getJson("/api/status");
+                const event = (snapshot.task_events || []).find((item) => item.id === commandId && ["done", "error", "stopped"].includes(item.state));
+                if (event) {
+                    if (event.state === "done") return event;
+                    throw new Error(event.detail || `${commandId} ${event.state}`);
+                }
+                await new Promise((resolve) => setTimeout(resolve, 500));
+            }
+            throw new Error(`${commandId} completion timeout`);
+        }
+
+        function controlId(prefix) {
+            return `${prefix}-${Date.now().toString(36)}`;
+        }
+
+        async function sendCareControl(payload, label) {
+            el("mode-pill").textContent = "养护中";
+            const command = {
+                id: controlId(payload.id_prefix || "care"),
+                source: "cloud-display-care",
+                device_id: "raspberry-pi-wardrobe-001",
+                ...payload,
+            };
+            delete command.id_prefix;
+            try {
+                await postJson("/api/control", command);
+                showToast(`${label}已下发`);
+            } catch (error) {
+                showToast(`${label}下发失败`);
+            } finally {
+                el("mode-pill").textContent = state.online ? "待机" : "缓存";
+            }
+        }
+
+        function sendCareOutput(device, enable, label) {
+            return sendCareControl({
+                action: "board1_output",
+                device,
+                enable: enable ? 1 : 0,
+                id_prefix: `care-${device}`,
+            }, label);
+        }
+
+        function sendCareAction(actionId, label) {
+            return sendCareControl({
+                action: "todo",
+                action_id: actionId,
+                id_prefix: `care-task-${actionId}`,
+            }, label);
+        }
+
+        function buildTaskActionCommand(actionId, idPrefix, extra = {}) {
+            return {
+                action: "todo",
+                action_id: actionId,
+                id: controlId(idPrefix || `task-${actionId}`),
+                source: "cloud-display-task",
+                device_id: "raspberry-pi-wardrobe-001",
+                ...extra,
+            };
+        }
+
+        async function sendTaskAction(actionId, label, idPrefix, extra = {}) {
+            const command = buildTaskActionCommand(actionId, idPrefix, extra);
+            const result = await postJson("/api/control", command);
+            if (!result.ok) throw new Error(result.detail || "serial dispatch failed");
+            return command.id;
+        }
+
+        async function sendTelescopeMove(angleDeg, label, idPrefix) {
+            const command = {
+                action: "stepper_move",
+                channel: STORE_TELESCOPE_CHANNEL,
+                mode: "relative",
+                angle: angleDeg,
+                id: controlId(idPrefix),
+                source: "cloud-display-store",
+                device_id: "raspberry-pi-wardrobe-001",
+            };
+            await postJson("/api/control", command);
+            showToast(`${label}已下发`);
+            return command.id;
+        }
+
+        function rememberFetchResetPending(pending) {
+            try {
+                if (pending) sessionStorage.setItem(FETCH_RESET_PENDING_KEY, "1");
+                else sessionStorage.removeItem(FETCH_RESET_PENDING_KEY);
+            } catch (error) {
+                console.warn("fetch reset state save failed", error);
+            }
+        }
+
+        function setFetchFlowStep(step, message) {
+            state.fetchFlowStep = step;
+            const pill = el("fetch-flow-pill");
+            const text = el("fetch-flow-text");
+            const fetchBtn = el("fetch-btn");
+            const resetBtn = el("fetch-reset-btn");
+            const clearBtn = el("clear-selection-btn");
+            const busy = step === "fetching" || step === "resetting";
+            const resetVisible = step === "await-reset" || step === "resetting";
+
+            fetchBtn.hidden = resetVisible;
+            fetchBtn.disabled = step !== "ready" || state.selectedFetch.size === 0;
+            resetBtn.hidden = !resetVisible;
+            resetBtn.disabled = step !== "await-reset";
+            clearBtn.disabled = step !== "ready" || busy;
+
+            if (step === "fetching") {
+                pill.textContent = "取衣中";
+                text.textContent = message || "正在执行取衣动作，请等待主板完成回执。";
+            } else if (step === "await-reset") {
+                pill.textContent = "等待复位";
+                text.textContent = message || "取衣动作已完成，挂衣杆仍处于伸出状态。请先取下衣物，再点击“衣物已取下，缩回并复位”。";
+            } else if (step === "resetting") {
+                pill.textContent = "复位中";
+                text.textContent = message || "正在先缩回挂衣杆，再让 XYZ 回 A0、四路舵机回初始角度，请等待主板完成回执，不要重复点击。";
+            } else {
+                pill.textContent = "等待选择";
+                text.textContent = message || "选择在柜衣物后点击“确认取衣”。取衣动作完成后，请先取下衣物，再点击“衣物已取下，缩回并复位”。";
+            }
+        }
+
+        function setStoreFlowStep(step, message) {
+            state.storeFlowStep = step;
+            const pill = el("store-flow-pill");
+            const title = el("store-flow-title");
+            const text = el("store-flow-text");
+            const storeBtn = el("new-store-btn");
+            const quickStartBtn = el("quick-start-btn");
+            const retractBtn = el("store-retract-btn");
+            const busy = step === "extending" || step === "retracting" || step === "capturing" || step === "storing";
+
+            storeBtn.disabled = busy || step !== "ready";
+            if (quickStartBtn) quickStartBtn.disabled = busy || step !== "ready";
+            retractBtn.disabled = busy || step !== "await-retract";
+            storeBtn.hidden = step === "await-retract";
+            retractBtn.hidden = step !== "await-retract";
+
+            if (step === "await-retract") {
+                pill.textContent = "等待缩回";
+                title.textContent = "衣物已放入";
+                text.textContent = message || "请确认衣物已经挂好，然后点击“缩回”。机构运行到识别位后会拍摄一张正面照片并建档。";
+            } else if (step === "extending") {
+                pill.textContent = "伸出中";
+                title.textContent = "正在到 A0 并伸出";
+                text.textContent = message || "机械臂先回到 A0 安全点，再伸出伸缩杆；到位后再放入衣物。";
+            } else if (step === "retracting") {
+                pill.textContent = "缩回中";
+                title.textContent = "伸缩杆正在缩回";
+                text.textContent = message || "缩回完成后将直接启动存衣，运行到识别位后拍摄正面照片。";
+            } else if (step === "capturing") {
+                pill.textContent = "拍照中";
+                title.textContent = "正在拍照建档";
+                text.textContent = message || "系统正在拍照上传，成功后才会启动存衣动作。";
+            } else if (step === "storing") {
+                pill.textContent = "存衣中";
+                title.textContent = "正在启动存衣流程";
+                text.textContent = message || "照片已建档，正在下发后续存衣动作。";
+            } else {
+                pill.textContent = "等待操作";
+                title.textContent = "放入衣物";
+                text.textContent = message || "点击“存放”后先到 A0，再伸出伸缩杆；放好衣物后点击“缩回”，系统运行到识别位后拍摄一张正面照片并建档。";
+            }
+        }
+
+        function careToggle(group, option) {
+            const container = document.querySelector(`[data-care-toggle="${group}"]`);
+            if (!container) return;
+            container.querySelectorAll("button").forEach((btn) => {
+                btn.classList.toggle("active", btn.dataset.careOption === option);
+            });
+        }
+
+        function deviceText(devices) {
+            const map = {
+                hot_air: "热风",
+                uv: "紫外",
+                vent: "通风",
+                ionizer: "负离子预留",
+            };
+            return (devices || []).map((item) => map[item] || item).join("、") || "未选择";
+        }
+
+        function weekdayText(weekdays) {
+            const names = ["一", "二", "三", "四", "五", "六", "日"];
+            if (!weekdays || !weekdays.length || weekdays.length >= 7) return "每天";
+            return weekdays.map((day) => names[day] || "").filter(Boolean).join("、");
+        }
+
+        function clampNumber(value, fallback, min, max) {
+            const number = Number(value);
+            if (!Number.isFinite(number)) return fallback;
+            return Math.max(min, Math.min(max, Math.round(number)));
+        }
+
+        function optionalCareTimeValue(value) {
+            const text = String(value || "").trim();
+            return text ? normalizeCareTimeValue(text) : "";
+        }
+
+        function skipReasonText(reason) {
+            const map = {
+                quiet_window: "静音跳过",
+                min_interval: "间隔跳过",
+                already_running: "运行中跳过",
+            };
+            return map[reason] || "已跳过";
+        }
+
+        function shortTimeFromEpoch(epoch) {
+            const number = Number(epoch || 0);
+            if (!Number.isFinite(number) || number <= 0) return "";
+            const date = new Date(number * 1000);
+            return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+        }
+
+        function scheduleRunText(schedule) {
+            if (Number(schedule?.running_until || 0) * 1000 > Date.now()) return "运行中";
+            if (schedule?.last_result === "skipped") return skipReasonText(schedule.last_skip_reason);
+            if (schedule?.last_result === "running") return "已启动";
+            if (schedule?.last_result === "stopped") return "已停止";
+            return schedule?.enabled === false ? "暂停" : "待执行";
+        }
+
+        function normalizeCareTimeValue(value) {
+            const parts = String(value || "").split(":");
+            const hour = Math.max(0, Math.min(23, Number(parts[0] || 9)));
+            const minute = Math.max(0, Math.min(59, Number(parts[1] || 0)));
+            const safeHour = Number.isFinite(hour) ? hour : 9;
+            const safeMinute = Number.isFinite(minute) ? minute : 0;
+            return `${String(safeHour).padStart(2, "0")}:${String(safeMinute).padStart(2, "0")}`;
+        }
+
+        function careScheduleTimes(schedule) {
+            const raw = Array.isArray(schedule?.times) && schedule.times.length ? schedule.times : [schedule?.time || "09:00"];
+            const times = [];
+            raw.forEach((time) => {
+                const value = normalizeCareTimeValue(time);
+                if (!times.includes(value)) times.push(value);
+            });
+            return times.length ? times : ["09:00"];
+        }
+
+        function readCareTimes() {
+            const times = [];
+            document.querySelectorAll("[data-care-time]").forEach((input) => {
+                const value = normalizeCareTimeValue(input.value);
+                if (!times.includes(value)) times.push(value);
+            });
+            return times.length ? times : ["09:00"];
+        }
+
+        function renderCareTimeInputs(times) {
+            const list = el("care-schedule-times");
+            const values = (times && times.length ? times : ["09:00"]).map(normalizeCareTimeValue);
+            list.innerHTML = values.map((time, index) => `
+                <div class="care-time-item">
+                    <input type="time" data-care-time value="${escapeHtml(time)}">
+                    <button class="care-time-remove" data-care-time-delete="${index}">×</button>
+                </div>
+            `).join("");
+            list.querySelectorAll("[data-care-time-delete]").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const current = readCareTimes();
+                    if (current.length <= 1) {
+                        renderCareTimeInputs(["09:00"]);
+                        return;
+                    }
+                    current.splice(Number(button.dataset.careTimeDelete), 1);
+                    renderCareTimeInputs(current);
+                });
+            });
+        }
+
+        function openTimeInput(input) {
+            if (!input) return;
+            input.focus();
+            if (typeof input.showPicker === "function") {
+                try {
+                    input.showPicker();
+                } catch (error) {
+                    input.click();
+                }
+            }
+        }
+
+        function addCareTimePoint() {
+            const current = readCareTimes();
+            const presets = ["09:00", "12:00", "18:00", "21:00"];
+            const next = presets.find((time) => !current.includes(time)) || current[current.length - 1] || "09:00";
+            if (!current.includes(next)) current.push(next);
+            renderCareTimeInputs(current);
+        }
+
+        function readCareScheduleForm() {
+            const devices = Array.from(document.querySelectorAll("[data-care-device]"))
+                .filter((input) => input.checked)
+                .map((input) => input.dataset.careDevice);
+            const weekdays = Array.from(document.querySelectorAll("[data-care-weekday]"))
+                .filter((input) => input.checked)
+                .map((input) => Number(input.dataset.careWeekday));
+            const times = readCareTimes();
+            return {
+                id: state.editCareScheduleId || "daily-care",
+                name: el("care-schedule-name").value.trim() || "每日养护",
+                enabled: el("care-schedule-enabled").value === "1",
+                time: times[0],
+                times,
+                duration_minutes: Number(el("care-schedule-duration").value || 15),
+                stagger_seconds: clampNumber(el("care-schedule-stagger").value, 0, 0, 300),
+                min_interval_minutes: clampNumber(el("care-schedule-min-interval").value, 0, 0, 1440),
+                quiet_start: optionalCareTimeValue(el("care-schedule-quiet-start").value),
+                quiet_end: optionalCareTimeValue(el("care-schedule-quiet-end").value),
+                devices,
+                weekdays,
+            };
+        }
+
+        function fillCareScheduleForm(schedule) {
+            state.editCareScheduleId = schedule.id || "daily-care";
+            el("care-schedule-name").value = schedule.name || "每日养护";
+            el("care-schedule-enabled").value = schedule.enabled === false ? "0" : "1";
+            renderCareTimeInputs(careScheduleTimes(schedule));
+            el("care-schedule-duration").value = schedule.duration_minutes || 15;
+            el("care-schedule-stagger").value = schedule.stagger_seconds || 0;
+            el("care-schedule-min-interval").value = schedule.min_interval_minutes || 0;
+            el("care-schedule-quiet-start").value = schedule.quiet_start || "";
+            el("care-schedule-quiet-end").value = schedule.quiet_end || "";
+            const devices = new Set(schedule.devices || []);
+            document.querySelectorAll("[data-care-device]").forEach((input) => {
+                input.checked = devices.has(input.dataset.careDevice);
+            });
+            const weekdays = new Set(schedule.weekdays || []);
+            document.querySelectorAll("[data-care-weekday]").forEach((input) => {
+                input.checked = weekdays.has(Number(input.dataset.careWeekday));
+            });
+        }
+
+        function renderCareSchedules() {
+            const list = el("care-schedule-list");
+            if (!list) return;
+            if (!state.careSchedules.length) {
+                list.innerHTML = `<div class="empty">暂无计划，保存后生效</div>`;
+                return;
+            }
+            list.innerHTML = state.careSchedules.map((schedule) => {
+                const status = schedule.enabled ? "启用" : "暂停";
+                const times = careScheduleTimes(schedule).join("、");
+                const advanced = [];
+                if (Number(schedule.stagger_seconds || 0) > 0) advanced.push(`启动间隔${schedule.stagger_seconds}秒`);
+                if (Number(schedule.min_interval_minutes || 0) > 0) advanced.push(`重复间隔${schedule.min_interval_minutes}分`);
+                if (schedule.quiet_start && schedule.quiet_end) advanced.push(`免打扰${schedule.quiet_start}-${schedule.quiet_end}`);
+                const lastTime = shortTimeFromEpoch(schedule.last_stop_epoch || schedule.last_run_epoch);
+                const runText = scheduleRunText(schedule);
+                const runtime = lastTime ? `${runText}@${lastTime}` : runText;
+                const tail = [status, runtime, ...advanced].filter(Boolean).join(" · ");
+                return `
+                    <div class="care-schedule-item">
+                        <div>
+                            <strong>${escapeHtml(schedule.name || "自动养护")}</strong>
+                            <span>${escapeHtml(times)} · ${schedule.duration_minutes || 0}分钟 · ${escapeHtml(weekdayText(schedule.weekdays))} · ${escapeHtml(deviceText(schedule.devices))} · ${escapeHtml(tail)}</span>
+                        </div>
+                        <div class="care-schedule-item-actions">
+                            <button data-care-schedule-edit="${escapeHtml(schedule.id)}">改</button>
+                            <button data-care-schedule-delete="${escapeHtml(schedule.id)}">删</button>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+            list.querySelectorAll("[data-care-schedule-edit]").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const schedule = state.careSchedules.find((item) => item.id === button.dataset.careScheduleEdit);
+                    if (schedule) fillCareScheduleForm(schedule);
+                });
+            });
+            list.querySelectorAll("[data-care-schedule-delete]").forEach((button) => {
+                button.addEventListener("click", () => deleteCareSchedule(button.dataset.careScheduleDelete));
+            });
+        }
+
+        async function loadCareSchedules() {
+            try {
+                const response = await fetch(apiUrl("/api/care/schedules"), { cache: "no-store" });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                state.careSchedules = Array.isArray(data.schedules) ? data.schedules : [];
+                if (state.careSchedules.length) {
+                    fillCareScheduleForm(state.careSchedules[0]);
+                } else {
+                    renderCareTimeInputs(["09:00"]);
+                }
+            } catch (error) {
+                state.careSchedules = [];
+                renderCareTimeInputs(["09:00"]);
+            }
+            renderCareSchedules();
+        }
+
+        async function saveCareSchedule() {
+            const schedule = readCareScheduleForm();
+            if (!schedule.devices.length) {
+                showToast("至少选择一个养护项目");
+                return;
+            }
+            try {
+                const data = await postJson("/api/care/schedules", schedule);
+                const saved = data.schedule || schedule;
+                const others = state.careSchedules.filter((item) => item.id !== saved.id);
+                state.careSchedules = [saved, ...others];
+                fillCareScheduleForm(saved);
+                renderCareSchedules();
+                showToast("自动养护计划已保存");
+            } catch (error) {
+                showToast("计划保存失败");
+            }
+        }
+
+        async function deleteCareSchedule(scheduleId) {
+            if (!scheduleId) return;
+            try {
+                const response = await fetch(apiUrl(`/api/care/schedules/${encodeURIComponent(scheduleId)}`), { method: "DELETE" });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                state.careSchedules = state.careSchedules.filter((item) => item.id !== scheduleId);
+                renderCareSchedules();
+                showToast("计划已删除");
+            } catch (error) {
+                showToast("计划删除失败");
+            }
+        }
+
+        async function runCareScheduleNow() {
+            const schedule = readCareScheduleForm();
+            if (!schedule.devices.length) {
+                showToast("至少选择一个养护项目");
+                return;
+            }
+            try {
+                await postJson("/api/care/schedules/run", schedule);
+                showToast("自动养护试运行已下发");
+                loadLocalStatus();
+            } catch (error) {
+                showToast("试运行下发失败");
+            }
+        }
+
+        function createHardwareTask(type, itemIds = [], payload = {}) {
+            return postJson("/api/tasks", {
+                type,
+                item_ids: itemIds,
+                payload,
+            });
+        }
+
+        async function createHardwareTaskWithSerial(type, itemIds, payload, actionId, label, idPrefix, serialPayload = {}) {
+            const command = buildTaskActionCommand(actionId, idPrefix, serialPayload);
+            let result;
+            try {
+                result = await postJson("/api/hardware/task-dispatch", {
+                    task: { type, item_ids: itemIds, payload },
+                    command,
+                });
+            } catch (error) {
+                console.warn(`${label} atomic dispatch failed`, error);
+                showToast(`${label}创建失败：${error.message || "网关请求异常"}`);
+                return { taskOk: false, serialOk: false, commandId: command.id, detail: error.message || "" };
+            }
+
+            const taskOk = result.taskOk === true;
+            const serialOk = result.serialOk === true;
+            const rollbackState = result.rollback && result.rollback.state;
+            if (taskOk && serialOk) {
+                showToast(`${label}任务已加入云端队列，串口已下发`);
+            } else if (rollbackState === "deleted") {
+                showToast(`${label}串口下发失败，刚创建的云端任务已撤销`);
+            } else if (rollbackState === "send_failed") {
+                showToast(`${label}串口下发失败，云端任务已标记为下发失败`);
+            } else if (result.taskCreated) {
+                showToast(`${label}串口下发失败，云端任务回滚失败，请检查任务 ${result.taskId || ""}`);
+            } else {
+                showToast(`${label}云端任务创建失败，串口未下发`);
+            }
+            return { ...result, taskOk, serialOk, commandId: command.id };
+        }
+
+        function taskTypeText(type) {
+            const map = {
+                store: "存衣",
+                fetch: "取衣",
+                "fetch-reset": "取衣复位",
+                "hot-air-start": "热风启动",
+                "hot-air-stop": "热风停止",
+                brush: "刷毛",
+                "vision-store": "视觉建档",
+                emergency: "急停",
+            };
+            return map[type] || type || "任务";
+        }
+
+        function taskStateText(value) {
+            const map = {
+                sent: "已下发",
+                send_failed: "下发失败",
+                received: "主板1收到",
+                forwarded: "已转主板2",
+                running: "执行中",
+                done: "已完成",
+                stopped: "已停止",
+                error: "异常",
+            };
+            return map[value] || value || "--";
+        }
+
+        function renderLocalTaskEvents() {
+            const list = el("local-task-events");
+            const pill = el("task-state-pill");
+            if (!list || !pill) return;
+            const events = state.localTaskEvents || [];
+            const latest = events[0];
+            if (!events.length) {
+                pill.textContent = "等待";
+                list.innerHTML = `<div class="empty">暂无主板任务回传</div>`;
+                return;
+            }
+            pill.textContent = `${taskTypeText(latest.type)} ${taskStateText(latest.state)}`;
+            list.innerHTML = events.slice(0, 6).map((event) => {
+                const timeText = event.time ? new Date(event.time).toLocaleTimeString() : "--";
+                const idText = event.id ? ` · ${escapeHtml(event.id)}` : "";
+                return `
+                    <div class="task-row">
+                        <div><strong>${escapeHtml(taskTypeText(event.type))}</strong><span>${escapeHtml(taskStateText(event.state))}${idText}</span></div>
+                        <span>${escapeHtml(timeText)}</span>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        async function loadLocalStatus() {
+            try {
+                const response = await fetch(apiUrl("/api/status"), { cache: "no-store" });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                state.localTaskEvents = Array.isArray(data.task_events) ? data.task_events : [];
+                renderLocalTaskEvents();
+            } catch (error) {
+                state.localTaskEvents = [];
+                renderLocalTaskEvents();
+            }
+        }
+
+        async function loadTaskFlow() {
+            try {
+                const response = await fetch(apiUrl("/api/tasks"), { cache: "no-store" });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                state.tasks = await response.json();
+                renderTasks();
+            } catch (error) {
+                state.tasks = [];
+                renderTasks("任务读取失败");
+            }
+        }
+
+        function renderTasks(errorText = "") {
+            const table = el("task-table");
+            if (!table) return;
+            el("task-count-pill").textContent = `${state.tasks.length} 条`;
+            if (errorText) {
+                table.innerHTML = `<div class="empty">${errorText}</div>`;
+                return;
+            }
+            if (!state.tasks.length) {
+                table.innerHTML = `<div class="empty">暂无云端任务</div>`;
+                return;
+            }
+            table.innerHTML = state.tasks.map((task) => {
+                const ids = (task.item_ids || []).join(", ") || "-";
+                return `
+                    <article class="task-row">
+                        <div>
+                            <div class="task-title">${escapeHtml(task.type)} · ${escapeHtml(task.status || "pending")}</div>
+                            <div class="task-meta">${escapeHtml(task.id)} / ${escapeHtml(ids)}</div>
+                        </div>
+                        <select data-task-type="${escapeHtml(task.id)}">
+                            <option value="fetch" ${task.type === "fetch" ? "selected" : ""}>取衣</option>
+                            <option value="store-new" ${task.type === "store-new" ? "selected" : ""}>新入库</option>
+                            <option value="store-return" ${task.type === "store-return" ? "selected" : ""}>归还</option>
+                        </select>
+                        <button data-task-status="${escapeHtml(task.id)}">${task.status === "paused" ? "恢复" : "暂停"}</button>
+                        <button class="danger" data-task-delete="${escapeHtml(task.id)}">删除</button>
+                    </article>
+                `;
+            }).join("");
+            table.querySelectorAll("[data-task-type]").forEach((select) => {
+                select.addEventListener("change", () => updateTaskFlow(select.dataset.taskType, { type: select.value }));
+            });
+            table.querySelectorAll("[data-task-status]").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const task = state.tasks.find((item) => item.id === button.dataset.taskStatus);
+                    updateTaskFlow(button.dataset.taskStatus, { status: task && task.status === "paused" ? "pending" : "paused" });
+                });
+            });
+            table.querySelectorAll("[data-task-delete]").forEach((button) => {
+                button.addEventListener("click", () => deleteTaskFlow(button.dataset.taskDelete));
+            });
+        }
+
+        async function updateTaskFlow(taskId, patch) {
+            const current = state.tasks.find((task) => task.id === taskId) || {};
+            try {
+                await postJson(`/api/tasks/${encodeURIComponent(taskId)}`, {
+                    type: patch.type || current.type,
+                    status: patch.status || current.status || "pending",
+                    item_ids: current.item_ids || [],
+                    payload: current.payload || {},
+                });
+                await loadTaskFlow();
+                showToast("任务已更新");
+            } catch (error) {
+                showToast("任务修改失败");
+            }
+        }
+
+        async function deleteTaskFlow(taskId) {
+            try {
+                const response = await fetch(apiUrl(`/api/tasks/${encodeURIComponent(taskId)}`), { method: "DELETE" });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                await loadTaskFlow();
+                showToast("任务已删除");
+            } catch (error) {
+                showToast("任务删除失败");
+            }
+        }
+
+        async function createDebugTask(type) {
+            try {
+                const ids = type === "fetch" ? Array.from(state.selectedFetch) : [];
+                await createHardwareTask(type, ids, { source: "display-debug" });
+                await loadTaskFlow();
+                showToast("任务已创建");
+            } catch (error) {
+                showToast("任务创建失败");
+            }
+        }
+
+        function normalizeCarePoints(value) {
+            if (!Array.isArray(value)) return [];
+            return value.map(Number).filter((item) => Number.isFinite(item)).slice(-48);
+        }
+
+        function formatCareGravityValue(value) {
+            if (!Number.isFinite(value)) return "--";
+            if (state.careGravityUnit === "counts") return `${Math.round(value)} counts`;
+            return `${value.toFixed(2)} ${state.careGravityUnit || "counts"}`;
+        }
+
+        function readCareSeries(source, names) {
+            for (const name of names) {
+                const points = normalizeCarePoints(source?.[name]);
+                if (points.length) return points;
+            }
+            return [];
+        }
+
+        function readCareSample(source, names) {
+            for (const name of names) {
+                const value = Number(source?.[name]);
+                if (Number.isFinite(value)) return value;
+            }
+            return null;
+        }
+
+        function pushCareGravitySample(leftValue, rightValue) {
+            const left = state.careGravitySeries.left;
+            const right = state.careGravitySeries.right;
+            if (Number.isFinite(leftValue)) {
+                left.push(leftValue);
+                if (left.length > 48) left.shift();
+            }
+            if (Number.isFinite(rightValue)) {
+                right.push(rightValue);
+                if (right.length > 48) right.shift();
+            }
+        }
+
+        function updateCareGravitySeries(data) {
+            const source = data?.series || data || {};
+            if (typeof data?.unit === "string" && data.unit.trim()) {
+                state.careGravityUnit = data.unit.trim();
+            }
+            let leftPoints = readCareSeries(source, ["left", "channel_a", "gravity_left", "gravityA", "pointsA", "points_a"]);
+            let rightPoints = readCareSeries(source, ["right", "channel_b", "gravity_right", "gravityB", "pointsB", "points_b"]);
+            if (Array.isArray(data?.points) && Array.isArray(data.points[0])) {
+                leftPoints = normalizeCarePoints(data.points[0]) || leftPoints;
+                rightPoints = normalizeCarePoints(data.points[1]) || rightPoints;
+            }
+            if (leftPoints.length) state.careGravitySeries.left = leftPoints;
+            if (rightPoints.length) state.careGravitySeries.right = rightPoints;
+
+            const leftSample = readCareSample(source, ["left_value", "left", "channel_a_value", "channel_a", "gravity_left"]);
+            const rightSample = readCareSample(source, ["right_value", "right", "channel_b_value", "channel_b", "gravity_right"]);
+            if (leftSample !== null || rightSample !== null) {
+                pushCareGravitySample(leftSample, rightSample);
+            }
+            return state.careGravitySeries.left.length || state.careGravitySeries.right.length;
+        }
+
+        function drawCareChart() {
+            const canvas = el("care-pressure-chart");
+            if (!canvas) return;
+            const rect = canvas.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            const width = Math.max(360, Math.floor(rect.width || canvas.clientWidth || 720));
+            const height = Math.max(220, Math.floor(rect.height || canvas.clientHeight || 360));
+            if (canvas.width !== Math.floor(width * dpr) || canvas.height !== Math.floor(height * dpr)) {
+                canvas.width = Math.floor(width * dpr);
+                canvas.height = Math.floor(height * dpr);
+            }
+            const ctx = canvas.getContext("2d");
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.clearRect(0, 0, width, height);
+            ctx.strokeStyle = "#dbe1e7";
+            ctx.lineWidth = 1;
+            for (let i = 0; i < 6; i += 1) {
+                const y = 16 + (height - 32) * (i / 5);
+                ctx.beginPath();
+                ctx.moveTo(14, y);
+                ctx.lineTo(width - 14, y);
+                ctx.stroke();
+            }
+
+            const series = [
+                { label: "左路", points: state.careGravitySeries.left, color: "#87975a", connected: state.careGravitySeries.left.length > 0 },
+                { label: "右路", points: state.careGravitySeries.right, color: "#5d7fbd", connected: state.careGravitySeries.right.length > 0 },
+            ];
+            const allPoints = series.flatMap((item) => item.points).filter((value) => Number.isFinite(value));
+            const rawMin = allPoints.length ? Math.min(...allPoints) : 0;
+            const rawMax = allPoints.length ? Math.max(...allPoints) : 2;
+            const padding = Math.max(0.2, (rawMax - rawMin) * 0.25);
+            const min = rawMin - padding;
+            const max = rawMax + padding;
+            const plotLeft = 18;
+            const plotRight = width - 18;
+            const plotTop = 18;
+            const plotBottom = height - 18;
+
+            series.forEach(({ points, color, connected }) => {
+                if (!connected || !points.length) return;
+                const step = (plotRight - plotLeft) / Math.max(1, points.length - 1);
+                ctx.beginPath();
+                points.forEach((value, index) => {
+                    const x = plotLeft + index * step;
+                    const y = plotBottom - ((value - min) / Math.max(0.001, max - min)) * (plotBottom - plotTop);
+                    if (index === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 4;
+                ctx.lineCap = "round";
+                ctx.lineJoin = "round";
+                ctx.stroke();
+            });
+
+            ctx.font = "700 13px sans-serif";
+            ctx.textBaseline = "middle";
+            series.forEach((item, index) => {
+                const x = width - 172 + index * 86;
+                const y = 24;
+                ctx.strokeStyle = item.connected ? item.color : "#b8c0c7";
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(x + 18, y);
+                ctx.stroke();
+                ctx.fillStyle = item.connected ? "#34404c" : "#7b858e";
+                ctx.fillText(item.label, x + 24, y);
+            });
+
+            const leftLatest = state.careGravitySeries.left[state.careGravitySeries.left.length - 1];
+            const rightLatest = state.careGravitySeries.right[state.careGravitySeries.right.length - 1];
+            el("care-pressure-value").textContent = Number.isFinite(leftLatest) ? formatCareGravityValue(leftLatest) : "--";
+            el("care-peak-value").textContent = Number.isFinite(rightLatest) ? formatCareGravityValue(rightLatest) : "未接入";
+            if (!Number.isFinite(leftLatest) && !Number.isFinite(rightLatest)) {
+                el("care-bag-state").textContent = "等待数据";
+            } else if (!Number.isFinite(rightLatest)) {
+                el("care-bag-state").textContent = "单路运行";
+            } else {
+                el("care-bag-state").textContent = Math.abs(leftLatest - rightLatest) > 0.45 ? "偏差大" : "正常";
+            }
+        }
+
+        function startCareChart() {
+            drawCareChart();
+            if (careChartTimer) return;
+            loadCarePressure();
+            careChartTimer = setInterval(loadCarePressure, 2000);
+        }
+
+        function toggleCareChart(force) {
+            const layout = el("care-layout");
+            const panel = el("care-chart-panel");
+            const pill = el("care-chart-state-pill");
+            const expanded = typeof force === "boolean" ? force : !layout.classList.contains("care-chart-expanded");
+            layout.classList.toggle("care-chart-expanded", expanded);
+            panel.setAttribute("aria-expanded", expanded ? "true" : "false");
+            pill.textContent = expanded ? "收起" : "展开";
+            requestAnimationFrame(drawCareChart);
+            window.setTimeout(drawCareChart, 300);
+        }
+
+        async function loadCarePressure() {
+            try {
+                const response = await fetch(apiUrl("/api/care/pressure"), { cache: "no-store" });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                updateCareGravitySeries(data);
+            } catch (error) {
+                el("care-bag-state").textContent = state.careGravitySeries.left.length ? "本地缓存" : "等待数据";
+            }
+            drawCareChart();
+        }
+
+        function wardrobeStatusMeta(status) {
+            const map = {
+                "in-wardrobe": { text: "在柜", className: "status-tag" },
+                "in-use": { text: "已取出", className: "status-tag out" },
+                "pending-store": { text: "入库确认中", className: "status-tag pending" },
+                "store-error": { text: "入库异常", className: "status-tag error" },
+                "inventory-error": { text: "位置待核对", className: "status-tag error" },
+            };
+            return map[status] || { text: "状态待确认", className: "status-tag pending" };
+        }
+
+        function itemCard(item, options = {}) {
+            const selected = options.selectedIds && options.selectedIds.has(item.id);
+            const selectable = options.selectable ? " selectable" : "";
+            const selectedClass = selected ? " selected" : "";
+            const statusMeta = wardrobeStatusMeta(item.status);
+            const tagText = selected ? "已选" : statusMeta.text;
+            const tagClass = selected ? "status-tag sel" : statusMeta.className;
+            const imgUrl = item.img || item.original_img || "";
+            const img = imgUrl ? `<img src="${escapeHtml(imgUrl)}" alt="${escapeHtml(item.name)}" onerror="this.replaceWith(document.createElement('span'))">` : "<span></span>";
+            const imageStatus = item.image_status || "done";
+            const positionText = item.display_position_label || item.real_position || `${item.position}号仓`;
+            const styleText = item.style || item.category || styleLabel(item.style_id);
+            const processing = imageStatus === "processing";
+            const justDone = imageStatus === "done" && item.clean_img && flatImageProcessingIds.has(item.id) && !seenFlatImageDoneIds.has(item.id);
+            const overlay = processing || justDone ? `
+                <div class="generation-overlay ${justDone ? "done" : ""}">
+                    <div class="generation-ring"></div>
+                    <span>${justDone ? "平整图完成" : "生成平整图"}</span>
+                </div>
+            ` : "";
+            if (processing) {
+                flatImageProcessingIds.add(item.id);
+            } else if (justDone) {
+                flatImageProcessingIds.delete(item.id);
+                rememberFlatImageDone(item.id);
+            } else if (imageStatus === "done" || imageStatus === "failed") {
+                flatImageProcessingIds.delete(item.id);
+            }
+            return `
+                <article class="item-card${selectable}${selectedClass}" data-id="${escapeHtml(item.id)}">
+                    <div class="thumb">${img}</div>
+                    <div class="item-info">
+                        <div class="item-name">${escapeHtml(item.name)}</div>
+                        <div class="item-desc">编号: ${escapeHtml(item.id)}　位置: ${escapeHtml(positionText)}　样式: ${escapeHtml(styleText)}${item.view_count > 1 ? `　${item.view_count}视角` : ""}</div>
+                    </div>
+                    <div class="${tagClass}">${tagText}</div>
+                    ${overlay}
+                </article>
+            `;
+        }
+
+        function setGrid(containerId, items, options = {}) {
+            const container = el(containerId);
+            if (!items.length) {
+                container.innerHTML = `<div class="empty">${options.empty || "暂无数据"}</div>`;
+                return;
+            }
+            container.innerHTML = items.map((item) => itemCard(item, options)).join("");
+            if (options.onClick) {
+                container.querySelectorAll(".item-card").forEach((card) => {
+                    card.addEventListener("click", () => options.onClick(card.dataset.id));
+                });
+            }
+        }
+
+        function renderDebug() {
+            const table = el("debug-table");
+            if (!table) return;
+
+            const items = state.wardrobe.filter((item) => item.status !== "deleted");
+            const inItems = items.filter((item) => item.status === "in-wardrobe");
+            const outItems = items.filter((item) => item.status === "in-use");
+            const validIds = new Set(items.map((item) => item.id));
+            state.selectedDebug.forEach((id) => {
+                if (!validIds.has(id)) state.selectedDebug.delete(id);
+            });
+
+            el("debug-total-count").textContent = items.length;
+            el("debug-in-count").textContent = inItems.length;
+            el("debug-out-count").textContent = outItems.length;
+            el("debug-sync-time").textContent = el("last-sync").textContent || "--";
+            el("debug-count-pill").textContent = `${state.selectedDebug.size}/${items.length} 条`;
+            if (!items.length) {
+                table.innerHTML = `<div class="empty">后台暂无衣柜数据</div>`;
+                return;
+            }
+
+            table.innerHTML = items.map((item) => {
+                const statusMeta = wardrobeStatusMeta(item.status);
+                const inWardrobe = item.status === "in-wardrobe";
+                const inUse = item.status === "in-use";
+                const tagClass = statusMeta.className;
+                const tagText = statusMeta.text;
+                const nextStatus = inWardrobe ? "in-use" : inUse ? "in-wardrobe" : "";
+                const actionText = inWardrobe ? "设为出库" : inUse ? "设为入库" : statusMeta.text;
+                const actionClass = inWardrobe ? "out" : inUse ? "in" : "";
+                const actionDisabled = inWardrobe || inUse ? "" : "disabled";
+                const checked = state.selectedDebug.has(item.id) ? "checked" : "";
+                const thumb = item.img
+                    ? `<img src="${escapeHtml(item.img)}" alt="${escapeHtml(item.name)}" onerror="this.replaceWith(document.createElement('span'))">`
+                    : `<span class="debug-thumb"></span>`;
+
+                return `
+                    <article class="debug-row">
+                        <input class="debug-check" type="checkbox" data-debug-check="${escapeHtml(item.id)}" ${checked}>
+                        ${thumb}
+                        <div>
+                            <div class="debug-row-title">${escapeHtml(item.name)}</div>
+                            <div class="debug-row-meta">ID: ${escapeHtml(item.id)} / 位置: ${item.position}号仓 / ${escapeHtml(item.desc)}</div>
+                        </div>
+                        <div class="${tagClass}">${tagText}</div>
+                        <button class="debug-status-btn ${actionClass}" data-debug-status="${escapeHtml(item.id)}" data-status="${nextStatus}" ${actionDisabled}>${actionText}</button>
+                    </article>
+                `;
+            }).join("");
+
+            table.querySelectorAll("[data-debug-status]").forEach((btn) => {
+                btn.addEventListener("click", () => updateDebugStatus(btn.dataset.debugStatus, btn.dataset.status));
+            });
+            table.querySelectorAll("[data-debug-check]").forEach((checkbox) => {
+                checkbox.addEventListener("change", () => {
+                    if (checkbox.checked) state.selectedDebug.add(checkbox.dataset.debugCheck);
+                    else state.selectedDebug.delete(checkbox.dataset.debugCheck);
+                    renderDebug();
+                });
+            });
+        }
+
+        function updateConnection(online, source = "实时云端") {
+            state.online = online;
+            el("net-pill").textContent = online ? "联网" : "离线";
+            el("net-pill").className = online ? "pill strong" : "pill warn";
+            el("mode-pill").textContent = online ? "待机" : "缓存";
+            if (!online && source) showToast(`后端连接失败，显示${source}`, 1600);
+        }
+
+        function saveSnapshot(items) {
+            localStorage.setItem(CACHE_KEY, JSON.stringify({ items, time: Date.now() }));
+        }
+
+        function readSnapshot() {
+            try {
+                const data = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+                if (data && Array.isArray(data.items)) return data;
+            } catch (error) {
+                console.warn(error);
+            }
+            return null;
+        }
+
+        function renderAll() {
+            const items = state.wardrobe.filter((item) => item.status !== "deleted");
+            const inItems = items.filter((item) => item.status === "in-wardrobe");
+            const outItems = items.filter((item) => item.status === "in-use");
+
+            el("total-count").textContent = items.length;
+            el("available-count").textContent = inItems.length;
+            el("out-count").textContent = outItems.length;
+            el("metric-in").textContent = inItems.length;
+            el("metric-out").textContent = outItems.length;
+            el("selected-count").textContent = state.selectedFetch.size;
+            el("item-count-pill").textContent = `${items.length} 件`;
+            el("refresh-sec").textContent = Math.round(REFRESH_MS / 1000);
+            el("fetch-pill").textContent = `已选择 ${state.selectedFetch.size} 件`;
+            el("fetch-btn").disabled = state.fetchFlowStep !== "ready" || state.selectedFetch.size === 0;
+            const returnPill = el("return-pill");
+            if (returnPill) returnPill.textContent = outItems.length ? `${outItems.length} 件待归还` : "归还口";
+
+            setGrid("home-grid", items, { empty: "云端衣橱暂无衣物数据" });
+            setGrid("fetch-grid", inItems, {
+                selectable: true,
+                selectedIds: state.selectedFetch,
+                empty: "暂无可取衣物",
+                onClick: toggleFetch,
+            });
+            renderDebug();
+        }
+
+        async function loadWardrobe() {
+            try {
+                const response = await fetch(apiUrl("/api/wardrobe"), { cache: "no-store" });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                state.wardrobe = assignDisplayPositions(data.map(normalizeItem));
+                saveSnapshot(data);
+                updateConnection(true);
+                el("last-sync").textContent = nowText();
+                renderAll();
+            } catch (error) {
+                const cached = readSnapshot();
+                state.wardrobe = cached ? assignDisplayPositions(dedupeGarmentViews(cached.items.map(normalizeItem))) : [];
+                updateConnection(false, cached ? "缓存数据" : "空数据");
+                renderAll();
+            }
+        }
+
+        function switchPage(page) {
+            if (page === "debug" && !state.debugUnlocked) return;
+            document.querySelectorAll(".page").forEach((node) => node.classList.remove("active"));
+            document.querySelectorAll(".nav-btn").forEach((node) => node.classList.toggle("active", node.dataset.page === page));
+            el(`page-${page}`).classList.add("active");
+            if (page === "debug") {
+                renderDebug();
+                loadTaskFlow();
+            }
+            if (page === "care") drawCareChart();
+        }
+
+        function getInitialPage() {
+            const allowed = new Set(["home", "fetch", "store", "ai", "care", "featured", "debug"]);
+            const requested = new URLSearchParams(window.location.search).get("page")
+                || window.location.hash.replace(/^#/, "");
+            return allowed.has(requested) ? requested : "";
+        }
+
+        function registerAiDebugTap() {
+            if (state.debugUnlocked) return;
+            aiDebugTapCount += 1;
+            clearTimeout(aiDebugTapTimer);
+            aiDebugTapTimer = setTimeout(() => {
+                aiDebugTapCount = 0;
+            }, 2600);
+
+            if (aiDebugTapCount >= 10) {
+                aiDebugTapCount = 0;
+                unlockDebug();
+            } else if (aiDebugTapCount >= 5) {
+                showToast(`继续点击 AI推荐 ${10 - aiDebugTapCount} 次开启调试`);
+            }
+        }
+
+        function unlockDebug() {
+            state.debugUnlocked = true;
+            el("debug-nav-btn").classList.remove("hidden");
+            renderDebug();
+            showToast("调试入口已开启");
+            switchPage("debug");
+        }
+
+        function handleDebugFile(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                state.debugImageBase64 = String(reader.result || "");
+                el("debug-preview").innerHTML = state.debugImageBase64
+                    ? `<img src="${escapeHtml(state.debugImageBase64)}" alt="调试图片预览">`
+                    : "暂无图片";
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function renderAiPhotoHistory() {
+            const box = el("ai-photo-history");
+            if (!box) return;
+            if (!state.aiPhotoHistory.length) {
+                box.innerHTML = '<span class="note">暂无历史全身照</span>';
+                return;
+            }
+            box.innerHTML = state.aiPhotoHistory.map((photo) => `
+                <button class="ai-photo-chip ${photo.url === state.aiUserPhotoUrl ? "active" : ""}" data-ai-photo-url="${escapeHtml(photo.url)}">
+                    ${escapeHtml(photo.name || "全身照")}
+                </button>
+            `).join("");
+            box.querySelectorAll("[data-ai-photo-url]").forEach((button) => {
+                button.addEventListener("click", () => selectAiPhotoUrl(button.dataset.aiPhotoUrl, button.textContent.trim()));
+            });
+        }
+
+        async function loadAiPhotos() {
+            try {
+                const response = await fetch(apiUrl("/api/ai/photos"), { cache: "no-store" });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                state.aiPhotoHistory = await response.json();
+                renderAiPhotoHistory();
+            } catch (error) {
+                state.aiPhotoHistory = [];
+                renderAiPhotoHistory();
+            }
+        }
+
+        function selectAiPhotoUrl(url, name) {
+            state.aiUserPhotoUrl = url || "";
+            state.aiUserPhotoBase64 = "";
+            el("ai-photo-file").value = "";
+            el("ai-photo-name").textContent = state.aiUserPhotoUrl ? `已选择：${name || "历史全身照"}` : "未上传全身照，将生成普通搭配预览";
+            renderAiPhotoHistory();
+            if (state.aiUserPhotoUrl) showToast("已选择历史全身照");
+        }
+
+        async function handleAiPhoto(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = async () => {
+                state.aiUserPhotoBase64 = String(reader.result || "");
+                state.aiUserPhotoUrl = "";
+                el("ai-photo-name").textContent = state.aiUserPhotoBase64 ? `已上传：${file.name}` : "未上传全身照，将生成普通搭配预览";
+                try {
+                    const data = await postJson("/api/ai/photos", {
+                        image_base64: state.aiUserPhotoBase64,
+                        name: file.name || "全身照",
+                    });
+                    state.aiUserPhotoUrl = data.photo && data.photo.url ? data.photo.url : "";
+                    state.aiUserPhotoBase64 = "";
+                    el("ai-photo-name").textContent = state.aiUserPhotoUrl ? `已保存：${file.name}` : `已上传：${file.name}`;
+                    await loadAiPhotos();
+                    showToast("全身照已保存，AI 将生成试穿预览");
+                } catch (error) {
+                    showToast("全身照已载入，本次临时使用");
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearAiPhoto() {
+            state.aiUserPhotoBase64 = "";
+            state.aiUserPhotoUrl = "";
+            el("ai-photo-file").value = "";
+            el("ai-photo-name").textContent = "未上传全身照，将生成普通搭配预览";
+            renderAiPhotoHistory();
+            showToast("已清除全身照");
+        }
+
+        function bindPresetGroup(selector, stateKey, datasetKey) {
+            document.querySelectorAll(selector).forEach((button) => {
+                button.addEventListener("click", () => {
+                    document.querySelectorAll(selector).forEach((node) => node.classList.remove("active"));
+                    button.classList.add("active");
+                    state[stateKey] = button.dataset[datasetKey] || "";
+                    if (stateKey === "aiScenePreset" && state[stateKey] && !el("ai-input").value.trim()) {
+                        el("ai-input").value = button.textContent.trim();
+                    }
+                });
+            });
+        }
+
+        async function uploadDebugImage() {
+            if (!state.debugImageBase64) {
+                showToast("请先选择调试图片");
+                return;
+            }
+
+            el("mode-pill").textContent = "调试中";
+            try {
+                const result = await postJson("/api/hardware/store", {
+                    mode: "new",
+                    image_base64: state.debugImageBase64,
+                });
+                const itemName = result.item && result.item.name ? `：${result.item.name}` : "";
+                showToast(`调试入库成功${itemName}`);
+                state.debugImageBase64 = "";
+                el("debug-file").value = "";
+                el("debug-preview").textContent = "暂无图片";
+                await loadWardrobe();
+                switchPage("debug");
+            } catch (error) {
+                showToast("调试入库失败，请检查后端或识别接口");
+            } finally {
+                el("mode-pill").textContent = state.online ? "待机" : "缓存";
+            }
+        }
+
+        async function simulateDebugStore() {
+            const stamp = nowText().replace(/:/g, "");
+            el("mode-pill").textContent = "模拟中";
+            try {
+                await postJson("/api/hardware/store", {
+                    mode: "new",
+                    name: `调试衣物${stamp}`,
+                    desc: "控制屏调试模拟入库记录",
+                    img: "",
+                });
+                showToast("模拟入库成功");
+                await loadWardrobe();
+                switchPage("debug");
+            } catch (error) {
+                showToast("模拟入库失败，请检查后端");
+            } finally {
+                el("mode-pill").textContent = state.online ? "待机" : "缓存";
+            }
+        }
+
+        async function updateDebugStatus(itemId, status) {
+            el("mode-pill").textContent = "调试中";
+            try {
+                await postJson(`/api/wardrobe/${encodeURIComponent(itemId)}/status`, { status });
+                showToast(status === "in-wardrobe" ? "已设为入库" : "已设为出库");
+                await loadWardrobe();
+                switchPage("debug");
+            } catch (error) {
+                showToast("状态调整失败，请检查后端");
+            } finally {
+                el("mode-pill").textContent = state.online ? "待机" : "缓存";
+            }
+        }
+
+        function toggleDebugSelectAll() {
+            const items = state.wardrobe.filter((item) => item.status !== "deleted");
+            if (state.selectedDebug.size === items.length) state.selectedDebug.clear();
+            else items.forEach((item) => state.selectedDebug.add(item.id));
+            renderDebug();
+        }
+
+        async function updateDebugBatch(status) {
+            const ids = Array.from(state.selectedDebug);
+            if (!ids.length) {
+                showToast("请先选择调试衣物");
+                return;
+            }
+            el("mode-pill").textContent = "批量中";
+            try {
+                const result = status === "deleted"
+                    ? await postJson("/api/wardrobe/clear", { item_ids: ids })
+                    : null;
+                if (status !== "deleted") {
+                    await Promise.all(ids.map((id) => postJson(`/api/wardrobe/${encodeURIComponent(id)}/status`, { status })));
+                }
+                state.selectedDebug.clear();
+                const text = status === "deleted"
+                    ? result.ok
+                        ? `批量删除完成，释放 ${result.released_slots.length} 个本地 C 点`
+                        : `已删除 ${result.deleted.length} 条，${result.failures.length} 条失败`
+                    : status === "in-wardrobe" ? "批量入库完成" : "批量出库完成";
+                showToast(text);
+                await loadWardrobe();
+                switchPage("debug");
+            } catch (error) {
+                showToast("批量操作失败，请检查后端");
+            } finally {
+                el("mode-pill").textContent = state.online ? "待机" : "缓存";
+            }
+        }
+
+        async function clearCloudWardrobe() {
+            const visibleIds = state.wardrobe
+                .filter((item) => item.status !== "deleted")
+                .map((item) => item.id);
+            const ids = expandGarmentViewIds(visibleIds);
+            if (!ids.length) {
+                showToast("云端衣物已为空");
+                return;
+            }
+            const ok = window.confirm(`确认清除 ${ids.length} 条云端衣物？成功删除的衣物会同步释放本地 C 点；进行中或异常槽位会拒绝清除。`);
+            if (!ok) return;
+
+            el("mode-pill").textContent = "清除中";
+            try {
+                const result = await postJson("/api/wardrobe/clear", { item_ids: ids });
+                state.selectedFetch.clear();
+                state.selectedDebug.clear();
+                if (result.ok) {
+                    showToast(`已清除 ${result.deleted.length} 条衣物，并释放 ${result.released_slots.length} 个本地 C 点`);
+                } else {
+                    showToast(`已清除 ${result.deleted.length} 条，另有 ${result.failures.length} 条失败，请重试`);
+                }
+                await loadWardrobe();
+                switchPage("home");
+            } catch (error) {
+                showToast("清除失败：可能存在进行中/异常槽位，或云端接口不可用");
+            } finally {
+                el("mode-pill").textContent = state.online ? "待机" : "缓存";
+            }
+        }
+
+        function toggleFetch(itemId) {
+            if (state.fetchFlowStep !== "ready") {
+                showToast("请先取下衣物并完成机构复位");
+                return;
+            }
+            if (state.selectedFetch.has(itemId)) state.selectedFetch.clear();
+            else {
+                state.selectedFetch.clear();
+                state.selectedFetch.add(itemId);
+            }
+            renderAll();
+        }
+
+        async function confirmFetch(ids) {
+            if (state.fetchFlowStep !== "ready") {
+                showToast("当前取衣流程尚未完成，请先执行缩回和机构复位");
+                return;
+            }
+            if (!ids.length) {
+                showToast("请先选择衣物");
+                return;
+            }
+            if (ids.length !== 1) {
+                showToast("机械取衣一次只能处理一件");
+                return;
+            }
+            const item = state.wardrobe.find((entry) => entry.id === ids[0]);
+            if (!item || !item.real_position) {
+                showToast("该衣物没有可用的真实 C 点，已阻止取衣");
+                return;
+            }
+            el("mode-pill").textContent = "取衣中";
+            setFetchFlowStep("fetching", `正在从 ${item.real_position} 取出衣物，请等待动作完成。`);
+            try {
+                const result = await createHardwareTaskWithSerial(
+                    "fetch",
+                    expandGarmentViewIds(ids),
+                    { source: "display", target_c: item.real_position },
+                    7,
+                    "取衣",
+                    "fetch-task",
+                    { item_id: item.id, item_ids: [item.id], target_c: item.real_position }
+                );
+                if (result.serialOk) {
+                    await waitForTaskTerminal(result.commandId);
+                    state.selectedFetch.clear();
+                    renderAll();
+                    await loadWardrobe();
+                    state.fetchReturnPage = "home";
+                    rememberFetchResetPending(true);
+                    setFetchFlowStep("await-reset");
+                    showToast("取衣动作已完成，请取下衣物后缩回并复位机构");
+                    switchPage("fetch");
+                } else {
+                    setFetchFlowStep("ready", "取衣动作没有成功下发，请检查串口链路后重试。");
+                }
+            } catch (error) {
+                showToast("取衣任务处理失败，请检查网关");
+                setFetchFlowStep("ready", "取衣动作未完成，机构复位按钮不会开放。请检查网关后重试。");
+            } finally {
+                el("mode-pill").textContent = state.fetchFlowStep === "await-reset" ? "待复位" : state.online ? "待机" : "缓存";
+            }
+        }
+
+        async function resetAfterFetch() {
+            if (state.fetchFlowStep !== "await-reset") return;
+            el("mode-pill").textContent = "复位中";
+            setFetchFlowStep("resetting");
+            try {
+                const commandId = await sendTaskAction(FETCH_RESET_ACTION_ID, "取衣后机构复位", "fetch-reset");
+                await waitForTaskTerminal(commandId);
+                rememberFetchResetPending(false);
+                const returnPage = state.fetchReturnPage || "home";
+                state.fetchReturnPage = "home";
+                setFetchFlowStep("ready", "挂衣杆、夹爪和舵机已回到初始状态，可以继续选择下一件衣物。");
+                showToast("取衣机构已完成缩回和复位");
+                switchPage(returnPage);
+            } catch (error) {
+                rememberFetchResetPending(true);
+                setFetchFlowStep("await-reset", "机构复位失败或未收到完成回执，请检查挂衣杆、夹爪和舵机后点击按钮重试。");
+                showToast("取衣机构复位失败，请检查后重试");
+            } finally {
+                el("mode-pill").textContent = state.fetchFlowStep === "await-reset" ? "待复位" : state.online ? "待机" : "缓存";
+            }
+        }
+
+        async function confirmReturn() {
+            if (state.fetchFlowStep !== "ready") {
+                showToast("请先取下衣物并完成机构复位，再进行归还");
+                switchPage("fetch");
+                return;
+            }
+            el("mode-pill").textContent = "归还中";
+            try {
+                const result = await createHardwareTaskWithSerial("store-return", [], { source: "display" }, 6, "归还", "store-return-task");
+                if (result.taskOk || result.serialOk) switchPage("store");
+            } catch (error) {
+                showToast("归还任务处理失败，请检查网关");
+            } finally {
+                el("mode-pill").textContent = state.online ? "待机" : "缓存";
+            }
+        }
+
+        async function newStore() {
+            if (state.fetchFlowStep !== "ready") {
+                showToast("请先取下衣物并完成机构复位，再开始存衣");
+                switchPage("fetch");
+                return;
+            }
+            el("mode-pill").textContent = "伸出中";
+            setStoreFlowStep("extending");
+            try {
+                const commandId = await sendTaskAction(STORE_PREPARE_ACTION_ID, "到 A0 并伸出伸缩杆", "store-prepare");
+                await waitForTaskTerminal(commandId);
+                setStoreFlowStep("await-retract");
+            } catch (error) {
+                showToast("到 A0 或伸缩杆伸出失败，请检查网关");
+                setStoreFlowStep("ready", "到 A0 或伸缩杆伸出失败，请检查网关后重试。");
+            } finally {
+                el("mode-pill").textContent = state.online ? "待机" : "缓存";
+            }
+        }
+
+        async function quickStartStore() {
+            switchPage("store");
+            await newStore();
+        }
+
+        async function retractAndStartStore() {
+            el("mode-pill").textContent = "缩回中";
+            setStoreFlowStep("retracting");
+            try {
+                const retractCommandId = await sendTaskAction(STORE_RETRACT_ACTION_ID, "伸缩杆缩回", "store-retract");
+                await waitForTaskTerminal(retractCommandId);
+                setStoreFlowStep("storing");
+                const result = await createHardwareTaskWithSerial(
+                    "store-new",
+                    [],
+                    { source: "display", capture_required: true, capture_mode: "single-front" },
+                    STORE_AFTER_TELESCOPE_ACTION_ID,
+                    "存衣",
+                    "store-after-photo-task"
+                );
+                if (!result.serialOk) {
+                    setStoreFlowStep("ready", "存衣动作未下发，请检查串口链路后重试。");
+                    return;
+                }
+                await waitForTaskTerminal(result.commandId);
+                await loadWardrobe();
+                setStoreFlowStep("ready");
+                switchPage("home");
+            } catch (error) {
+                showToast("缩回或存衣流程失败，请检查网关");
+                setStoreFlowStep("ready", "流程失败，本次未确认完成存衣。请检查网关、摄像头和串口链路后重试。");
+            } finally {
+                el("mode-pill").textContent = state.online ? "待机" : "缓存";
+            }
+        }
+
+        async function captureStoreImage() {
+            el("mode-pill").textContent = "拍照中";
+            try {
+                const result = await postJson("/api/camera/capture-upload", { source: "display-manual", upload: false });
+                if (result.ok) {
+                    showToast("本地拍照完成；云端建档请通过完整存衣事务进行");
+                } else {
+                    showToast("拍照失败，请检查摄像头");
+                }
+            } catch (error) {
+                showToast("本地拍照失败，请检查树莓派摄像头");
+            } finally {
+                el("mode-pill").textContent = state.online ? "待机" : "缓存";
+            }
+        }
+
+        function renderAiResult(data) {
+            if (!data || !Array.isArray(data.recommend_ids) || !data.recommend_ids.length) return false;
+            state.aiIds = data.recommend_ids || [];
+            el("ai-text").textContent = data.text || "已生成搭配方案。";
+            el("ai-count-pill").textContent = `${state.aiIds.length} 件`;
+            el("ai-pill").textContent = "已生成";
+            const alt = data.preview_mode === "try-on" ? "AI真人试穿预览" : "AI搭配预览";
+            const items = Array.isArray(data.selected_items) ? data.selected_items : [];
+            el("ai-selected-strip").innerHTML = items.map((item) => `
+                <div class="ai-mini-item">
+                    <img src="${escapeHtml(item.img || "")}" alt="${escapeHtml(item.name || "")}">
+                    <span>${escapeHtml(item.name || "衣物")}</span>
+                </div>
+            `).join("");
+            const taskId = data.id || (data.recommend_ids || []).join(",");
+            const processing = data.preview_status === "processing";
+            const justDone = Boolean(data.preview_img) && taskId && !seenAiPreviewDoneIds.has(taskId);
+            const outfitBoard = !data.preview_img ? (items.length ? `
+                <div class="ai-outfit-board">
+                    ${items.map((item) => `
+                    <div class="ai-outfit-slot">
+                        ${item.img ? `<img src="${escapeHtml(item.img)}" alt="${escapeHtml(item.name || "衣物")}">` : "<div></div>"}
+                        <span>${escapeHtml(item.name || "衣物")}</span>
+                    </div>
+                    `).join("")}
+                </div>
+            ` : `<div class="ai-outfit-empty">暂无套装</div>`) : "";
+            el("ai-image-box").innerHTML = `
+                ${data.preview_img ? `<img src="${escapeHtml(data.preview_img)}" alt="${alt}">` : ""}
+                ${outfitBoard}
+                ${processing || justDone ? `
+                <div class="generation-overlay ${justDone ? "done" : ""}" id="ai-generation-overlay">
+                    <div class="generation-ring"></div>
+                    <span>${justDone ? "最终图完成" : "生成最终图"}</span>
+                </div>
+                ` : ""}
+            `;
+            if (justDone) {
+                rememberAiPreviewDone(taskId);
+                setTimeout(() => {
+                    const overlay = el("ai-generation-overlay");
+                    if (overlay) overlay.remove();
+                }, 1300);
+            }
+            return true;
+        }
+
+        async function loadLastAiResult() {
+            try {
+                const response = await fetch(apiUrl("/api/ai/last"), { cache: "no-store" });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                renderAiResult(data);
+                if (data.preview_status === "processing") {
+                    setTimeout(loadLastAiResult, 1200);
+                }
+            } catch (error) {
+                state.aiIds = [];
+            }
+        }
+
+        async function generateAi(promptText) {
+            const req = promptText || el("ai-input").value.trim() || state.aiScenePreset;
+            if (!req) {
+                showToast("请输入搭配需求");
+                return;
+            }
+            const weatherHint = state.weather && state.weather.summary
+                ? `当前天气：${state.weather.summary}。请结合温度、湿度和降水情况推荐更合适的衣物。`
+                : "";
+            const requestText = weatherHint ? `${req}。${weatherHint}` : req;
+            el("ai-pill").textContent = "生成中";
+            el("mode-pill").textContent = "AI中";
+            el("ai-text").textContent = "AI 正在根据在柜衣物生成搭配方案...";
+            el("ai-count-pill").textContent = "0 件";
+            el("ai-selected-strip").innerHTML = "";
+            el("ai-image-box").innerHTML = `
+                <div class="generation-overlay" id="ai-generation-overlay">
+                    <div class="generation-ring"></div>
+                    <span>生成套装推荐</span>
+                </div>
+            `;
+            try {
+                const data = await postJson("/api/ai/generate", {
+                    user_request: requestText,
+                    user_style: "casual",
+                    user_photo_base64: state.aiUserPhotoBase64 || undefined,
+                    user_photo_url: state.aiUserPhotoUrl || undefined,
+                    scene_preset: state.aiScenePreset || undefined,
+                    background_preset: state.aiBackgroundPreset || undefined,
+                    weather: state.weather || undefined,
+                });
+                if (!renderAiResult(data)) {
+                    renderAiResult(localOutfitRecommendation(req));
+                    showToast("已用在柜衣物生成套装");
+                } else if (data.preview_status === "processing") {
+                    setTimeout(loadLastAiResult, 1200);
+                }
+                switchPage("ai");
+            } catch (error) {
+                renderAiResult(localOutfitRecommendation(req));
+                showToast("已用在柜衣物生成套装");
+            } finally {
+                el("mode-pill").textContent = state.online ? "待机" : "缓存";
+            }
+        }
+
+        async function confirmAiFetch() {
+            if (state.fetchFlowStep !== "ready") {
+                showToast("上一件衣物尚未取下或机构尚未复位");
+                switchPage("fetch");
+                return;
+            }
+            const ids = (state.aiIds || []).filter((id) => {
+                const item = state.wardrobe.find((entry) => entry.id === id);
+                return item && item.status === "in-wardrobe";
+            });
+            if (!ids.length) {
+                showToast("AI 推荐中暂无可取衣物");
+                return;
+            }
+            const item = state.wardrobe.find((entry) => entry.id === ids[0]);
+            if (!item || !item.real_position) {
+                showToast("推荐衣物没有可用的真实 C 点，已阻止取衣");
+                return;
+            }
+            el("mode-pill").textContent = "AI取衣";
+            setFetchFlowStep("fetching", `正在从 ${item.real_position} 取出 AI 推荐衣物，请等待动作完成。`);
+            try {
+                const expandedIds = expandGarmentViewIds([item.id]);
+                const plan = [{ item_id: item.id, slot_id: item.real_position, action: "fetch" }];
+                const result = await createHardwareTaskWithSerial(
+                    "fetch",
+                    expandedIds,
+                    { source: "ai-agent", recommend_ids: expandedIds, hardware_plan: plan, target_c: item.real_position },
+                    7,
+                    "AI取衣",
+                    "ai-fetch-task",
+                    { item_id: item.id, item_ids: [item.id], target_c: item.real_position }
+                );
+                if (result.serialOk) {
+                    await waitForTaskTerminal(result.commandId);
+                    await loadWardrobe();
+                    state.aiIds = ids.slice(1);
+                    el("ai-count-pill").textContent = `${state.aiIds.length} 件`;
+                    state.fetchReturnPage = state.aiIds.length ? "ai" : "home";
+                    rememberFetchResetPending(true);
+                    setFetchFlowStep("await-reset", "AI 取衣动作已完成。请先取下衣物，再点击“衣物已取下，缩回并复位”。");
+                    showToast(ids.length > 1 ? "请取下当前衣物并复位机构，再继续下一件" : "请取下衣物并复位机构");
+                    switchPage("fetch");
+                } else {
+                    setFetchFlowStep("ready", "AI 取衣动作没有成功下发，请检查串口链路后重试。");
+                }
+            } catch (error) {
+                setFetchFlowStep("ready", "AI 取衣动作未完成，机构复位按钮不会开放。请检查网关后重试。");
+                showToast("AI 取衣任务处理失败，请检查网关");
+            } finally {
+                el("mode-pill").textContent = state.fetchFlowStep === "await-reset" ? "待复位" : state.online ? "待机" : "缓存";
+            }
+        }
+
+        async function loadFeatured() {
+            try {
+                const response = await fetch(apiUrl("/api/featured"), { cache: "no-store" });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                state.featured = await response.json();
+            } catch (error) {
+                state.featured = [
+                    {
+                        title: "早春通勤风衣套装",
+                        desc: "点击跳转至淘宝，作为外部购买精选占位。",
+                        tags: ["淘宝", "通勤", "风衣"],
+                        img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                        url: "https://www.taobao.com",
+                    },
+                    {
+                        title: "日系简约潮流穿搭",
+                        desc: "点击跳转至淘宝，后续可替换为真实商品推荐接口。",
+                        tags: ["淘宝", "简约", "潮流"],
+                        img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                        url: "https://www.taobao.com",
+                    },
+                    {
+                        title: "日常休闲基础款",
+                        desc: "基础款单品购买占位，适合后续接入淘宝商品搜索。",
+                        tags: ["淘宝", "休闲", "基础款"],
+                        img: "https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                        url: "https://www.taobao.com",
+                    },
+                ];
+            }
+            renderFeatured();
+        }
+
+        function renderFeatured() {
+            el("featured-pill").textContent = `${state.featured.length} 个精选`;
+            el("featured-grid").innerHTML = state.featured.map((item, index) => `
+                <article class="featured-card">
+                    <img src="${escapeHtml(item.img || "")}" alt="${escapeHtml(item.title)}" onerror="this.style.display='none'">
+                    <div class="featured-body">
+                        <div class="featured-title">${escapeHtml(item.title)}</div>
+                        <div class="featured-desc">${escapeHtml(item.desc)}</div>
+                        <div class="tags">${(item.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+                    </div>
+                    <button class="action-btn blue" data-featured="${index}">跳转淘宝</button>
+                </article>
+            `).join("");
+            el("featured-grid").querySelectorAll("[data-featured]").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const item = state.featured[Number(btn.dataset.featured)];
+                    if (item.url) {
+                        window.open(item.url, "_blank");
+                    } else {
+                        showToast("该精选暂未配置购买链接");
+                    }
+                });
+            });
+        }
+
+        function bindEvents() {
+            document.querySelectorAll(".nav-btn").forEach((btn) => btn.addEventListener("click", () => {
+                switchPage(btn.dataset.page);
+                if (btn.dataset.page === "ai") registerAiDebugTap();
+            }));
+            document.querySelectorAll("[data-jump]").forEach((btn) => btn.addEventListener("click", () => {
+                switchPage(btn.dataset.jump);
+                if (btn.dataset.jump === "ai" && !state.debugUnlocked) registerAiDebugTap();
+            }));
+            el("clear-selection-btn").addEventListener("click", () => {
+                state.selectedFetch.clear();
+                renderAll();
+            });
+            el("clear-cloud-wardrobe-btn").addEventListener("click", clearCloudWardrobe);
+            el("fetch-btn").addEventListener("click", () => confirmFetch(Array.from(state.selectedFetch)));
+            el("fetch-reset-btn").addEventListener("click", resetAfterFetch);
+            el("new-store-btn").addEventListener("click", newStore);
+            el("quick-start-btn").addEventListener("click", quickStartStore);
+            el("store-retract-btn").addEventListener("click", retractAndStartStore);
+            el("ai-generate-btn").addEventListener("click", () => generateAi());
+            el("ai-redo-btn").addEventListener("click", () => generateAi());
+            el("ai-fetch-btn").addEventListener("click", confirmAiFetch);
+            el("ai-photo-btn").addEventListener("click", () => el("ai-photo-file").click());
+            el("ai-photo-file").addEventListener("change", handleAiPhoto);
+            el("ai-photo-clear-btn").addEventListener("click", clearAiPhoto);
+            bindPresetGroup("[data-scene-preset]", "aiScenePreset", "scenePreset");
+            bindPresetGroup("[data-background-preset]", "aiBackgroundPreset", "backgroundPreset");
+            el("reload-featured-btn").addEventListener("click", loadFeatured);
+            el("debug-pick-btn").addEventListener("click", () => el("debug-file").click());
+            el("debug-file").addEventListener("change", handleDebugFile);
+            el("debug-upload-btn").addEventListener("click", uploadDebugImage);
+            el("debug-refresh-btn").addEventListener("click", loadWardrobe);
+            el("debug-simulate-btn").addEventListener("click", simulateDebugStore);
+            el("debug-select-all-btn").addEventListener("click", toggleDebugSelectAll);
+            el("debug-bulk-in-btn").addEventListener("click", () => updateDebugBatch("in-wardrobe"));
+            el("debug-bulk-out-btn").addEventListener("click", () => updateDebugBatch("in-use"));
+            el("debug-bulk-delete-btn").addEventListener("click", () => updateDebugBatch("deleted"));
+            el("task-refresh-btn").addEventListener("click", loadTaskFlow);
+            el("task-new-btn").addEventListener("click", () => createDebugTask("store-new"));
+            el("task-return-btn").addEventListener("click", () => createDebugTask("store-return"));
+            el("task-fetch-btn").addEventListener("click", () => createDebugTask("fetch"));
+            el("care-uv-on-btn").addEventListener("click", () => { careToggle("uv", "on"); sendCareOutput("uv_lamp", true, "紫外线杀菌开启"); });
+            el("care-uv-off-btn").addEventListener("click", () => { careToggle("uv", "off"); sendCareOutput("uv_lamp", false, "紫外线杀菌关闭"); });
+            el("care-hot-air-start-btn").addEventListener("click", () => { careToggle("hot-air", "start"); sendCareAction(8, "热风除湿启动"); });
+            el("care-hot-air-stop-btn").addEventListener("click", () => { careToggle("hot-air", "stop"); sendCareAction(9, "热风除湿停止"); });
+            el("care-ionizer-btn").addEventListener("click", () => { careToggle("ionizer", "start"); showToast("负离子输出当前为硬件预留，未下发"); });
+            el("care-ionizer-stop-btn").addEventListener("click", () => { careToggle("ionizer", "stop"); showToast("负离子输出当前为硬件预留，未下发"); });
+            el("care-vent-on-btn").addEventListener("click", () => { careToggle("vent", "on"); sendCareOutput("vent_fan", true, "通风风扇开启"); });
+            el("care-vent-off-btn").addEventListener("click", () => { careToggle("vent", "off"); sendCareOutput("vent_fan", false, "通风风扇关闭"); });
+            el("care-schedule-save-btn").addEventListener("click", saveCareSchedule);
+            el("care-schedule-run-btn").addEventListener("click", runCareScheduleNow);
+            el("care-time-add-btn").addEventListener("click", addCareTimePoint);
+            document.querySelectorAll(".care-advanced-grid label").forEach((label) => {
+                label.addEventListener("click", (event) => {
+                    const input = label.querySelector("input[type='time']");
+                    if (!input || event.target === input) return;
+                    openTimeInput(input);
+                });
+            });
+            el("care-schedule-times").addEventListener("click", (event) => {
+                const item = event.target.closest(".care-time-item");
+                if (!item || event.target.closest(".care-time-remove")) return;
+                openTimeInput(item.querySelector("input[type='time']"));
+            });
+            el("care-chart-panel").addEventListener("click", () => toggleCareChart());
+        }
+
+        async function keepAwake() {
+            if (!("wakeLock" in navigator)) return;
+            try {
+                await navigator.wakeLock.request("screen");
+            } catch (error) {
+                console.warn(error);
+            }
+        }
+
+        bindEvents();
+        setFetchFlowStep(
+            state.fetchFlowStep,
+            state.fetchFlowStep === "await-reset" ? "页面刷新前已有一件衣物完成取衣。请确认衣物已取下，再执行缩回和机构复位。" : ""
+        );
+        setStoreFlowStep(state.storeFlowStep);
+        const initialPage = getInitialPage();
+        if (initialPage) switchPage(initialPage);
+        setClock();
+        setInterval(setClock, 1000);
+        startCareChart();
+        loadWeather();
+        loadLocalStatus();
+        loadCareSchedules();
+        loadAiPhotos();
+        loadLastAiResult();
+        loadWardrobe();
+        loadFeatured();
+        setInterval(loadLocalStatus, 1500);
+        setInterval(loadWeather, 30 * 60 * 1000);
+        setInterval(loadWardrobe, 5000);
+        aiSyncTimer = setInterval(loadLastAiResult, 3000);
+        keepAwake();
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+........................................................................ [ 91%]
+.......                                                                  [100%]
+============================== warnings summary ===============================
+02_树莓派网关与网页\raspberry_pi_gateway\src\wardrobe_gateway\app.py:1254
+  D:\Desktop\家居\智能衣橱_完整项目_精简整理版_20261025\02_树莓派网关与网页\raspberry_pi_gateway\src\wardrobe_gateway\app.py:1254: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    @app.on_event("startup")
+
+..\tmp\handoff_20261023_venv\Lib\site-packages\fastapi\applications.py:4495
+..\tmp\handoff_20261023_venv\Lib\site-packages\fastapi\applications.py:4495
+  D:\Desktop\家居\tmp\handoff_20261023_venv\Lib\site-packages\fastapi\applications.py:4495: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    return self.router.on_event(event_type)
+
+02_树莓派网关与网页\raspberry_pi_gateway\src\wardrobe_gateway\app.py:1281
+  D:\Desktop\家居\智能衣橱_完整项目_精简整理版_20261025\02_树莓派网关与网页\raspberry_pi_gateway\src\wardrobe_gateway\app.py:1281: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    @app.on_event("shutdown")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+79 passed, 4 warnings in 0.68s
